@@ -1,0 +1,478 @@
+\chapter{Virtual work and D'Alembert's principle}
+One of the advantages of analytic mechanics is that it removes the need to deal with ``internal forces''. Consider the problem of two masses attached by a rigid mass-less rod; in vector mechanics, one needs to know the tension in the rod to be able to write the forces on each mass and obtain the equation of motion. In principle, the rod itself is made of an almost infinite number of particles each exerting forces on each other, and a complete vectorial approach is not tractable. In analytic mechanics, we can distinguish ``internal forces'' and usually ignore them. Typically, these internal forces can be handled easily by using a constraint (e.g. the rod is a rigid object).
+
+\section{Virtual work}
+Virtual work, $\delta W_i$ is the work done by a force, $\vec{F}_i$ given a ``reversible virtual displacement'' that is in harmony with the given constraints, $\delta\vec{r}_i$:
+\begin{align}
+\delta W_i = \vec{F}_i\cdot\delta\vec{r}_i
+\end{align}
+A reversible displacement is one where $\delta\vec{r}_i$ can be replaced with $-\delta\vec{r}_i$ without violating any of the constraints $\delta\vec{r}_i$ is the variation of the position vector where the force is applied.  By definition, a virtual displacement that is parallel to a normal force is not reversible.
+
+\subsection{Principal of virtual work and static equilibrium}
+The principle of virtual work states that for a static equilibrium, the sum of virtual work done by all forces is equal to zero.
+\begin{align}
+\sum_{i=1}^N\delta W_i &= 0 \nonumber\\
+\sum_{i=1}^N\vec{F}_i\cdot\delta\vec{r}_i &= 0
+\end{align}
+We can divide this up into ``external forces'' (such as gravity, electric fields), $\vec{F}^E_i$, and ``internal forces'' (such as tension in a rod, normal reaction forces), $\vec{F}^I_j$.
+\begin{align}
+\sum_{i=1}^N\delta W_i=\sum_{i=1}^N \vec{F}^E_i\cdot\delta\vec{r}_i + \sum_{i=1}^N\vec{F}^I_j\cdot\delta\vec{r}_j
+\end{align}
+
+Typically, the internal forces are related to constraints. ``Workless constraints'' are those that lead to forces that do no virtual work.
+\begin{example}{0pt}{The tension force in a rigid rod that holds two masses together is workless}{\capfig{0.2\textwidth}{figures/2MassesAndRod.png}{\label{fig:2MassesAndRod}Two masses constrained by a mass-less rigid rod.}}
+The tension forces on each mass are equal and opposite (Newton's third law):
+\begin{align*}
+\vec{F}_1=-\vec{F}_2
+\end{align*}
+Furthermore, the constraint that the rods be fixed relative to each other requires that their virtual displacement be the same:
+\begin{align*}
+\left|\vec{r}_2-\vec{r}_1\right|=l\nonumber\\
+\delta \left|\vec{r}_2-\vec{r}_1\right|=\delta l=0\nonumber\\
+\therefore \delta\vec{r}_1=\delta \vec{r}_2
+\end{align*}
+Thus, the virtual work done by the internal forces in this case is zero:
+\begin{align*}
+\sum\vec{F}^I_j\cdot\delta\vec{r}_j&=\vec{F}_1\cdot\delta\vec{r}_1+\vec{F}_2\cdot\delta\vec{r}_2\nonumber\\
+&=\vec{F}_1\cdot\delta\vec{r}_1-\vec{F}_1\cdot\delta\vec{r}_1=0
+\end{align*}
+\end{example}
+\begin{example}{0pt}{The normal force on a frictionless surface is workless}{\capfig{0.2\textwidth}{figures/BlockOnSurface.png}{Block on a surface}}
+If the block is constrained to slide on the surface, the normal force is perpendicular to $\delta \vec{r}$ and thus does no virtual work. $\delta \vec{r}$ must be parallel to the contact surface, since it would not be reversible otherwise.
+\end{example}
+
+In the case of workless constraints, the total virtual work is given by the work of the external forces. It is generally true (although difficult to prove) that most constraint forces are workless and can be ignored.
+
+For static equilibrium, the ``Principal of Virtual Work'' states that the total virtual work (which is done by external forces) must be zero:
+\begin{align}
+\therefore \sum_{i=1}^N\delta W_i=\sum_{i=1}^N \vec{F}^E_i\cdot\delta\vec{r}_i = 0 \text{   (workless constraints)}
+\end{align}
+This is in contrast to the vectorial approach with requires the sum of all forces (external and internal) to be zero.
+
+\subsection{Generalized forces}
+We continue by ignoring the internal forces and consider the virtual work done by N external forces:
+\begin{align}
+\sum_{i=1}^N\delta W_i=\sum_{i=1}^N \vec{F}^E_i\cdot\delta\vec{r}_i = 0 
+\end{align}
+If we have $n$ degrees of freedom, we can re-write this in terms of the generalized coordinates (where holonomic constraints are used to reduce the number of coordinates, and the coordinates are thus all independent):
+\begin{align}
+\vec{r}_i&=\vec{r}_i(q_1,\dots , q_n)\nonumber\\
+\delta \vec{r}_i&= \sum_{j=1}^n\frac{\partial\vec{r}_i}{\partial q_j}\delta q_j\nonumber\\
+\therefore \sum_{i=1}^N\delta W_i&=\sum_{i=1}^N\vec{F}^E_i\cdot\left(\sum_{j=1}^n\frac{\partial\vec{r}_i}{\partial q_j}\delta q_j\right)\nonumber\\
+\sum_{i=1}^N\delta W_i&=\sum_{j=1}^n\left(\sum_{i=1}^N\vec{F}^E_i\cdot\frac{\partial\vec{r}_i}{\partial q_j}\right)\delta q_j\nonumber\\
+\sum_{i=1}^N\delta W_i&=\sum_{j=1}^nQ_j\delta q_j\nonumber\\
+\end{align}
+where we have introduced the components, $Q_j$, of the ``generalized force'' which do not necessarily have the dimensions of force:
+\begin{align}
+Q_j\equiv \sum_{i=1}^N\vec{F}^E_i\cdot\frac{\partial\vec{r}_i}{\partial q_j}
+\label{eqn:genforce}
+\end{align}
+The total work is thus the scalar product of the generalized force, $\vec Q$, and a virtual displacement vector, $\delta \vec q$, in configuration space:
+\begin{align}
+\sum_{i=1}^N\delta W_i=\vec{Q}\cdot\delta\vec{q}
+\end{align}
+If any displacement is allowed in configuration space, $\delta \vec{q}$, then all components of the generalized force must be zero for static equilibrium. In a holonomic system, where all coordinates are independent of each other, $\delta {q}_i$ all correspond to allowed displacements and the generalized force components are therefore zero. Another way to picture this is that, given generalized coordinates $q_j$, the generalized force $Q_j$ is the force that does work $Q_j \delta q_j$ when the system is displaced in the direction $\delta q_j$. Since $q_j$ is not necessarily a cartesian coordinate (it could be an angle),  $Q_j$ does not necessarily have the units of force.
+
+\subsection{Using the Principal of Virtual Work to solve statics problems}
+We proceed with a few examples for solving statics problems using the principal of virtual work. The general procedure will be as follows:
+\begin{enumerate}
+\item Identify the number of degrees of freedom and choose generalized coordinates 
+\item Identify the forces that can perform virtual work (forces acting at points where a virtual displacement is possible given the constraints, and forces that are not perpendicular to the allowable virtual displacements)
+\item Write the position vectors of the points where the forces are applied in terms of the generalized coordinates. Then, take the variations in those vectors to obtain the $\delta \vec r_i$
+\item Write out the virtual work and set it to zero
+\item (Alternatively) Evaluate the components of the generalized force and set them equal to zero
+\end{enumerate}
+
+
+\begin{example}{0pt}{What is the magnitude, $F$, of the horizontal force required to maintain a pivoting bar (restricted to pivot in a plane) of mass $m$, length $2L$, and negligible diameter (see Figure \ref{fig:PivotingBar}) at an angle $\theta$?}{\capfig{0.3\textwidth}{figures/PivotingBar.png}{\label{fig:PivotingBar}A pivoting bar, held in static equilibrium by a force, $F$.}}
+This is a rigid body, so in principle there are 6 degrees of freedom. If we choose a coordinate system at the pivot point, we can describe the position of the bar by the cartesian coordinates of the pivoting end of the bar, and 3 angles to describe the rotation of the bar about the 3 axes. However, we have the following constraints:
+\begin{align*}
+x&=0\nonumber\\
+y&=0\nonumber\\
+z&=0\nonumber\\
+\theta_x &=0\nonumber\\
+\theta_y &=0\nonumber\\
+\end{align*}
+we are thus left with 1 degree of freedom. We choose $\theta=\theta_z$ as the one generalized coordinate. Next we consider the virtual work of the forces that can perform non-zero virtual work (the forces at the pivot point cannot perform any virtual work, as the pivot point cannot be moved; its virtual displacement would not be in harmony with the constraints). We have gravity and $F$ that do virtual work:
+\begin{align*}
+\delta W = mg\hat y\cdot\delta\vec{r}_1-F\hat x\cdot\delta\vec{r}_2
+\end{align*}
+The virtual displacement vectors must be consistent with the kinematic constraints, that is, they are perpendicular to the rod (and the constraints require that $\delta\vec{r}_1$ and $\delta\vec{r}_2$ point in the same direction). We can write the position vectors for the points where the forces are applied and take their variation with respect to $\theta$:
+\begin{align*}
+\vec{r}_1=L(-\sin{\theta}\hat{x}+\cos{\theta}\hat{y})\\
+\vec{r}_2=2L(-\sin{\theta}\hat{x}+\cos{\theta}\hat{y})\\
+\therefore \delta\vec{r}_1=L(-\cos{\theta}\hat{x}-\sin{\theta}\hat{y})\delta\theta\\
+\therefore \delta\vec{r}_2=2L(-\cos{\theta}\hat{x}-\sin{\theta}\hat{y})\delta\theta\\
+\end{align*}
+Thus:
+\begin{align*}
+\sum_{i=1}^N\delta W_i = -mgL\sin{\theta}\delta\theta+ 2LF\cos{\theta}\delta\theta
+\end{align*}
+Setting the virtual work to zero, we get the same answer as you would using introductory mechanics techniques (e.g. torques):
+\begin{align*}
+F=\frac{1}{2}mg\tan{\theta}
+\end{align*}
+Let's calculate the generalized force:
+\begin{align*}
+Q_j&\equiv \sum_{i=1}^N\vec{F}_i\cdot\frac{\partial\vec{r}_i}{\partial q_j}\nonumber\\
+\end{align*}
+Note that $N=2$ and there is only 1 $q_j$, namely $\theta$. If we write the vectors in the xy coordinates, we can evaluate the partial derivatives:
+\begin{align*}
+\frac{\partial\vec{r}_i}{\partial \theta}&=L(-\cos{\theta}\hat{x}-\sin{\theta}\hat{y}) \\
+\frac{\partial\vec{r}_2}{\partial \theta}&=2L(-\cos{\theta}\hat{x}-\sin{\theta}\hat{y})\\
+\end{align*}
+The generalized force is then given by:
+\begin{align*}
+Q_\theta&=m\vec{g}\cdot\left(L(-\cos{\theta}\hat{x}-\sin{\theta}\hat{y})\right)+\vec{F}\cdot\left(2L(-\cos{\theta}\hat{x}-\sin{\theta}\hat{y})\right)\\
+&=-Lmg\sin{\theta}+2LF\cos{\theta}
+\end{align*}
+And you may recognize that the generalized force in the $\theta$ direction is the total torque! The requirement that the generalized force be zero is the same as requiring that the sum of the torques are zero.
+\end{example}
+
+\begin{example}{0pt}{Find the magnitude of the force, $F$, required to keep the system in equilibrium from Figure \ref{fig:BlocksOnCorner} at an angle $\theta$. The blocks of mass $m$ slide with no friction and are held by a mass-less rigid rod of length, $L$. Their dimensions are negligible.}{\capfig{0.3\textwidth}{figures/BlocksOnCorner.png}{\label{fig:BlocksOnCorner}Two blocks constrained by a massless rigid rod, held in equilibrium by a force $F$.}}
+Since we have 2 particles, we have 6 possible degrees of freedom. However, each particle is constrained to move along only 1 axis, thus reducing the number of degrees of freedom by 4. Furthermore, the particles are connected by a rigid rod, which further reduces the number of degrees or freedom by 1. There is only 1 degree of freedom, and we choose $\theta$ as our generalized coordinates. The constraint equations are:
+\begin{align*}
+x_1&=0\nonumber\\
+z_1&=0\nonumber\\
+y_2&=0\nonumber\\
+z_2&=0\nonumber\\
+y_1^2+x_2^2&=L^2\\
+\end{align*}
+We have 2 forces that can perform virtual work: gravity on particle 1 and $F$ on particle 2. Gravity on particle 2 cannot perform virtual work as it is perpendicular to the allowable virtual displacements of particle 2.
+\begin{align*}
+\sum_{i=1}^N\delta W_i &= m\vec{g}\cdot\delta\vec{r}_1+\vec{F}\cdot\delta\vec{r}_2\\
+\end{align*}
+Writing the position vectors for the points where the forces are applied and calculating their variation with respect to $\theta$:
+\begin{align*}
+\vec{r}_1&=0\hat{x}+L\sin{\theta}\hat{y}\\
+\vec{r}_2&=L\cos{\theta}\hat{x}+0\hat{y}\\
+\delta\vec{r}_1&=L\cos{\theta}\delta\theta\hat{y}\\
+\delta\vec{r}_2&=-L\sin{\theta}\delta\theta\hat{x} \\
+\end{align*}
+The virtual work is then:
+\begin{align*}
+\sum_{i=1}^N\delta W_i &= -mgL\cos{\theta}\delta \theta + FL\sin{\theta}\delta \theta=0 \\
+\therefore F&=mg\cot{\theta}
+\end{align*}
+It is straightforward to show that the generalized force is equal to the sum of the torques:
+\begin{align*}
+Q_\theta &= -mgL\cos{\theta}+FL\sin{\theta}\\
+\end{align*}
+\end{example}
+
+\begin{example}{0pt}{Find the value of $\theta$ for the two blocks in Figure \ref{fig:MassesOnSphere} to be in equilibrium. The blocks of mass $m$ and $2m$ are sitting on a frictionless sphere of radius $R$ and are connected by a mass-less inextensible string of length $L$.}{\capfig{0.3\textwidth}{figures/MassesOnSphere}{\label{fig:MassesOnSphere}Two masses connected by a string sitting on a frictionless sphere.}}
+There is only 1 degree of freedom, and we choose $\theta$ as the generalized coordinate. The angles $\phi$ and $\theta$ are related by:
+\begin{align*}
+\phi=\frac{L}{R}-\theta\\
+\therefore \delta\phi = -\delta \theta
+\end{align*}
+By writing the position vectors for each particle (where the forces of gravity are applied), we can get their virtual displacements:
+\begin{align*}
+\vec{r}_1&=R(\sin{\theta}\hat{x}+\cos{\theta}\hat{y})\\
+\vec{r}_2&=R(-\sin{\phi}\hat{x}+\cos{\phi}\hat{y})\\
+\delta\vec{r}_1&=R(\cos{\theta}\hat{x}-\sin{\theta}\hat{y})\delta\theta\\
+\delta\vec{r}_2&=R(-\cos{\phi}\hat{x}-\sin{\phi}\hat{y})\delta\phi\\
+&=R(\cos{\phi}\hat{x}+\sin{\phi}\hat{y})\delta\theta\\
+\end{align*}
+The virtual work is then given by the weights multiplied by the y-components:
+\begin{align*}
+\sum_{i=1}^N\delta W_i&=mgR\sin{\theta}\delta\theta-2mgR\sin{\phi}\delta\theta\\
+&=mgR(\sin{\theta}-2\sin{(\frac{L}{R}-\theta}))\delta\theta=0\\
+&=\sin{\theta}-2(\sin{\frac{L}{R}}\cos{\theta}-\cos{\frac{L}{R}}\sin{\theta})\\
+&=\tan{\theta}-2(\sin{\frac{L}{R}}-\cos{\frac{L}{R}}\tan{\theta})\\
+\therefore\tan{\theta}&=\frac{2\sin{\frac{L}{R}}}{(1+2\cos{\frac{L}{R}})}
+\end{align*}
+where we used the formula $\sin{(\alpha-\beta)}=\sin\alpha\cos\beta -\cos\alpha\sin\beta$. The generalized force is:
+\begin{align*}
+Q_\theta=mgR\left(\tan{\theta}((1+2\cos{\frac{L}{R}}))-2 \sin{\frac{L}{R}} \right)
+\end{align*}
+\end{example}
+
+\section{D'Alembert's principle}
+D'Alembert's principle can be used to extend the Principle of Virtual Work to dynamics problems. Starting with Newton's Second Law:
+\begin{align}
+\vec{F}=m\vec{a}\nonumber\\
+\end{align}
+we introduce a new vector, for the ``negative force of inertia'', $I$:
+\begin{align}
+\vec{I}\equiv-m\vec{a}\nonumber\\
+\therefore \vec{F}+\vec{I}=0
+\end{align}
+With the introduction of the this ``force of inertia'', we have effectively changed the mathematics of a problem of dynamics to the formalism of statics, where the sum of the forces and torques must be zero. One can also think of finding a frame of reference where the body is instantaneously at rest (imagine the force of inertia on a body inside a car going around a turn). D'Alembert's Principle thus consists of applying the principle of virtual work to a system when the forces of inertia are included. This means that the total virtual work done by all the forces must be zero. Again, considering virtual displacements $\delta\vec{r}$ that are in harmony with the constraints of motion, we can write:
+\begin{align}
+\sum_{i=1}^N\delta W_i&= \sum_{i=1}^N (\vec{F}_i+\vec{I}_i)\cdot\delta\vec{r}_i=0\nonumber\\
+\label{eqn:dalemb1}
+\end{align}
+where the sum is over the $N$ particles in the system, and we have introduced the effective forces $\vec{\mathcal{F}}_i$. In principle, the $F_i$ contain both ``applied forces'' and ``forces of constraint'' (internal forces). However, most forces of constraint cannot perform virtual work, and it is safe to generally ignore them. We can thus state that $F_i$ are only the applied forces without any substantial loss in generality (although D'Alembert's priniciple does apply in general). Note that for a system of particles, $F_i$ can be identified with the net force applied on particle $i$.
+
+D'Alembert's principle thus extends the principle of virtual work to the realm of dynamics (and removes the need to worry about internal forces). This leads to the (differential) equations of motion  for the particles, since the inertial force will contain the derivatives associated with acceleration.
+
+The effective individual forces in equation \ref{eqn:dalemb1} are not necessarily all equal to zero, as the virtual displacements $\delta\vec{r}_i$ are not necessarily independent. As we did for the principle of virtual work, we can change coordinates to express D'Alembert's principle using the $n$ independent generalized coordinates (if this is a holonomic system).
+
+\begin{align}
+\sum_{i=1}^N\delta W_i&= \sum_{i=1}^N (\vec{F}_i+\vec{I}_i)\cdot\delta\vec{r}_i=0\nonumber\\
+&=\sum_{i=1}^N \vec{F}_i\cdot\delta\vec{r}_i+\sum_{i=1}^N \vec{I}_i\cdot\delta\vec{r}_i=0\nonumber\\
+&=\sum_{j=1}^nQ_j\delta q_j+\sum_{i=1}^N \vec{I}_i\cdot\delta\vec{r}_i=0
+\end{align}
+where we have introduced the generalized forces from from equation \ref{eqn:genforce}:
+\begin{align}
+Q_j\equiv \sum_{i=1}^N\vec{F}_i\cdot\frac{\partial\vec{r}_i}{\partial q_j}
+\end{align}
+The second term in the virtual work must also be transformed to generalized coordinates, it is however a little more tricky because it contains the acceleration vectors $\vec{a}=\ddot{\vec{r}}$:
+\begin{align}
+\sum_{i=1}^N \vec{I}_i\cdot\delta\vec{r}_i&=-\sum_{i=1}^N m_i\ddot{\vec{r}}_i\cdot\delta\vec{r}_i\nonumber\\
+&=-\sum_{i=1}^N m_i\ddot{\vec{r}}_i\cdot\sum_{j=1}^n\frac{\partial\vec{r}_i}{\partial q_j}\delta q_j   \nonumber\\
+\label{eqn:dalemb2}
+\end{align}
+Consider the following way to re-write this term using the product rule:
+\begin{align}
+\frac{d}{dt}\left(m_i\dot{\vec{r}}_i\cdot\sum_{j=1}^n\frac{\partial\vec{r}_i}{\partial q_j}\delta q_j \right)&=m_i\ddot{\vec{r}}_i\cdot\sum_{j=1}^n\frac{\partial\vec{r}_i}{\partial q_j}\delta q_j + m_i\dot{\vec{r}}_i\cdot\frac{d}{dt}\left(\sum_{j=1}^n\frac{\partial\vec{r}_i}{\partial q_j}\delta q_j \right)\nonumber\\
+&=m_i\ddot{\vec{r}}_i\cdot\sum_{j=1}^n\frac{\partial\vec{r}_i}{\partial q_j}\delta q_j + m_i\dot{\vec{r}}_i\cdot\sum_{j=1}^n\frac{\partial}{\partial q_j}\frac{d\vec{r}_i}{dt}\delta q_j \nonumber\\
+\end{align}
+where we have use the fact that we can interchange $\frac{d}{dt}$ and $\frac{\partial}{\partial q_j}$. We can now re-arrange and remove the summation sign and the ($\delta q_j$) (since the term in front of the sum can be brought into the sum, the equality must be true for each term:
+\begin{align}
+\therefore m_i\ddot{\vec{r}}_i\cdot\frac{\partial\vec{r}_i}{\partial q_j} &= \frac{d}{dt}\left(m_i\dot{\vec{r}}_i\cdot\frac{\partial\vec{r}_i}{\partial q_j} \right) - m_i\dot{\vec{r}}_i\cdot\frac{\partial}{\partial q_j}\frac{d\vec{r}_i}{dt}\nonumber\\
+&=\frac{d}{dt}\left(m_i\dot{\vec{r}}_i\cdot\frac{\partial\vec{r}_i}{\partial q_j} \right) - m_i\dot{\vec{r}}_i\cdot\frac{\partial\dot{\vec{r}}_i}{\partial q_j}\nonumber\\
+\label{eqn:expand}
+\end{align}
+ Also note the following relation:
+\begin{align}
+\frac{\partial\dot{\vec{r}}_i}{\partial \dot{q}_j}&=\frac{\partial}{\partial \dot{q}_j}\frac{d\vec{r}_i}{dt}\nonumber\\
+&=\frac{\partial}{\partial \dot{q}_j}\left(\sum_{k=1}^n\frac{\partial\vec{r}_i}{\partial q_k}\dot{q}_k+\frac{\partial\vec{r}_i}{\partial t}\right )\nonumber\\
+&=\frac{\partial\vec{r}_i}{\partial q_k}\delta_{jk} \nonumber\\
+\therefore \frac{\partial\dot{\vec{r}}_i}{\partial \dot{q}_j}&=\frac{\partial\vec{r}_i}{\partial q_j}\nonumber\\
+\end{align}
+where we have used the Kronecker Delta ($\delta_{jk}$). We can put this back into equation \ref{eqn:expand}:
+\begin{align}
+m_i\ddot{\vec{r}}_i\cdot\frac{\partial\vec{r}_i}{\partial q_j} &= \frac{d}{dt}\left(m_i\dot{\vec{r}}_i\cdot\frac{\partial\dot{\vec{r}}_i}{\partial \dot{q}_j} \right) - m_i\dot{\vec{r}}_i\cdot\frac{\partial\dot{\vec{r}}_i}{\partial q_j}\nonumber\\
+\end{align}
+Note the following relation that can be used to modify the first term:
+\begin{align}
+\frac{\partial}{\partial \dot{q}_j}\dot{\vec{r}}_i\cdot\dot{\vec{r}}_i&=\dot{\vec{r}}_i\cdot\frac{\partial\dot{\vec{r}}_i}{\partial \dot{q}_j}+\frac{\partial\dot{\vec{r}}_i}{\partial \dot{q}_j}\cdot\dot{\vec{r}}_i=2\dot{\vec{r}}_i\cdot\frac{\partial\dot{\vec{r}}_i}{\partial \dot{q}_j}\nonumber\\
+\therefore \dot{\vec{r}}_i\cdot\frac{\partial\dot{\vec{r}}_i}{\partial \dot{q}_j}&=\frac{1}{2}\frac{\partial}{\partial \dot{q}_j}\dot{\vec{r}}_i\cdot\dot{\vec{r}}_i\nonumber\\
+&=\frac{1}{2}\frac{\partial}{\partial \dot{q}_j}\dot{r}_i^2
+\end{align}
+Similarly:
+\begin{align}
+\dot{\vec{r}}_i\cdot\frac{\partial\dot{\vec{r}}_i}{\partial q_j}
+=\frac{1}{2}\frac{\partial}{\partial q_j}\dot{r}_i^2
+\end{align}
+Thus:
+\begin{align}
+m_i\ddot{\vec{r}}_i\cdot\frac{\partial\vec{r}_i}{\partial q_j} &= \frac{d}{dt}\left(m_i\frac{1}{2}\frac{\partial}{\partial \dot{q}_j}\dot{r}_i^2\right) - m_i\frac{1}{2}\frac{\partial}{\partial q_j}\dot{r}_i^2\nonumber\\
+&=\frac{d}{dt}\left(\frac{\partial}{\partial \dot{q}_j}(\frac{1}{2}m_i\dot{r}_i^2)\right) - \frac{\partial}{\partial q_j}(\frac{1}{2}m_i\dot{r}_i^2)\nonumber\\
+&=\frac{d}{dt}\left(\frac{\partial T_i}{\partial \dot{q}_j} \right) - \frac{\partial T_i}{\partial q_j}\nonumber\\
+\end{align}
+where we have introduced:
+\begin{align}
+T_i\equiv\frac{1}{2}m_i\dot{r}_i^2
+\end{align}
+which we can recognize as the kinetic energy of particle $i$. We are now ready to put this back into the equation for the virtual work of the inertial force (remember, we got a little side-tracked at equation \ref{eqn:dalemb2}!):
+\begin{align}
+\sum_{i=1}^N \vec{I}_i\cdot\delta\vec{r}_i&=-\sum_{i=1}^N m_i\ddot{\vec{r}}_i\cdot\delta\vec{r}_i\nonumber\\
+&=-\sum_{i=1}^N m_i\ddot{\vec{r}}_i\cdot\sum_{j=1}^n\frac{\partial\vec{r}_i}{\partial q_j}\delta q_j   \nonumber\\
+&=-\sum_{i=1}^N\sum_{j=1}^n\left(\frac{d}{dt}\left(\frac{\partial T_i}{\partial \dot{q}_j} \right) - \frac{\partial T_i}{\partial q_j}\right)\delta q_j   \nonumber\\
+&=-\sum_{j=1}^n\left(\frac{d}{dt}\left(\frac{\partial\sum_{i=1}^N T_i}{\partial \dot{q}_j} \right) - \frac{\partial\sum_{i=1}^N T_i}{\partial q_j}\right)\delta q_j   \nonumber\\
+&=-\sum_{j=1}^n\left(\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_j} \right) - \frac{\partial T}{\partial q_j}\right)\delta q_j   \nonumber\\
+\end{align}
+where we have introduced the ``total kinetic energy'' of the particles in the system (and taken the liberty of swapping the order of summation, and bringing the summation into the derivatives):
+\begin{align}
+T=\sum_{i=1}^N T_i=\sum_{i=1}^N\frac{1}{2}m_i\dot{r}_i^2
+\end{align}
+Finally, the total virtual work from the external forces and the inertial forces is given by:
+\begin{align}
+\sum_{i=1}^N\delta W_i&= \sum_{i=1}^N (\vec{F}_i+\vec{I}_i)\cdot\delta\vec{r}_i=0\nonumber\\
+&=\sum_{j=1}^nQ_j\delta q_j+\sum_{i=1}^N \vec{I}_i\cdot\delta\vec{r}_i\nonumber\\
+&=\sum_{j=1}^nQ_j\delta q_j-\sum_{j=1}^n\left(\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_j} \right) - \frac{\partial T}{\partial q_j}\right)\delta q_j \nonumber\\
+&=\sum_{j=1}^n \left[ Q_j-\left(\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_j} \right) - \frac{\partial T}{\partial q_j}\right)\right]\delta q_j
+\end{align}
+Since the virtual displacements of the generalized coordinates are independent (they can be varied independently from each other), each term in square brackets must be zero. We thus have one equation per degree of freedom $q_j$:
+\begin{align}
+\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_j} \right) - \frac{\partial T}{\partial q_j}=Q_j
+\label{eqn:dalembT}
+\end{align}
+which holds for a holonomic system (since we were able to transform to $n$ independent generalized coordinates). This equation is equivalent to Newton's second law and thus gives the differential equations of motion for the system. Note the similarity of equation \ref{eqn:dalembT} and the equation that we obtained when calculating the variation of an integral subject to a constraint (equation \ref{eqn:ELLambdaQ} from Chapter \ref{chap:CalculusVariation}). In Chapter \ref{chap:CalculusVariation}, we had found that the integral of a function $L(q_1,q_2,\dots,\dot{q_1}, \dot{q_2},\dots,t)$ subject to constraints $f_k(q_1,q_2,\dots ,t)=0$ was stationary if:
+\begin{align}
+\delta S=\int_a^b L(q_1,q_2,\dots,\dot{q_1}, \dot{q_2},\dots,t)dt&=0\nonumber\\
+\left(\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j}\right)-\frac{\partial L}{\partial q_j}\right) &=Q_j\nonumber\\
+Q_j&\equiv \sum_{i=1}^k\lambda_i \frac{\partial f_i}{\partial q_j}
+\end{align}
+Thus, D'Alembert's principle is equivalent to requiring that the integral of of the kinetic energy, $T$, is stationary subject to a constraints related to how the position of the particles can vary with respect to the generalized coordinates:
+\begin{align}
+\delta S=\int_a^b T(q_1,q_2,\dots,\dot{q_1}, \dot{q_2},\dots,t)dt&=0\nonumber\\
+\left(\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j}\right)-\frac{\partial L}{\partial q_j}\right) &=Q_j\nonumber\\
+ Q_j\equiv \sum_{i=1}^N\vec{F}_i\cdot\frac{\partial\vec{r}_i}{\partial q_j}
+\end{align}
+where the applied forces appear to be related to Lagrange multipliers and the equations for the constraints are related to the coordinate transformations.
+
+For completeness, we can re-write the total kinetic energy in terms of the generalized coordinates:
+\begin{align}
+T&=\sum_{i=1}^N\frac{1}{2}m_i\dot{r}_i^2\nonumber\\
+&=\sum_{i=1}^N\frac{1}{2}m_i\frac{d\vec{r}_i}{dt}\frac{d\vec{r}_i}{dt}\nonumber\\
+&=\sum_{i=1}^N\frac{1}{2}m_i\left(\sum_{j=1}^n\frac{\partial\vec{r}_i}{\partial q_j}\dot{q}_j+\frac{\partial\vec{r}_i}{\partial t} \right) \left( \sum_{k=1}^n\frac{\partial\vec{r}_i}{\partial q_k}\dot{q}_k+\frac{\partial\vec{r}_i}{\partial t}\right)\nonumber\\
+&=\sum_{j=1}^n\sum_{k=1}^n A_{jk}\dot{q}_j\dot{q}_k+\sum_{k=1}^n B_{k}\dot{q}_k +C\nonumber\\
+&=T(q_1,\dots ,q_n, \dot{q}_1, \dots, \dot{q}_n,t)
+\label{eqn:genT}
+\end{align}
+where the derivation of the terms $A_{jk}$, $B_k$, $C$, are left as an exercise. Note that if the coordinate transformations do not explicitly depend on time ($\frac{\partial\vec{r}_i}{\partial t}=0$), then the kinetic energy reduces to:
+\begin{align}
+T=\sum_{j=1}^n\sum_{k=1}^n A_{jk}\dot{q}_j\dot{q}_k
+\end{align}
+and is said to be quadratic in the velocities.
+\begin{example}{0pt}{Find the terms $A_{jk}$, $B_k$, $C$ for expressing the kinetic energy in polar coordinates for a system composed of a single particle in free space.}{}
+To express the kinetic energy in polar coordinates, we start by expressing the transformation equations between the Cartesian and polar coordinates of the particle:
+\begin{align*}
+x&=r\cos\phi\\
+y&=r\sin\phi\\
+z&=z\\
+\end{align*}
+The velocities are thus:
+\begin{align*}
+\dot x&=\dot r\cos\phi-r\sin\phi\dot\phi\\
+\dot y&=\dot r\sin\phi+r\cos\phi\dot\phi\\
+\dot z&&\dot z\\
+\end{align*}
+The kinetic energy is thus:
+\begin{align*}
+T&=\frac{1}{2}m(\dot x^2+\dot y^2+\dot z^2)\\
+&=\frac{1}{2}m \left( (\dot r\cos\phi-r\sin\phi\dot\phi)^2+(\dot r\sin\phi+r\cos\phi\dot\phi)^2+\dot z^2    \right)\\
+&=\frac{1}{2}m (\dot r^2+r^2\dot\phi^2+\dot z^2)
+\end{align*}
+If we let \{$q_1$,$q_2$,$q_3$\}=\{$r$,$\phi$,$z$\}, we can then identify:
+\begin{align*}
+A_{11}&=\frac{1}{2}m\\
+A_{22}&=\frac{1}{2}mr^2\\
+A_{33}&=\frac{1}{2}m\\
+B_k&=0\\
+C&=0
+\end{align*}
+and all the other $A$ terms are zero.
+
+\end{example}
+ 
+\begin{example}{0pt}{We can use D'Alembert's principle to obtain the equations of motion for a particle in a conservative field (such as gravity).}{}
+Recall that a conservative field results in a force that does no net work on a closed path. Conservative forces can be written in terms of the gradient of a scalar field, $\phi$, called a 'potential':
+\begin{align*}
+\vec{F}=-\nabla\phi
+\end{align*}
+The particle has 3 degrees of freedom. We can use the standard Cartesian coordinates as generalized coordinates. The kinetic energy in generalized coordinates is given by:
+\begin{align*}
+T=\frac{1}{2}m(\dot{x}^2+\dot{y}^2+\dot{z}^2)
+\end{align*}
+The generalized force is given by:
+\begin{align*}
+Q_j=\sum_{i=1}^N\vec{F}_i\cdot\frac{\partial\vec{r}_i}{\partial q_j}\nonumber\\
+\end{align*}
+where we have only 1 particle ($N=1$) and $j$ corresponds to the Cartesian coordinates. The position vector, $\vec{r}$ is given:
+\begin{align*}
+\vec{r}=x\hat{x}+y\hat{y}+z\hat{z}
+\end{align*}
+Thus:
+\begin{align*}
+Q_x&=\vec{F}\cdot\frac{\partial\vec{r}}{\partial x}\nonumber\\
+&=\vec{F}\cdot\hat{x}=F_x=-\frac{\partial \phi}{\partial x}\nonumber\\
+Q_y&=-\frac{\partial \phi}{\partial y}\nonumber\\
+Q_z&=-\frac{\partial \phi}{\partial z}\nonumber\\
+\end{align*}
+Using equation \ref{eqn:dalembT}, we can get the equations of motion:
+\begin{align*}
+\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_j} \right) - \frac{\partial T}{\partial q_j}&=Q_j\nonumber\\
+\therefore \frac{d}{dt}\left(\frac{\partial T}{\partial \dot{x}} \right) - \frac{\partial T}{\partial x}&=Q_x\nonumber\\
+\frac{d}{dt}\left(m\dot{x} \right) - 0&=-\frac{\partial \phi}{\partial x}\nonumber\\
+\therefore m\ddot{x}=-\frac{\partial \phi}{\partial x}=F_x\nonumber\\
+\therefore m\ddot{y}=-\frac{\partial \phi}{\partial y}=F_y\nonumber\\
+\therefore m\ddot{z}=-\frac{\partial \phi}{\partial z}=F_z\nonumber\\
+\end{align*}
+which of course are the three components of Newton's second law, so the method is equivalent.
+
+Just for fun, let's assume that the potential $\phi$ only depends on position (and not on velocity), which is reasonable (but not always true, as the magnetic force depends on velocity). In that case, if we build a new function $L=T-\phi$, and use the Euler-Lagrange process to find the stationary points of $\int_a^b L dt$:
+\begin{align*}
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j}  \right) - \frac{\partial L}{\partial q_j} &=0\nonumber\\
+\frac{d}{dt}\left(\frac{\partial}{\partial \dot{q}_j} (T-\phi) \right) - \frac{\partial }{\partial q_j} (T-\phi)&=0\nonumber\\
+\therefore\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{x}} \right) + \frac{\partial}{\partial x}\phi&=0\nonumber\\
+\frac{d}{dt}\left(m\dot{x} \right)+\frac{\partial \phi}{\partial x}&=0\nonumber\\
+m\ddot{x}=-\frac{\partial \phi}{\partial x}\nonumber\\
+\end{align*}
+and we recover the same equations as before.
+
+It is easy to show that $\phi$ is what we usually call the potential energy. The quantity $L=T-\phi$ is called the ``Lagrangian'' and is often simply equal to the kinetic energy minus the potential energy of the system. The integral $\int_a^b L dt$ is called the ``action''. Hamilton's principle, which is exactly equivalent to D'Alembert's principle (as we just saw) states that the system will choose a path in configuration space for which the action is stationary. Also note the similarity between the potential energy term and that of Lagrange multipliers applying a constraint to the kinetic energy.
+\label{ex:dalembpart}
+\end{example}
+
+
+\section{Conservation of energy from D'Alembert's principle}
+If the applied forces are conservative, they can be written as the gradient of a potential energy:
+\begin{align}
+\vec{F}_i=-\nabla V_i = -\left(\frac{\partial V_i}{\partial x}\hat{x}+\frac{\partial V_i}{\partial y}\hat{y}+\frac{\partial V_i}{\partial z}\hat{z}\right)
+\end{align}
+The virtual work done by such a force is thus:
+\begin{align}
+\delta W &= \sum_{i=1}^N \vec{F}_i\cdot\delta\vec{r}_i\nonumber\\
+&=-\sum_{i=1}^N(\nabla V_i)\cdot\delta\vec{r}_i\nonumber\\
+&=-\sum_{i=1}^N \left(\frac{\partial V_i}{\partial x}\hat{x}+\frac{\partial V_i}{\partial y}\hat{y}+\frac{\partial V_i}{\partial z}\hat{z}\right)(\delta x\hat{x}+\delta y\hat{y}+\delta  
+z\hat{z})\nonumber\\
+&=-\sum_{i=1}^N\left(\frac{\partial V_i}{\partial x}\delta x+\frac{\partial V_i}{\partial y}\delta y+\frac{\partial V_i}{\partial z}\delta z\right)\nonumber\\
+&=-\sum_{i=1}^N \delta V_i\nonumber\\
+\end{align}
+the negative of the change in potential energy, which makes sense. We can then write D'Alembert's principle as:
+\begin{align}
+\sum_{i=1}^N \vec{F}_i\cdot\delta\vec{r}_i-\sum_{i=1}^N m_i\ddot{\vec{r}}_i\cdot\delta\vec{r}_i&=0\nonumber\\
+\sum_{i=1}^N\delta V_i +\sum_{i=1}^N m_i\ddot{\vec{r}}_i&\cdot\delta\vec{r}_i=0\nonumber\\
+\end{align}
+We now consider a special case of the virtual displacement, namely, the case when $\delta\vec{r}_i=d\vec{r}_i$. Since we are free to choose any virtual displacement, we can choose the one that coincides with the true displacement in time. In the generalized coordinates,  we can always choose $\delta q = dq$ without loss of generality. However, this does not always imply that $\delta \vec{r}_i=d\vec{r}_i$. We can only do this in the ``scleronomic'' case, when the generalized coordinates to not depend explicitly on time:
+\begin{align}
+\vec{r}_i&=\vec{r}_i(q_1,\dots q_n)\nonumber\\
+\frac{\partial \vec{r}_i}{\partial t}&= 0\nonumber\\
+\therefore \delta q=dq\to \delta \vec{r}_i&=d\vec{r}_i\nonumber\\
+\end{align}
+In the ``rheonomic'' case, when the transformations depend on time:
+\begin{align}
+\vec{r}_i&=\vec{r}_i(q_1,\dots q_n,t)\nonumber\\
+\frac{\partial \vec{r}_i}{\partial t}&\neq 0\nonumber\\
+\therefore \delta q=dq\not\to  \delta \vec{r}_i&= d\vec{r}_i\nonumber\\
+\end{align}
+Similarly, the variation of the potential, $\delta V$, will equal the true change in the potential, if the potential energy does not depend explicitly on time:
+\begin{align}
+V&=V(q_1,\dots ,q_n)\nonumber\\
+\frac{\partial V}{\partial t}&=0\nonumber\\
+\therefore \delta q=dq\to  \delta V&=dV\nonumber\\
+\end{align}
+Keeping in mind that the following only holds for a scleronomic system when the potential energy does not depend on time, we can write the variations as true differentials with respect to time:
+\begin{align}
+\sum_{i=1}^N\delta V_i  +\sum_{i=1}^N m_i\ddot{\vec{r}}_i \cdot\delta\vec{r}_i&\to \sum_{i=1}^N dV_i +\sum_{i=1}^N m_i\ddot{\vec{r}}_i\cdot d\vec{r}_i\nonumber\\
+&=\sum_{i=1}^N dV_i+\sum_{i=1}^N m_i\ddot{\vec{r}}_i\cdot d\vec{r}_i \frac{dt}{dt}\nonumber\\
+&=\sum_{i=1}^N dV_i+\sum_{i=1}^N m_i\ddot{\vec{r}}_i\cdot \dot{\vec{r}}_i dt\nonumber\\
+&=\sum_{i=1}^N dV_i+\sum_{i=1}^N \frac{1}{2}m_i\frac{d}{dt}(\dot{r}_i^2) dt\nonumber\\
+&=\sum_{i=1}^N dV_i+\sum_{i=1}^N \frac{1}{2}m_i d(\dot{r}_i^2)\nonumber\\
+&=\sum_{i=1}^N dV_i+\sum_{i=1}^N dT_i\nonumber\\
+&=d\sum_{i=1}^N V_i+d\sum_{i=1}^N T_i\nonumber\\
+&=d(V+T)=0\nonumber\\
+\therefore \int d(V+T)=V+T &\equiv E = \text{constant}
+\end{align}
+where we have introduced the kinetic energy, $T_i$ for each particle (and its potential energy, $V_i$), as well as the total kinetic and potential energies of the system, $T$, and, $V$. We have implicitly assumed that the masses $m_i$ are constant in time. We can see that in the specific case of a system that is scleronomic in potential energy and in transformation equations, the quantity $E=T+V$ is a constant of motion. Of course, we can identify this with the conservation of energy of the system, and the usual conditions for energy to be conserved.
+
+\section{Inertial forces in accelerated coordinate systems}
+In principle, if one is constrained into an elevator, it is impossible to distinguish whether the elevator is stationary in a gravitational field $-\vec{g}$ or whether it is in free space and accelerating ``upwards'' with an acceleration $\vec{g}$. This is illustrated in Figure \ref{fig:LinearReference}, where a frame of reference (x',y') is shown relative to an ``absolute fixed inertial frame of reference'' (x,y). Measurements performed in the moving frame of reference are denoted with primes ('). The origin of the moving frame of reference is at a position $\vec{C}$ as measured in the absolute frame of reference.
+
+\capfig{0.3\textwidth}{figures/LinearReference.png}{\label{fig:LinearReference}A moving frame of reference (x',y') relative to a fixed frame of reference (x,y).}
+
+If the position of a particle is described by a vector $\vec{r'}$ in the moving frame of reference, then in the absolute frame of reference it is given by:
+\begin{align}
+\vec{r}=\vec{C}+\vec{r'}
+\end{align}
+If the velocities and acceleration in the moving reference are given by $\dot{\vec{r'}}$, $\ddot{\vec{r'}}$, respectively, then, in the absolute frame of reference, they are given by:
+\begin{align}
+\vec{v}&=\frac{d}{dt}(\vec{C}+\vec{r'})\nonumber\\
+&=\dot{\vec{C}}+\dot{\vec{r'}}\nonumber\\
+\vec{a}&=\frac{d^2}{dt^2}(\vec{C}+\vec{r'})\nonumber\\
+&=\ddot{\vec{C}}+\ddot{\vec{r'}}\nonumber\\
+\end{align}
+If we now consider D'Alembert's principle, we have:
+\begin{align}
+\vec{F}+\vec{I}&=\vec{F}-m\vec{a} \nonumber\\
+&=\vec{F}-m\ddot{\vec{C}}-m\ddot{\vec{r'}}=0
+\end{align}
+where we have an ``apparent inertial force'', $-m\ddot{\vec{C}}$, that is applied in addition to the inertial force, $-m\ddot{\vec{r'}}$. It is impossible to tell if one is in a system with a real force $-m\ddot{\vec{C}}$ or whether one is in an accelerated system with an apparent inertial force $-m\ddot{\vec{C}}$. The fact that this inertial force is proportional to the same mass as that which appears in the gravitational force forms the basis of the ``equivalence principle'' that leads to the General Theory of Relativity.
+
+We also have the result that it is possible to choose a reference frame where a particle is at rest (possibly introducing an apparent force). This blurs the line of what we mean when referring to ``inertial frames of reference''. We do however recover Gallileo's relativity principle that there is no ``absolute'' reference frame, and that the description of a system between inertial frames of references is unchanged. By inertial frame of reference, we mean frames of reference that move with respect to each other in a straight line at a constant velocity. The forces that are apparent in a rotating frame of reference can be derived in a similar fashion, resulting in the apparent Coriolis force.
+

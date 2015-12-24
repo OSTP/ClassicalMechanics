@@ -1,0 +1,621 @@
+\chapter{Canonical Transformations}
+We found that certain choices of coordinates give rise to cyclic coordinates leading to their corresponding conjugate momenta being constants. We will see that it is possible to find a set of coordinate transformations that lead to all coordinates being cyclic.
+
+In the Lagrangian formalism, it is difficult to determine these optimal transformations; this is because both the coordinates and their time derivatives appear in the Lagrangian. In the Hamiltonian formalism, we can treat the coordinates and their conjugate momenta as independent, and we thus have more liberty to seek transformations that make the coordinates cyclic. In general, we call transformations that preserve Hamilton's canonical equations, ``canonical transformations''. The transformed coordinates are denoted by $Q_i$ and $P_i$, and the transformed Hamiltonian by $K$. The conditions satisfied by a canonical transformation are thus:
+\begin{align}
+H(q_i,p_i,t)&\to K(Q_i,P_i,t)\nonumber\\
+\dot Q_i&=\die{K}{P_i}\nonumber\\
+\dot P_i&=-\die{K}{Q_i}
+\end{align}
+
+\section{Types of transformations}
+\subsection{Point transformations}
+The simplest type of transformation, ``point transformations'' simply change the $q_i$ to a new set of coordinates, $Q_i$. We know from our liberty in choosing a set of generalized coordinates that the Lagrangian is invariant under point transformation. Naturally, Hamilton's equations are also preserved, and point transformations of the type:
+\begin{align}
+q_i=q_i(Q_i,t)
+\end{align}
+are canonical.
+\subsection{General transformations}
+Consider the general invertible canonical transformation of the form:
+\begin{align}
+q_i&=q_i(Q_i,P_i,t)\nonumber\\
+p_i&=p_i(Q_i,P_i,t)
+\end{align}
+The equations of motion will be preserved if the integrand of the action (i.e. the Lagrangian) is modified at most by a total time differential of some function, $F$:
+\begin{align}
+\sum_i\dot q_ip_i-H=\sum_i \dot Q_iP_i-K+\frac{d}{dt}F(q_i,Q_i,t)
+\label{eqn:HtoK}
+\end{align}
+where we have, arbitrarily, chosen that $F$ depends on the pair of variables $q_i, Q_i$. We could have just as well chosen any pair of variables that mixes the new and old coordinates, $F(p_i, P_i)$, $F(p_i, Q_i)$, or $F(q_i, P_i)$. We assume (impose) that the transformation is canonical, so that:
+\begin{align}
+\dot Q_i&=\die{K}{P_i}\nonumber\\
+\dot P_i&=-\die{K}{Q_i}
+\end{align}
+We will require that Equation \ref{eqn:HtoK} is true so that we can make the transformation canonical. Consider the time derivative of $F$:
+\begin{align}
+\frac{dF}{dt} =\sum_i\left(\die{F}{q_i}\dot q_i+\die{F}{Q_i}\dot Q_i\right)+\die{F}{t}
+\end{align}
+which we can substitute back into \ref{eqn:HtoK}:
+\begin{align}
+\sum_i\dot q_ip_i-H&=\sum_i \dot Q_iP_i-K+\sum_i\left(\die{F}{q_i}\dot q_i+\die{F}{Q_i}\dot Q_i\right)+\die{F}{t}\nonumber\\
+\sum_i\left(p_i-\die{F}{q_i}\right)\dot q_i-H&=\sum_i \left(P_i +\die{F}{Q_i}\right)\dot Q_i-K+\die{F}{t}
+\end{align}
+We can guarantee the validity of this equation by setting the coefficients of $\dot q_i$ and $\dot Q_i$ to zero:
+\begin{align}
+p_i&=\die{}{q_i}F(q_i,Q_i,t)\nonumber\\
+P_i&=-\die{}{Q_i}F(q_i,Q_i,t)\nonumber\\
+\end{align}
+and by requiring that the new Hamiltonian is then given by:
+\begin{align}
+K(Q_i,P_i,t)=H(p_i,q_i,t)+\die{F}{t}
+\end{align}
+We call $F$ the ``generator'' of the canonical transformation, since it tells how to define the new Hamiltonian and the new coordinates. Given $F$ and the above equations, one can always invert the transformation equations to get:
+\begin{align}
+q_i&=q_i(Q_i,P_i,t)\nonumber\\
+p_i&=p_i(Q_i,P_i,t)\nonumber\\
+Q_i&=Q_i(q_i,p_i,t)\nonumber\\
+P_i&=P_i(q_i,p_i,t)
+\end{align}
+and Hamilton's canonical equations for $K(Q_i,P_i,t)$.
+
+We have four possible ``types'' of canonical transformations depending on the variables that $F$ depends on:
+\begin{enumerate}
+\item $F=F_1(q_i,Q_i,t)$ are transformations of the first type
+\item $F=F_2(q_i,P_i,t)-\sum_iQ_iP_i$ are transformations of the second type
+\item $F=F_3(p_i,Q_i,t)+\sum_ip_iq_i$ are transformations of the third type
+\item $F=F_4(p_i,P_i,t)+\sum_ip_iq_i-\sum_iQ_iP_i$ are transformations of the fourth type
+\end{enumerate}
+These relations between the generating functions are similar to Legendre transformations, although it is not always true that, for a given situation, one can use any of the coordinate transformations (this may lead to expressions that are singular, ill-defined, etc.). It should also be noted that one can use generating functions that mix the above possibilities for different indices. For example, a valid generating function could be of one type for $i=1$ and of another for $i=2$.
+
+One can use the same formalism as above to determine how the various generating functions give different coordinate transformations. These are summarized in table \ref{tab:CanTrans}.
+\begin{table}[!h]
+\center
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Type}&\textbf{Transformation equations}\\
+\hline
+$F=F_1(q_i,Q_i,t)$ & $p_i=\die{F_1}{q_i}$ $P_i=-\die{F_1}{Q_i}$\\
+\hline
+$F=F_2(q_i,P_i,t)-\sum_iQ_iP_i$ & $p_i=\die{F_2}{q_i}$ $Q_i=\die{F_2}{P_i}$\\
+\hline
+$F=F_3(p_i,Q_i,t)+\sum_ip_iq_i$ & $q_i=-\die{F_3}{p_i}$ $P_i=-\die{F_3}{Q_i}$\\
+\hline
+$F=F_4(p_i,P_i,t)+\sum_ip_iq_i-\sum_iQ_iP_i$ & $q_i=-\die{F_4}{p_i}$ $Q_i=\die{F_4}{P_i}$\\
+\hline
+\end{tabular}
+\caption{\label{tab:CanTrans}Summary of the four types of canonical transformations}
+\end{table}
+
+It is interesting to note that one can choose an arbitrary function $F(q_i, Q_i,t)$ and generate a canonical transformation, giving us a new set of arbitrary coordinates and Hamiltonian that will automatically satisfy the equations of motion. Being able to re-write the equations of motion in an arbitrary coordinate system is a powerful tool.
+
+\begin{example}{0pt}{Find the transformation equations $Q_i(q_i,p_i,t)$ and $P_i(q_i,p_i,t)$ for the generating function given by $F=\sum_iQ_iq_i$}{}
+For a canonical transformation of the first type, we have
+\begin{align*}
+p_i&=\die{F}{q_i}=Q_i\nonumber\\
+P_i&=-\die{F}{Q_i}=-q_i\nonumber\\
+K&=H
+\end{align*}
+These can be trivially inverted to obtain the new coordinates in terms of the old ones:
+\begin{align*}
+Q_i&=p_i\nonumber\\
+P_i&=-q_i
+\end{align*}
+which had the net effect of reversing the coordinates with their conjugate momenta, highlighting how these should really be treated as independent in Hamiltonian mechanics.
+\end{example}
+\begin{example}{0pt}{Find the transformation equations $Q_i(q_i,p_i,t)$ and $P_i(q_i,p_i,t)$ for the generating function given by $F=\sum_iq_iP_i$}{}
+For a canonical transformation of the second type, we have
+\begin{align*}
+p_i&=\die{F}{q_i}=P_i\nonumber\\
+Q_i&=\die{F}{P_i}=q_i
+\end{align*}
+Again, these are trivially inverted
+\begin{align*}
+Q_i&=q_i\nonumber\\
+P_i&=p_i
+\end{align*}
+which is the identity transformation.
+\end{example}
+
+\begin{example}{0pt}{Show that the harmonic oscillator problem can be solved easily using transformations from the generating function $F=\frac{m\omega}{2}q^2\cot Q$, where $\omega=\sqrt{\frac{k}{m}}$ is the angular frequency.}{}
+The Hamiltonian for the simple harmonic oscillator is:
+\begin{align*}
+H&=\frac{p^2}{2m}+\frac{k}{2}q^2\\
+&=\frac{1}{2m}(p^2+m^2\omega^2q^2)
+\end{align*}
+The transformation equation for the given generating function of the first kind are:
+\begin{align*}
+p&=\die{F}{q}=m\omega q\cot Q \\
+P&=-\die{F}{Q}=\frac{m\omega q^2}{2\sin^2 Q}\\
+K&=H
+\end{align*}
+Rearranging for $p$ and $q$:
+\begin{align*}
+q^2&=\frac{2}{m\omega}P\sin^2Q\\
+p^2&=2m\omega P\cos^2Q
+\end{align*}
+which we can now substitute to get $K$:
+\begin{align*}
+K&=H=\frac{1}{2m}(p^2+m^2\omega^2q^2)\\
+&=\frac{1}{2m}\left(2m\omega P\cos^2Q +m^2\omega^2\frac{2}{m\omega}P\sin^2Q  \right)\\
+&=\omega P(\cos^2Q+\sin^2Q)\\
+&=\omega P\\
+\end{align*}
+and since $Q$ is clearly cyclic, we have that $P$ is constant. In this case, the total Hamiltonian is the energy, $E$, so we can write:
+\begin{align*}
+P=\frac{E}{\omega}
+\end{align*}
+The canonical equation for $Q$ gives:
+\begin{align*}
+\dot Q&=\die{K}{P}=\omega\\
+\therefore Q(t)&=\omega t +\beta
+\end{align*}
+where $\beta$ is an integration constant that depends on the initial conditions. We can now transform this back to the original variables:
+\begin{align*}
+q(t)&=\sqrt{\frac{2P}{m\omega}}\sin Q\\
+&=\sqrt{\frac{2E}{m\omega^2}}\sin(\omega t +\beta)
+\end{align*}
+as expected.
+
+\end{example}
+
+\section{Poisson Brackets and canonical transformations}
+Consider time-invariant canonical transformations to new coordinates $Q_i(q_i,p_i)$, $P_i(q_i,p_i)$, which preserve the Hamiltonian, $H$. By definition, Hamilton's canonical equations are satisfied:
+\begin{align}
+\dot Q_i&=\die{H}{P_i}=\sum_j\left( \die{H}{q_j}\die{q_j}{P_i}+\die{H}{p_j}\die{p_j}{P_i} \right)\nonumber\\
+\dot P_i&=-\die{H}{Q_i}=-\sum_j\left( \die{H}{q_j}\die{q_j}{Q_i}+\die{H}{p_j}\die{p_j}{Q_i} \right)\nonumber\\
+\end{align}
+Consider the time derivative of the $Q_i$ and $P_i$:
+\begin{align}
+\dot Q_i&=\sum_j\left(\die{Q_i}{q_j}\dot q_j+\die{Q_i}{p_j}\dot p_j\right)=\sum_j\left(\die{Q_i}{q_j}\die{H}{p_j}-\die{Q_i}{p_j}\die{H}{q_j}\right)\nonumber\\
+\dot P_i&=\sum_j \left(\die{P_i}{q_j}\die{H}{p_j}+\die{P_i}{p_j}\dot p_j\right)=\sum_j \left(\die{P_i}{q_j}\die{H}{p_j}-\die{P_i}{p_j}\die{H}{q_j}\right)
+\end{align}
+By comparing terms, we can get the ``Direct Conditions'' for the transformation to be canonical:
+\begin{align}
+\die{p_j}{P_i}&=\die{Q_i}{q_j}\nonumber\\
+\die{q_j}{P_i}&=-\die{Q_i}{p_j}\nonumber\\
+\die{q_j}{Q_i}&=\die{P_i}{p_j}\nonumber\\
+\die{p_j}{Q_i}&=-\die{P_i}{q_j}\nonumber\\
+\end{align}
+Here, we obtained these relations by assuming that the transformation is canonical (that is, that we could get the time derivative of $Q$ and $P$ from the Hamiltonian). It is also possible to show that the Direct Conditions also hold if the transformations are time-dependent.
+
+Now, consider the Poisson Brackets of the $q_i$ and $p_i$ evaluated in the coordinates $Q_i$ and $P_i$, where we use the Direct conditions to simplify:
+\begin{align}
+\{q_i,q_j\}_{Q,P}=&\sum_k\left(\die{q_i}{Q_k}\die{q_j}{P_k}-\die{q_i}{P_k}\die{q_j}{Q_k}\right)=\sum_k\left(-\die{q_i}{Q_k}\die{Q_k}{p_j}-\die{q_i}{P_k}\die{P_k}{p_j}\right)\nonumber\\
+=&-\die{q_i}{p_j}=0\nonumber\\
+\{p_i,p_j\}_{Q,P}=&\sum_k\left(\die{p_i}{Q_k}\die{p_j}{P_k}-\die{p_i}{P_k}\die{p_j}{Q_k}\right) =\sum_k\left(\die{p_i}{Q_k}\die{Q_k}{q_j}+\die{p_i}{P_k}\die{P_k}{q_j}\right)\nonumber\\
+=&\die{p_i}{q_j}=0\nonumber\\
+\{q_i,p_j\}_{Q,P}=&\sum_k\left(\die{q_i}{Q_k}\die{p_j}{P_k}-\die{q_i}{P_k}\die{p_j}{Q_k}\right)
+=\sum_k\left(\die{q_i}{Q_k}\die{Q_k}{q_j}+\die{q_i}{P_k}\die{P_k}{q_j}\right)\nonumber\\
+=&\die{q_i}{q_j}=\delta_{ij}
+\end{align}
+Thus it is clear that the Poisson Brackets between the coordinates is independent of the coordinate system. From the exact same algebra, it follows that:
+\begin{align}
+\{Q_i,P_j\}&=\delta_{ij}\nonumber\\
+\{Q_i,Q_j\}&=\{P_i,P_j\}=0
+\end{align}
+which are equivalent to the Direct Conditions for checking that a transformation is canonical.
+\begin{example}{0pt}{Show that the transformation $Q=p$, $P=-q$ is canonical}{}
+We can test this by checking the Poisson Brackets between $Q$ and $P$:
+\begin{align*}
+\{Q,Q\}&=\die{Q}{q}\die{Q}{p}-\die{Q}{p}\die{Q}{q}=0\nonumber\\
+\{P,P\}&=\die{P}{q}\die{P}{p}-\die{P}{p}\die{P}{q}=0\nonumber\\
+\{Q,P\}&=\die{Q}{q}\die{P}{p}-\die{Q}{p}\die{P}{q}=1
+\end{align*}
+thus the transformation is canonical. Note that checking the first two is un-necessary, since they are identically zero.
+\end{example}
+
+Now, consider two functions in the old coordinates, $U(q_i,p_i)$ and $V(q_i,p_i)$, with Poisson Bracket:
+\begin{align}
+\{U,V\}_{q,p}=\sum_i^n\left(\die{U}{q_i}\die{V}{p_i}-\die{U}{p_i}\die{V}{q_i}\right)
+\end{align}
+Consider the same Poisson Bracket, expressed in terms of the new coordinates, $Q_i$, $P_i$, where the functions are expressed as $U(Q_i,P_i)$ and $V(Q_i,P_i)$:
+\begin{align}
+\{U,V\}_{Q,P}=&\sum_i^n\left(\die{U}{Q_i}\die{V}{P_i}-\die{U}{P_i}\die{V}{Q_i}\right)\nonumber\\
+=&\sum_i^n\left[\left(\sum_j\die{U}{q_j}\die{q_j}{Q_i}+\die{U}{p_j}\die{p_j}{Q_i}\right)\left(\sum_j\die{V}{q_j}\die{q_j}{P_i}+\die{V}{p_j}\die{p_j}{P_i}\right) \right.\nonumber\\
+&\left. -\left(\sum_j\die{U}{q_j}\die{q_j}{P_i}+\die{U}{p_j}\die{p_j}{P_i}\right)\left(\sum_j\die{V}{q_j}\die{q_j}{Q_i}+\die{V}{p_j}\die{p_j}{Q_i}\right)\right]\nonumber\\
+=&\sum_{j}^n\left[\die{U}{q_j}\die{V}{q_j}\{ q_j,q_j\}_{Q,P}+\die{U}{q_j}\die{V}{p_j}\{ q_j,p_j\}_{Q,P}\right.\nonumber\\
+&\left. +\die{U}{p_j}\die{V}{p_j}\{ p_j,p_j\}_{Q,P}+\die{U}{p_j}\die{V}{q_j}\{p_j,q_j\}_{Q,P}\right ]\nonumber\\
+=&\sum_{j}^n\left[\die{U}{q_j}\die{V}{p_j}-\die{U}{p_j}\die{V}{q_j}\right ]\nonumber\\
+=&\{U,V\}_{q,p}
+\end{align}
+We thus find that the Poisson Bracket of two quantities is preserved in a canonical transformation. Poisson Brackets are canonical invariants.
+
+\section{Infinitesimal canonical transformations}
+In an infinitesimal canonical transformation, we have:
+\begin{align}
+Q_i&=q_i+\delta q_i\\
+P_i&=p_i+\delta p_i
+\end{align}
+where the $\delta q_i$ and $\delta p_i$ are small changes in the variables that are consistent with a canonical transformation (rather than an arbitrary virtual displacement).
+This transformation can be related to the identity transformation by:
+\begin{align}
+F=\sum_iq_iP_i+\epsilon G(q_i,P_i)
+\end{align}
+where $G$ is some arbitrary function and $\epsilon$ is small. The transformation for a canonical transformation of the second type are:
+\begin{align}
+p_i&=\die{F}{q_i}=P_i+\epsilon\die{G}{q_i}\nonumber\\
+Q_i&=\die{F}{P_i}=q_i+\epsilon\die{G}{P_i}
+\end{align}
+We can thus identify:
+\begin{align}
+\delta q_i&=\epsilon\die{G}{P_i}\nonumber\\
+\delta p_i&=-\epsilon\die{G}{q_i}
+\end{align}
+The first term can be written as:
+\begin{align}
+\delta q_i&=\epsilon\die{G}{P_i}=\epsilon\die{G}{(p_i+\delta p_i)}=\epsilon\die{G}{p_i}
+\end{align}
+to first order in $\epsilon$. That is, for a small value of $\epsilon$, the derivative with respect to $P_i$ is almost the same as with respect to $p_i$.
+From the properties of Poisson Brackets, this can also be written as:
+\begin{align}
+\delta q_i&=\epsilon\die{G}{p_i}=\epsilon\{q_i,G\}\nonumber\\
+\delta p_i&=-\epsilon\die{G}{q_i}=\epsilon\{p_i,G\}
+\end{align}
+if $G$ is taken to be the Hamiltonian, then we have:
+\begin{align}
+\delta q_i&=\epsilon\{q_i,H\}=\epsilon\frac{dq_i}{dt}\nonumber\\
+\delta p_i&=\epsilon\{q_i,H\}=\epsilon\frac{dp_i}{dt}
+\end{align}
+and the displacement, $\epsilon\frac{dq(p)}{dt}$ are in the direction of time. That is, the Hamiltonian is the generator of the transformation that takes the variable $q_i$ and $p_i$ to variables $Q_i$ and $P_i$ an infinitesimal time later. 
+
+
+\section{Hamilton-Jacobi Equation}
+Consider the case of a canonical transformation of the second type
+\begin{align}
+F&=F_2(q_i,P_i,t)-\sum_iQ_iP_i\nonumber\\
+\frac{dF}{dt}&=\sum_i\left(\die{F_2}{q_i}\dot q_i+\die{F_2}{P_i}\dot P_i- Q_i\dot P_i-P_i\dot Q_i\right)+\die{F_2}{t}
+\end{align}
+Substituting into Equation \ref{eqn:HtoK}:
+\begin{align}
+\sum_i\dot q_ip_i-H&=\sum_i \dot Q_iP_i-K+\sum_i\left(\die{F_2}{q_i}\dot q_i+\die{F_2}{P_i}\dot P_i- Q_i\dot P_i-P_i\dot Q_i\right)+\die{F_2}{t}\nonumber\\
+\sum_i\left(p_i-\die{F_2}{q_i}\right)\dot q_i -H&=\sum_i\left(\die{F_2}{P_i}- Q_i \right)\dot P_i+\die{F_2}{t} -K
+\end{align}
+And we obtain the transformation equations:
+\begin{align}
+p_i&=\die{F_2}{q_i}\nonumber\\
+Q_i&=\die{F_2}{P_i}\nonumber\\
+K&=H+\die{F_2}{t}
+\end{align}
+As a notational convention, we will use $S(q_i,P_i,t)$ instead of $F_2$ (as will see that it is equal to the action). We can also take $S(q_i,P_i,t)$ as the generator of a canonical transformation with the above equations, since this will guarantee that the canonical equations are satisfied. In fact, we can choose any form that we wish for $S$, since the above equations guarantee that the canonical equations are satisfied. Let's then choose the particular case that gives $K=0$. This is a nice choice, since K will then be independent of all the variables, and all $Q_i$ and $P_i$ are cyclic:
+\begin{align}
+\dot Q_i&=0\nonumber\\
+\dot P_i&=0
+\end{align}
+We have thus changed the problem of dynamics to one of finding a transformation that gives all cyclic coordinates. Note that this is not necessarily more straightforward mathematically (in fact, it is usually much harder).
+
+Imposing that $K=0$ gives us:
+\begin{align}
+H(q_i,p_i,t)+\die{S}{t}&=0\nonumber\\
+H(q_i,\die{S}{q_i},t)+\die{S}{t}&=0
+\end{align}
+which is a partial differential equation for $S$ and is called the ``Hamilton-Jacobi equation''. The function $S$ is called ``Hamilton's principal function''. In the transformed coordinates, the solutions are trivial constants:
+\begin{align}
+P_i&=\alpha_i\nonumber\\
+Q_i&=\beta_i =\die{S}{\alpha_i}
+\end{align}
+Is is clear that by combining this with the transformation equations, the problem is solved if all of the $\alpha_i$ and $\beta_i$ are known. Typically, one does not need to refer to $P_i$ and $Q_i$ in the Hamilton-Jacobi formalism, since these are constants of motion. To highlight this, they are usually called $\alpha_i$ and $\beta_i$:
+\begin{align}
+S&=S(q_i,\alpha_i,t)\nonumber\\
+H(q_i,\die{}{q_i}S(q_i,\alpha_i,t),t)+\die{}{t}S(q_i,\alpha_i,t)&=0\nonumber\\
+\alpha_i &=\text{const.}\nonumber\\
+\beta_i &=\die{S}{\alpha_i}
+\end{align}
+
+\subsection{Connection to the Lagrangian and action}
+
+Noting that $S$ depends on the $q_i$ and the constants $\alpha_i$, we can ask how $S$ changes with time along the path of the system (the path where the $P_i$ are constant and equal to $\alpha_i$):
+\begin{align}
+S&=S(q_i,\alpha_i,t)\nonumber\\
+\therefore\frac{dS}{dt}&=\sum_i\die{S}{q_i}\dot q_i +\die{S}{t}
+\end{align}
+Using the transformation equations:
+\begin{align}
+p_i&=\die{S}{q_i}\nonumber\\
+K&=H+\die{S}{t}=0\nonumber\\
+\frac{dS}{dt}&=\sum_ip_i\dot q_i -H=L\nonumber\\
+S&=\int L dt+ \text{const}
+\end{align}
+It is thus clear that $S$ is equal to the action within an additive constant.
+
+
+If the Hamiltonian does not depend on time, then $H$ is a constant of the motion, call it $E$. If this is the case, one can assume a form for $S$ where the time variable is separated out:
+\begin{align}
+H(q_i,\die{S}{q_i},t)+\die{S}{t}&=0\nonumber\\
+S(q_i,\alpha_i,t)&=W(q_i,\alpha_i)-Et\nonumber\\
+\therefore H(q_i,\die{W}{q_i})&=E
+\end{align}
+Where $W$ is called ``Hamilton's characteristic function''.
+
+\begin{example}{0pt}{Use the Hamilton-Jacobi formalism to solve the simple harmonic oscillator problem}{}
+The Hamiltonian is given by:
+\begin{align*}
+H&=\frac{p^2}{2m}+\frac{k}{2}q^2
+\end{align*}
+We can write this in terms of Hamilton's principal function to get the Hamilton-Jacobi equation:
+\begin{align*}
+H(q,\die{S}{q},t)+\die{S}{t}&=0\\
+\frac{1}{2m}\left(\die{S}{q}\right)^2+\frac{k}{2}q^2+\die{S}{t}&=0
+\end{align*}
+Since the Hamiltonian does not depend on time, we can try a solution using separation of variables:
+\begin{align*}
+S(q,\alpha,t)=W(q,\alpha)-\alpha t
+\end{align*}
+which we substitute back into the Hamilton Jacobi equation:
+\begin{align*}
+\frac{1}{2m}\left(\die{W}{q}\right)^2+\frac{k}{2}q^2=\alpha
+\end{align*}
+Since the left side only depends on $q$ the partial derivatives can be made into total derivatives. It is also clear that the constant $\alpha$ is equal to energy, since it is equal to the Hamiltonian.
+\begin{align*}
+\frac{1}{2m}\left(\frac{dW}{dq}\right)^2+\frac{k}{2}q^2&=\alpha\\
+W&=\int \sqrt{2m\alpha-m^2\omega^2q^2}dq\\
+S&=-\alpha t+\int \sqrt{2m\alpha-m^2\omega^2q^2}dq\\
+\end{align*}
+We also know that we have a second constant of motion, $\beta$:
+\begin{align*}
+\beta &=\die{S}{\alpha}\\
+&=-t+\int \frac{2m}{2\sqrt{2m\alpha-m^2\omega^2q^2}}dq\\
+&=-t+\frac{1}{\omega}\sin^{-1}\left(q\sqrt{\frac{m\omega^2}{2\alpha}}  \right)
+\end{align*}
+Which we can invert to get $q$:
+\begin{align*}
+q(t)=\sqrt{\frac{2\alpha}{m\omega^2}}\sin\left(\omega(\beta+t)\right)
+\end{align*}
+Similarly, the momentum is given by:
+\begin{align*}
+p&=\die{S}{q}=\die{}{q}\left(-\alpha t+\int \sqrt{2m\alpha-m^2\omega^2q^2}dq\right)\\
+&=\sqrt{2m\alpha-m^2\omega^2q^2}\\
+&=\sqrt{2m\alpha}\sqrt{1-\sin^2\left(\omega(\beta+t)\right)}\\
+&=\sqrt{2m\alpha}\cos\left(\omega(\beta+t)\right)
+\end{align*}
+\end{example}
+
+\section{Action-angle variables}
+Action-angle variables are an extension to the Hamilton-Jacobi method, when the Hamiltonian does not depend on time. This formalism will allow us to determine certain fundamental frequencies of the system without explicitly solving the equations of motion. This method also allows one to transition from classical to quantum mechanics. Recall that in the case where the Hamiltonian does not depend on time, we can use Hamilton's Characteristic function, $W$ in lieu of $S$:
+\begin{align}
+S(q_i,\alpha_i,t)&=W(q_i,\alpha_i)-Et\nonumber\\
+p_i&=\die{W}{q_i}\nonumber\\
+H(q_i,\die{W}{q_i})&=E
+\end{align}
+
+We will consider the case where $W$ is ``separable'' (at least in some of the coordinates):
+\begin{align}
+W(q_1,\dots, q_n,\alpha_i)=W_1(q_1,\alpha_i)+\dots +W_n(q_n,\alpha_i)
+\end{align}
+that is, where the motion in each separable coordinate can be treated as independent from the others coordinates. The conjugate momentum for the separable coordinates are given by:
+\begin{align}
+p_i&=\die{W_i(q_i, \alpha_1, \dots , \alpha_n)}{q_i}\nonumber\\
+\end{align}
+
+Furthermore, we will consider the case of ``periodic' motion. Two such cases are considered. First, ``vibrations'' where the coordinates and their momenta, $p_i,q_i$, will, after a certain period of time, return to their original values. This is the case, for example, for a simple harmonic oscillator. Second, ``rotations'' where the momentum, $p_i$, is periodic as a function of its generalized coordinate, $q_i$. This is the case, for example, for a pendulum that has enough energy to ``go over the top'' (the angular position of the pendulum increases indefinitely with time and the momentum is periodic). The two cases are illustrated in phase space in Figure \ref{fig:Periodic}.
+
+\capfig{0.7\textwidth}{figures/Periodic.png}{\label{fig:Periodic} Phase space diagram of a vibration (left) and a rotation (right), both examples of periodic motion.}
+
+We start by introducing the ``action-variables'', $J_i$, obtained by integration over 1 period of the generalized coordinate:
+\begin{align}
+J_i\equiv \oint p_idq_i
+\end{align}
+There is one action variable per separable coordinate. Given the relations for the conjugate momenta for separable variables, we have:
+\begin{align}
+J_i&=\oint p_idq_i\nonumber\\
+&=\oint \die{W_i(q_i, \alpha_1, \dots , \alpha_n)}{q_i} dq_i \nonumber\\
+\end{align}
+and the $J_i$ thus only depend on the $\alpha$, which are constants of the motion. The $J_i$ are thus constants of the motion as well. We assume that the equations relating the $J_i$ and $\alpha_i$ are invertible:
+\begin{align}
+J_i&=J_i(\alpha_1, \dots , \alpha_n)\nonumber\\
+\alpha_i&=\alpha_i(J_1, \dots, J_n)
+\end{align} 
+We can thus re-write Hamilton's characteristic function, $W$, and the Hamiltonian in terms of the $J$ instead of the $\alpha$:
+\begin{align}
+W(q_i,\alpha_i)&\to W(q_i, J_i)\nonumber\\
+H(q_i,\die{W}{\alpha_i})&\to H(q_i,\die{W}{J_i})\nonumber\\
+S(q_i,\die{W}{\alpha_i})&\to W(q_i, J_i)-Et =W(q_i, J_i)-Ht
+\end{align}
+In effect, we have chosen a new canonical transformation where $J_i$ are the momenta, $P_i$. In terms of the generating function $S$, we have:
+\begin{align}
+p_i&=\die{S}{q_i}\nonumber\\
+Q_i&=\die{S}{J_i}
+\end{align}
+where $S$ still satisfies the Hamilton-Jacobi equation. The new canonical momenta, $J_i$, are thus still constants of motion, and we have:
+\begin{align}
+P_i\equiv J_i&=\text{const.}\nonumber\\
+Q_i\equiv \beta_i&=\text{const.}
+\end{align}
+We introduce the ``angle variables'', $w_i$:
+\begin{align}
+w_i\equiv\die{W(q_1,\dots , q_n,J_1, \dots , J_n)}{J_i}
+\end{align}
+and consider the constants $\beta_i$ in terms of the angle variables:
+\begin{align}
+\beta_i&=\die{S}{J_i}\nonumber\\
+&=\die{}{J_i}(W(q_i, J_i)-Ht)\nonumber\\
+&=w_i-\die{H}{J_i}t
+\end{align}
+We write this as:
+\begin{align}
+w_i=\beta_i+\nu_it
+\end{align}
+where we have introduced the ``frequency'', $\nu_i$ (we call it frequency only because of its units for the moment):
+\begin{align}
+\nu_i\equiv\die{H}{J_i}
+\end{align}
+Now, assume that the system has a period of $T_i$ for the ith degree of freedom (recall that we imposed that the system was periodic). In the amount of time $T_i$, the angle variable will have changed by an amount:
+\begin{align}
+\Delta w_i \equiv w_i(t=T_i)-w_i(t=0)=\nu_iT_i
+\end{align}
+We can also calculate the amount that $w_i$ changes as the system goes through one period:
+\begin{align}
+\Delta w_i &=\oint dw_i\nonumber\\
+&=\oint \sum_j \die{w_i}{q_j}dq_j \nonumber\\
+&=\oint \sum_j \die{}{q_j}\die{W}{J_i}dq_j\nonumber\\
+&=\die{}{J_i}\oint  \sum_j \die{W}{q_j}dq_j\nonumber\\
+&=\die{}{J_i}\oint  \sum_j p_jdq_j\nonumber\\
+&=\die{}{J_i}\sum_j\oint   p_jdq_j\nonumber\\
+&=\die{}{J_i}\sum_jJ_j\nonumber\\
+&=1
+\end{align}
+where we have used the definition of the angle variables, the fact that the conjugate momenta can be obtained from $W$, and the definition of the action variables. Equating the two expressions for $\Delta w_i$, it is clear that $\nu_i$ is indeed the frequency with which the system is periodic in the ith degree of freedom:
+\begin{align}
+\nu_i=\frac{1}{T_i}
+\end{align}
+
+Although the derivation was not particularly intuitive, we have in fact derived a rather elegant result. Namely that for a periodic system, one can re-write the Hamiltonian in terms of the action variable and the derivative of the Hamiltonian with respect to that action variable is the frequency of the motion in the associated coordinate.
+
+\begin{example}{0pt}{Determine the frequencies of a two-dimensional simple harmonic oscillator with different spring constants in the two dimensions}{}
+The Hamiltonian for this system is written as:
+\begin{align*}
+H=\frac{1}{2m}(p_1^2+p_2^2)+\frac{1}{2}k_1q_1^2+\frac{1}{2}k_2q_2^2
+\end{align*}
+and since it does not depend explicitly on time, is a constant of the motion, which we will call $E$. The Hamilton-Jacobi equation is given by:
+\begin{align*}
+\frac{1}{2m}\left(\die{W}{q_1}\right)^2+\frac{1}{2m}\left(\die{W}{q_2}\right)^2+\frac{1}{2}k_1q_1^2+\frac{1}{2}k_2q_2^2=E
+\end{align*}
+Here, the variables $q_1$ and $q_2$ can be separated, and the Hamilton Jacobi equation written as two independent equations:
+\begin{align*}
+W=W_1(q_1)+W_2(q_2)\\
+\frac{1}{2m}\left(\frac{dW_1}{dq_1}\right)^2+\frac{1}{2m}\left(\frac{dW_2}{dq_2}\right)^2+\frac{1}{2}k_1q_1^2+\frac{1}{2}k_2q_2^2=E
+\end{align*}
+Since the total is a constant, the terms depending on only one of the $q$ must be a constant, so we can write:
+\begin{align*}
+\frac{1}{2m}\left(\frac{dW_1}{dq_1}\right)^2+\frac{1}{2}k_1q_1^2=\alpha_1\\
+\frac{1}{2m}\left(\frac{dW_2}{dq_2}\right)^2+\frac{1}{2}k_2q_2^2=\alpha_2
+\end{align*}
+where $\alpha_1$ and $\alpha_2$ are constants. Solving for the differentials, we can write:
+\begin{align*}
+p_i=\frac{dW_i}{dq_i}=\sqrt{2m(\alpha_i-\frac{1}{2}k_iq_i^2)}
+\end{align*}
+Consider expressing $q_i$ using a new variable, $\theta_i$, given by:
+\begin{align*}
+q_i&=\sqrt{\frac{2\alpha_i}{k_i}}\sin\theta_i\\
+\therefore dq_i&=\sqrt{\frac{2\alpha_i}{k_i}}\cos\theta_id\theta_i
+\end{align*}
+This gives:
+\begin{align*}
+p_i&=\sqrt{2m\left(\alpha_i-\frac{1}{2}k_i(\frac{2\alpha_i}{k_i}\sin^2\theta_i)\right)}\\
+&=\sqrt{2m\alpha_i\cos^2\theta_i}
+\end{align*}
+We are now set to evaluate the action variables:
+\begin{align*}
+J_i&=\oint p_i dq_i\\
+&=\oint \sqrt{2m\alpha_i\cos\theta_i^2} \sqrt{\frac{2\alpha_i}{k_i}}\cos\theta_id\theta_i\\
+&=2\alpha_i\sqrt{\frac{m}{k_i}}\int_o^{2\pi} \cos^2\theta_i d\theta_i\\
+&=2\pi\alpha_i\sqrt{\frac{m}{k_i}}
+\end{align*}
+This is trivally inverted to get $\alpha$ in terms of $J$:
+\begin{align*}
+\alpha_i=\frac{J_i}{2\pi}\sqrt{\frac{k_i}{m}}
+\end{align*}
+We can now obtain the Hamiltonian in terms of the action variables:
+\begin{align*}
+H&=\alpha_1+\alpha_2\\
+&=\frac{1}{2\pi}\left(\sqrt{\frac{k_1}{m}}J_1+\sqrt{\frac{k_2}{m}}J_2\right)
+\end{align*}
+The fundamental frequencies for the two degrees of freedom are thus:
+\begin{align*}
+\nu_1&=\die{H}{J_1}=\frac{1}{2\pi}\sqrt{\frac{k_1}{m}}\\
+\nu_2&=\die{H}{J_2}=\frac{1}{2\pi}\sqrt{\frac{k_2}{m}}
+\end{align*}
+as expected.
+\label{ex:AASHO}
+\end{example}
+
+\subsection{Connection to Quantum Mechanics}
+The Hamiltonian description of classical mechanics is important as it is connected with Quantum Mechanics. In this section, we look at a few similarities between the two formalisms and how they are connected.
+
+Recall a few key points about Quantum Mechanics:
+\begin{itemize}
+\item In Quantum Mechanics, the state of a system is described by a wave function: $|\psi>$
+\item Observables are obtained by operating on the wave function: $\hat X|\psi>=x|\psi>$
+\item Operators do not, in general, commute: $\hat X\hat Y|\psi>\neq\hat Y \hat X|\psi>$
+\item In the Heisenberg representation, the state vector (wave function) is constant in time and the operators change with time
+\item In the time dependent Schr\"odinger representation, the operators are constant in time and the wave-function changes with time
+\end{itemize}
+
+\subsubsection{Poisson brackets and commutators}
+You may have noticed a similarity between the use of Poisson Brackets in Classical Mechanics and Commutator relations in Quantum Mechanics. In fact, the connection between Classical and Quantum Mechanics can be made by the prescription that the Poisson Brackets be replaced with commutators:
+\begin{align}
+\{U,V\}\to \frac{1}{i\hbar}[\hat U,\hat V]
+\label{eqn:PBCMQM}
+\end{align}
+where $\hbar$ is Planck's constant divided by 2$\pi$.
+Now, consider the evolution of a system in classical mechanics; in particular, recall how the time-variation of some quantity, $F(q_i,p_i,t)$, is given by its Poisson Bracket with the Hamiltonian:
+\begin{align}
+\frac{dF}{dt}=\{F,H\}+\die{F}{t}
+\end{align}
+Now consider the prescription from equation \ref{eqn:PBCMQM} to go to Quantum Mechanics:
+\begin{align}
+\frac{d\hat F}{dt}=\frac{1}{i\hbar}[\hat F,\hat H]+\die{\hat F}{t}
+\end{align}
+This gives precisely the time evolution of a quantum mechanical operator in the Heisenberg formulation. This ``Canonical Prescription'' is the most general for going from Classical to Quantum Mechanics.
+
+\subsubsection{The Hamilton-Jacobi equation and the Schr\"odinger equation}
+Consider the time-dependent Schr\"odinger equation:
+\begin{align}
+H(q_i,p_i,t)\psi&=i\hbar\die{\psi}{t}\nonumber\\
+p_i&=\frac{\hbar}{i}\die{}{q_i}
+\end{align}
+and consider a solution of the form:
+\begin{align}
+\psi&=A e^{\frac{i}{\hbar}S(q_i,t)}\nonumber\\
+\therefore\frac{\hbar}{i} \die{\psi}{q_i}&=\hbar\psi\die{S}{q_i}\nonumber\\
+\therefore i\hbar \die{\psi}{t}&=-\hbar\psi\die{S}{t}
+\end{align}
+Substituting into the Schr\"odinger equation:
+\begin{align}
+\left(H(q_i,\die{S}{q_i},t)+\die{S}{t}\right)\hbar\psi=0
+\end{align}
+Since $\psi$ cannot vanish, we obtain the Hamilton-Jacobi equation:
+\begin{align}
+H(q_i,\die{S}{q_i},t)+\die{S}{t}=0
+\end{align}
+There is thus a connection between the Hamilton-Jacobi equation and the Schr\"odinger equation. Quantum and classical mechanics meet in the limit where $\hbar\to 0$. The function $S$ is the phase of the wave-function. In the case where we separated out the energy term from $S$, we are equivalently searching for stationary states in the quantum mechanics formulation.
+
+\subsubsection{Sommerfeld and Wilson prescription}
+The earliest prescription for going from Classical to Quantum Mechanics is due to Sommerfeld and Wilson who postulated that requiring that the action variables be quantized is a sufficient condition to obtain a quantum mechanical description:
+\begin{align}
+J_i=\oint p_i dq_i=nh
+\end{align}
+where $n$ is an integer and $h$ is Planck's constant. Consider for example the simple harmonic oscillator, where we have explicitly calculated the action variable in Example \ref{ex:AASHO}:
+\begin{align}
+J=2\pi\alpha\sqrt{\frac{m}{k}}=nh
+\end{align}
+where we can identify $\alpha$ with the energy. Writing this in terms of the energy, we have:
+\begin{align}
+\alpha=E=n \frac{h}{2\pi}\sqrt{\frac{k}{m}}=n\hbar\omega
+\end{align}
+which is the correct quantization for a simple harmonic oscillator (apart for the ground state). 
+
+Consider a particle in a central force field, described in polar coordinates, where we have seen that the momentum $p_\phi$ is conserved and equal to the z-component of angular momentum, $L_z$. The action variable is easily determined:
+\begin{align}
+J_\phi=\oint p_\phi d\phi=\int_)^{2\pi}L_zd\phi=2\pi L_z
+\end{align}
+Applying the Sommerfeld-Wilson quantization prescription, we find that:
+\begin{align}
+L_z=n\hbar
+\end{align}
+which is the correct quantization for the angular momentum along a specific direction. One should however note that in Classical Mechanics, the total momentum is also equal to $L_z$ and one could be wrongly tempted to conclude that the total angular momentum is quantized in units of $\hbar$.
+
+Finally, consider the fact that the energy can be written in terms of the quantized action variables:
+\begin{align}
+E=H(J_1,\dots, J_n)=H(n_1h,\dots,n_nh)
+\end{align}
+And consider the change in energy when one of the action variables changes by one unit:
+\begin{align}
+J_i\to J_i+h
+\end{align}
+The change in energy of the system is:
+\begin{align}
+\Delta E= H(J_1,\dots,J_i+h,\dots, J_n)-H(J_1,\dots,J_i,\dots, J_n)
+\end{align}
+If we write the first term as a Taylor series (since $h$ is small):
+\begin{align}
+H(J_1,\dots,J_i+h,\dots, J_n)=H(J_1,\dots,J_i,\dots, J_n)+\die{H}{J_i}h
+\end{align}
+hence:
+\begin{align}
+\Delta E=\die{H}{J_i}h=\nu_i h
+\end{align}
+where $\nu_i$ is the frequency of the corresponding degree of freedom. It should be clear that this is exactly equivalent to the prescription for the Bohr atom.
+
+It should be noted that the Sommerfeld-Wilson prescription is part of the "old quantum mechanics" and was derived in an ad-hoc fashion before a more self-consistent formulation was obtained by Schr\"odinger, Heisenberg, Dirac and others.
+

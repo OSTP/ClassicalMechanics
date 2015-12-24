@@ -1,0 +1,381 @@
+\chapter{The Hamiltonian}
+In this chapter, we consider a different approach to analytical mechanics, using the Hamiltonian instead of the Lagrangian. In Lagrangian mechanics, we generally obtained $n$ second order differential equations corresponding to the $n$ degrees of freedom in configuration space. In the Hamiltonian formalism, we will show that we can obtain $2n$ first order differential equations for the $n$ degrees of freedom and the $n$ generalized momenta. The generalized momenta are ``promoted'' to variables that describe the motion, and we speak of describing a system in ``phase space'' by specifying $q_i$ and $p_i$, instead of specifying only the $q_i$ in configuration space. The main difference is that the position in phase space completely specifies the past and future motions of the system, while in configuration space, one also needs to specify the velocities.
+
+\section{The Legendre Transform}
+The Hamiltonian formalism can be formally derived through the use of the Legendre transforms, which we first introduce here. Consider a function, $f(u_1,\dots ,u_n)$, that depends on $n$ variables, $u_i$. Now consider new variables, $v_i$, given by:
+\begin{align}
+v_i \equiv \die{f}{u_i} 
+\end{align}
+The Legendre transformation takes the function $f(u_i)$ into a new function, $g(v_i)$, that only depends on the $v_i$. The transformation is given by:
+\begin{align}
+g(v_i)=\sum_i u_iv_i-f
+\end{align}
+It is not immediately apparent that $g$ does not depend on the $u_i$, but we can verify this by considering the variation of $g$:
+\begin{align}
+\delta g &= \delta \left(\sum_i u_iv_i-f\right)\nonumber\\
+&=\sum_i (u_i\delta v_i+v_i\delta u_i)-\sum_i \die{f}{u_i}\delta u_i\nonumber\\
+&=\sum_i u_i\delta v_i + \sum_i\left(v_i-\die{f}{u_i} \right)\delta u_i\nonumber\\
+&=\sum_i u_i\delta v_i
+\end{align}
+where in the last line, we used the definition of $v_i$, to set the last term equal to zero. Thus, the variation of $g$ only depends on the variations of the $v_i$ and not of the $u_i$. We can thus write $g=g(v_i)$ and the variation of $g$ as:
+\begin{align}
+\delta g = \sum_i \die{g}{v_i}\delta v_i
+\end{align}
+and make the following identification:
+\begin{align}
+u_i = \die{g}{v_i}
+\end{align}
+The Legendre Transformation thus has a nice set of symmetries:
+\begin{align}
+v_i&=\die{f}{u_i}\nonumber\\
+u_i&=\die{g}{v_i}\nonumber\\
+g&=\sum_i u_iv_i-f\nonumber\\
+f&=\sum_i u_iv_i-g
+\end{align}
+
+Now consider the case when $f$ depends on two sets of variables, $u_i$, and $w_i$, $f=f(u_i,w_i)$, and we again define the $v_i$ as follows:
+\begin{align}
+v_i\equiv \die{f(u_i,w_i)}{u_i}
+\end{align}
+We thus call the $u_i$ the ``active'' variables, and the $w_i$, the ``passive'' variables.
+Again, we define $g$:
+\begin{align}
+g \equiv \sum_i u_iv_i-f(u_i,w_i)
+\end{align}
+The variation of $g$ is given by:
+\begin{align}
+\delta g &= \delta \left(\sum_i u_iv_i-f(u_i,w_i)\right)\nonumber\\
+&=\sum_i (u_i\delta v_i+v_i\delta u_i)-\sum_i \left(\die{f}{u_i}\delta u_i+ \die{f}{w_i}\delta w_i\right) \nonumber\\
+&=\sum_i \left(u_i\delta v_i-\die{f}{w_i}\delta w_i\right) + \sum_i\left(v_i-\die{f}{u_i} \right)\delta u_i\nonumber\\
+&=\sum_i \left( u_i\delta v_i-\die{f}{w_i}\delta w_i \right)
+\end{align}
+which again is independent of the variation on the $u_i$. Since $g=g(v_i,w_i)$, we can also write the variation as:
+\begin{align}
+\delta g_i = \sum_i \left(\die{g}{v_i}\delta v_i+\die{g}{w_i} \delta w_i \right)
+\end{align}
+and immediately identify:
+\begin{align}
+u_i&=\die{g}{v_i}\nonumber\\
+\die{g}{w_i}&=-\die{f}{w_i}
+\end{align}
+Note that we used the case where there are the same number of $w_i$ as there are $u_i$ and $v_i$; it is easily seen that the results do not depend on this. 
+
+\section{Legendre Transform of the Lagrangian}
+Consider now the Lagrangian, $L(q_i,\dot{q}_i,t)$, where we will consider the $q_i$ as the passive variables, and the $\dot{q}_i$ as the active variables. We introduce a new set of variables, $p_i$, given by:
+\begin{align}
+p_i\equiv\die{L}{\dot q_i}
+\end{align}
+and we introduce a new function, $H(q_i,p_i,t)$, called the Hamiltonian, which is the Legendre transform of the Lagrangian:
+\begin{align}
+H(q_i,p_i,t)\equiv \sum_ip_i\dot q_i-L
+\end{align}
+Again, consider the variation of the Hamiltonian:
+\begin{align}
+\delta H &= \delta \left(\sum_ip_i\dot q_i-L  \right)\nonumber\\
+&=\sum_i\left( p_i\delta \dot q_i + \dot q_i \delta p_i \right)-\sum_i\left(\die{L}{q_i}\delta q_i+\die{L}{\dot q_i}\delta \dot q_i\right)-\die{L}{t}\delta t \nonumber\\
+&=\sum_i\left( \dot q_i\delta p_i -\die{L}{q_i}\delta q_i \right)- \die{L}{t}\delta t
+\end{align}
+Again, we can identify this with the variation of $H(q_i,p_i,t)$:
+\begin{align}
+\delta H = \sum_i\left(\die{H}{p_i} \delta p_i+\die{H}{q_i}\delta q_i \right)+\die{H}{t}\delta t
+\end{align}
+to obtain:
+\begin{align}
+\dot q_i&=\die{H}{p_i} \nonumber\\
+\die{H}{q_i}&=-\die{L}{q_i} \nonumber\\
+\die{H}{t}&=-\die{L}{t}
+\end{align}
+Note that the Hamiltonian can and must always be written explicitly only in terms of the generalized momenta and the coordinates (that is, the velocities should always be eliminated in favour of the momenta).
+
+\section{The Canonical equations}
+Again, consider the relations for transforming back and forth between the Lagrangian and the Hamiltonian:
+\begin{align}
+\dot q_i&=\die{H}{p_i} \nonumber\\
+p_i &= \die{L}{\dot q_i} 
+\end{align}
+The second equation can be re-arranged using the Euler-Lagrange equation:
+\begin{align}
+\frac{d}{dt}\die{L}{\dot q_i}&=\die{L}{q_i}\nonumber\\
+\therefore \dot p&=\die{L}{q_i}= -\die{H}{q_i}
+\end{align}
+We can write the transformation equations as:
+\begin{align}
+\dot q_i&=\die{H}{p_i} \nonumber\\
+\dot p_i &= -\die{H}{q_i}
+\end{align}
+These are called the ``canonical equations of Hamilton''. They are $2n$ first order differential equations that specify the location, $p_i$, $q_i$, of the system in phase space, and have the property that the total time derivatives are isolated on one side of the equation. Note that if a coordinate is cyclic in the Hamiltonian, conservation of the associated generalized momentum follows immediately. In order to solve these equations in configuration space, one can substitute the first equation into the second one and re-obtain the second-order equation for the coordinate as a function of time that one obtains from the Euler-Lagrange equations.
+
+Consider now the total time derivative of the Hamiltonian, $H(p_i,q_i,t)$:
+\begin{align}
+\frac{dH}{dt}&= \sum_i\left(\die{H}{p_i}\dot p_i +\die{H}{q_i}\dot q_i  \right)+\die{H}{t}\nonumber\\
+&= \sum_i\left(\dot q_i\dot p_i -\dot p_i\dot q_i  \right)+\die{H}{t}\nonumber\\
+&= \die{H}{t} \left(=-\die{L}{t}\right)
+\end{align}
+where we used the canonical equations. We see that if the Lagrangian (or Hamiltonian) does not explicitly depend on time, then the total time derivative of $H$ is zero (i.e. $H$ is a constant). Often, the Hamiltonian is equal to the total energy, in particular, if it does not depend on time explicitly and if the potential does not depend on velocity. This is the result that we obtained for the Jacobian integral. In the case that the Hamiltonian is the total energy, it can be written as:
+\begin{align}
+H=T+V
+\end{align}
+One should however be careful and keep in mind that this form is not the general definition of the Hamiltonian, which is given by the Legendre transformation.
+
+
+\section{Canonical equations from Hamilton's principle}
+Recall that we obtained the equations of motion by requiring that the action, $S$, is stationary under variations of the $q_i$:
+\begin{align}
+S=\int_{t_1}^{t_2}L(q_i,\dot q_i, t) dt
+\end{align}
+The Euler-Lagrange equations of motion were obtained by requiring that the variations of the $q_i$ were zero at the end points. We can write the variation of $S$ in terms of the Hamiltonian:
+\begin{align}
+\delta S = \delta \int_{t_1}^{t_2}L(q_i,\dot q_i, t) dt = \delta\int_{t_1}^{t_2}\left[\sum_ip_i\dot q_i-H(q_i,p_i,t)\right]dt
+\end{align}
+In the Lagrangian formalism, we found that variations of the action with respect to the $q_i$ led to the equations of motion. The $\dot q_i$ did not vary independently from the $q_i$, since:
+\begin{align}
+\delta \dot q_i=\delta \frac{dq_i}{dt}=\frac{d}{dt}\delta q_i
+\end{align}
+In the Hamiltonian formalism, we must treat the $q_i$ and $p_i$ on equal footing, that is, we must allow them to be varied independently. We know from the properties of the Legendre transformation that variations of the $p_i$ do not affect the Lagrangian, and hence the variation of the action will not be affected by independently varying the $p_i$:
+\begin{align}
+p_i &\to p_i+\delta p_i \nonumber\\
+q_i &\to q_i+\delta q_i\nonumber\\
+\delta S &= \int_{t_1}^{t_2}\left[\sum_i\left(p_i\delta\dot q_i+\dot q_i \delta p_i-\die{H}{q_i}\delta q_i -\die{H}{p_i}\delta p_i\right)\right]dt
+\end{align}
+We can write:
+\begin{align}
+p_i\delta\dot q_i &=p_i\frac{d}{dt}\delta q_i=\frac{d}{dt}(p_i\delta q_i)-\dot p_i \delta q_i
+\end{align}
+The first term, being a total time derivative, will not contribute to the variation of the action (since it just adds a constant), so it can be dropped:
+\begin{align}
+\delta S &= \int_{t_1}^{t_2}\left[\sum_i\left(-\dot p_i \delta q_i+\dot q_i \delta p_i-\die{H}{q_i}\delta q_i -\die{H}{p_i}\delta p_i\right)\right]dt\nonumber\\
+&=\int_{t_1}^{t_2}\left[\sum_i\left( -\dot p_i -\die{H}{q_i}\right)\delta q_i+\left(\dot q_i-\die{H}{p_i}  \right)\delta p_i  \right]dt
+\end{align}
+For the variation of $S$ to be zero when $q_i$ and $p_i$ are varied independently, then the terms in front of the $\delta q_i$ and $\delta p_i$ must always be zero, which is precisely the canonical equations.
+
+\section{Symplectic notation}
+Symplectic notation is a way to handle the Hamiltonian formalism using matrices. It is often implemented in computerized algorithms, for example for solving for the motion of astrophysical bodies (think of calculating the trajectory of a probe on its way to Mars). Such computerized algorithms are called ``symplectic integrators''.
+
+One starts by defining a vector, $\vec\eta$, of dimension $2n$ where the first $n$ coordinates are the generalized coordinates, $q_i$, and the next $n$ coordinates are the generalized momenta, $p_i$.
+\begin{align}
+\vec\eta\equiv\left(\begin{array}{c}
+ q_1 \\ \vdots \\  q_n \\ p_1 \\ \vdots \\ p_n \\
+\end{array} \right)
+\end{align}
+We define a second vector, $\die{\vec H}{\eta}$:
+\begin{align}
+\die{\vec H}{\eta}\equiv\left(\begin{array}{c}
+ \die{H}{q_1} \\ \vdots \\ \die{H}{q_n} \\ \die{H}{p_1} \\ \vdots \\ \die{H}{p_n} \\
+\end{array} \right)
+\end{align}
+and a $2n\times 2n$ square matrix $J$:
+\begin{align}
+J\equiv\left(\begin{array}{cc}
+ 0 &I \\  -I &0 \\
+\end{array} \right)
+\end{align}
+where $I$ is the $n\times n$ identity matrix. Hamilton's equations in symplectic notation are thus written as:
+\begin{align}
+\frac{d\vec\eta}{dt}=J\die{\vec H}{\eta}
+\end{align}
+
+\section{Phase space, the phase space fluid and Liouville's Theorem}
+Recall that in the Lagrangian formalism, one can describe a system by specifying the value of its generalized coordinates in configuration space. In order to know the future (or past) development of the system, it is also necessary to specify the velocities. For example, a canon ball's trajectory through (say, Cartesian) configuration space, depends on its velocity. In general, for a given starting position in configuration space, different initial velocities can lead to intersecting trajectories in configuration space (see Figure \ref{fig:ConfPhaseSpace}).
+
+In the Hamiltonian formalism, the system is described by the generalized coordinates \textbf{and} by the generalized momenta. This can be viewed as a set of coordinates in ``phase space''. The trajectory of the system through phase space is completely specified by the equations of motion. If the Hamiltonian does not change with time, the paths of different systems through phase space cannot intersect (this would mean that two systems with different positions (in configuration space) and momentum, following the same equations of motion, could end up at the same position and momentum). One can make the analogy with fluid dynamics, where the trajectories through phase space, for a system following a given Hamiltonian, are similar to the flow lines for a fluid (see Figure \ref{fig:ConfPhaseSpace}). Each trajectory corresponds to a particular value of the Hamiltonian. This fluid is called the ``phase space fluid''.
+
+\capfig{0.4\textwidth}{figures/ConfPhaseSpace.png}{\label{fig:ConfPhaseSpace}Paths of a systems through configuration space (left) and phase space (right). In configuration space, the trajectories depend on the initial velocities and the equations of motion, so they can intersect. In phase space, the trajectories are completely determined by the equations of motion and the starting position in phase space;the trajectories for different starting points cannot intersect.}
+
+\begin{example}{0pt}{Use the Hamiltonian formalism to describe the simple harmonic oscillator of mass $m$ and spring constant $k$, and describe the motion in phase space.}{}
+The Lagrangian is given by:
+\begin{align*}
+L=\frac{1}{2}m\dot x^2-\frac{1}{2}kx^2
+\end{align*}
+The Hamiltonian is thus:
+\begin{align*}
+H&=p\dot x -L\\
+ &= \die{L}{\dot x} \dot x -L\\
+ &=\frac{1}{2}m\dot x^2 + \frac{1}{2}kx^2\\
+ &=\frac{p^2}{2m}+\frac{1}{2}kx^2
+\end{align*}
+Note that since $L$ did not depend explicitly on time (and the kinetic energy is quadratic in the velocities, and the potential energy does not depend on velocity), $H$ is equal to the total energy ($T+V$). Hamilton's canonical equations are thus:
+\begin{align*}
+\dot x&=\die{H}{p} =\frac{p}{m}\\
+\dot p &= -\die{H}{x}=-kx
+\end{align*}
+Since $H$ is constant ($=E$), the Hamiltonian describes an ellipse in phase space:
+\begin{align}
+\frac{1}{2m}p^2+\frac{k}{2}x^2=E
+\end{align}
+\capfig{0.3\textwidth}{figures/PhaseSpaceEllipse.png}{Motion of the simple harmonic oscillator in phase space for two different values of energy.}
+As the system evolves in time, it goes from a maximum value in $x$ and zero momentum to a maximum value of momentum and zero value of $x$, and so on. Momentum and position in phase space can easily be thought of on an equal footing.
+\end{example}
+
+Liouville's theorem (although it was formulate by Gibbs and does not have much to do with Liouville) states that the phase space fluid acts like an incompressible fluid. That is, if you select a closed volume and let it evolve as the fluid moves in time, that total volume does not change with time. We know from fluid dynamics, that the divergence of the velocity field must be zero for an incompressible fluid. Indeed, consider the continuity equation for a fluid of density $\rho$ and velocity field $\vec v$:
+\begin{align}
+\die{\rho}{t}+\nabla\cdot(\rho \vec v)=0
+\end{align}
+If the density is constant (the fluid incompressible), then the divergence of the velocity vector is zero.
+
+Treating the generalized momenta and the generalized coordinates as ``regular'' coordinates of a particle in configuration space, the velocity of that particle is given by a vector of dimension $2n$:
+\begin{align}
+\vec v=\left(\begin{array}{c}
+\dot q_1 \\ \vdots \\ \dot q_n \\ \dot p_1 \\ \vdots \\ \dot p_n \\
+\end{array} \right) = \left(\begin{array}{c}
+ \die{H}{p_1} \\ \vdots \\ \die{H}{p_n} \\ -\die{H}{q_1} \\ \vdots \\ -\die{H}{q_n} \\
+\end{array} \right)
+\end{align}
+where we have also substituted Hamilton's canonical equations in the second equal sign.
+
+If the divergence of the corresponding velocity field is zero:
+\begin{align}
+\nabla \cdot \vec v &=0\nonumber\\
+&=\sum_i^n\left(\die{v_i}{q_i}+\die{v_{n+i-1}}{p_i}\right)\nonumber\\
+&=\sum_i^n\left(\die{\dot q_i}{q_i}+\die{\dot p_i}{p_i}\right)\nonumber\\
+&=\sum_i^n\left(\die{}{q_i}\die{H}{p_i}-\die{}{p_i}\die{H}{q_i}\right)=0
+\end{align}
+which is equal to zero, since the partial derivatives commute. The velocity field in field space does indeed behave like an incompressible fluid.
+
+\section{Poisson Brackets}
+The Poisson Bracket between two functions of the canonical variable, $U(q_i,p_i,t)$, and $V(q_i, p_i, t)$ is defined as:
+\begin{align}
+\{U,V\}\equiv\sum_i^n\left(\die{U}{q_i}\die{V}{p_i}-\die{U}{p_i}\die{V}{q_i}\right)
+\end{align}
+The Poisson Bracket has several properties that are easily verified (in the following, capital letters denote functions of $q_i$ and $p_i$, whereas $k$ is a constant):
+\begin{align}
+\{U,V\}&=-\{V,U\}\nonumber\\
+\{U,U\}&=0\nonumber\\
+\{kU,V\}&=k\{U,V\}\nonumber\\
+\{A+B,V\}&=\{A,V\}+\{B,V\}\nonumber\\
+\{AB,V\}&=A\{B,V\}+B\{A,V\}\nonumber\\
+\{q_i,q_j\}=\{p_i,p_j\}&=0\nonumber\\
+\{q_i,p_j\}&=\delta_{ij}\nonumber\\
+\{q_i^n,p_j\}&=nq_i^{n-1}\delta_{ij}\nonumber\\
+\{U,p_i\}&=\die{U}{q_i}\nonumber\\
+\{U,q_i\}&=-\die{U}{p_i}\nonumber\\
+\{U,\{V,W\}\}+\{V,\{W,U\}\}+\{W,\{U,V\}\}&=0
+\label{eqn:PBprops}
+\end{align}
+This last relation is called ``Jacobi's identity''. $\delta_{ij}$ is the Kronecker delta, and is equal to zero unless $i=j$. It seems a little strange to introduce the Poisson Brackets as a mathematical artefact, but they are related to the commutators that appear in Quantum Mechanics, so it is worthwhile to explore them further. Consider for example the Poisson Bracket of a canonical variable with the Hamiltonian:
+\begin{align}
+\{q_j,H\}&=\sum_i^n\left(\die{q_j}{q_i}\die{H}{p_i}-\die{q_j}{p_i}\die{H}{q_i}\right)\nonumber\\
+&=\die{H}{p_j}\nonumber\\
+\{p_j,H\}&=\sum_i^n\left(\die{p_j}{q_i}\die{H}{p_i}-\die{p_j}{p_i}\die{H}{q_i}\right)\nonumber\\
+&=-\die{H}{q_j}\nonumber\\
+\end{align}
+where the terms $\die{q_j}{q_i}$ and $\die{p_j}{p_i}$ are zero unless $i=j$, and the terms $\die{q_j}{p_i}$ and $\die{p_j}{q_i}$ are zero.
+Identifying this with Hamilton's canonical equations, we can re-write the canonical equations as:
+\begin{align}
+\dot q_i&=\{q_i,H\}\nonumber\\
+\dot p_i&=\{p_i,H\}\nonumber\\
+\end{align}
+More generally, consider the total time derivative of a function, $F(q_i,p_i,t)$, of the canonical variables:
+\begin{align}
+\frac{dF}{dt}&=\sum_i\left(\die{F}{q_i}\dot q_i+\die{F}{p_i}\dot p_i\right)+\die{F}{t}\nonumber\\
+&=\sum_i\left(\die{F}{q_i}\die{H}{p_i}-\die{F}{p_i}\die{H}{q_i}\right)+\die{F}{t}\nonumber\\
+&=\{F,H\}+\die{F}{t}
+\end{align}
+We can see that the time derivative of a quantity is given by its Poisson Bracket with the Hamiltonian. If $F$ does not depend explicitly on time, it is a constant of motion if its Poisson Bracket with the Hamiltonian is zero:
+\begin{align}
+\{F(q_i,p_i),H\}=0 \to F=\text{const.}
+\end{align}
+
+
+\subsection{Poisson Brackets and symmetries}
+Recall that we showed in Chapter \ref{chap:ConsLaws} that there exists a conserved quantity, $Q$, for each axis of rotation about which the Lagrangian was invariant.  For an infinitesimal rotation of angle $\delta \epsilon$ about the z-axis:
+\begin{align}
+x' &= x+f_x\delta\epsilon = x-y\delta \epsilon\nonumber\\
+y &= y+f_y\delta\epsilon = y+x\delta \epsilon\nonumber\\
+z &= z+f_z\delta\epsilon = z \nonumber\\
+Q&=\sum_i f_ip_i=(xp_y - yp_x)=L_z\nonumber\\
+\end{align}
+and the conserved quantity was the z-component of angular momentum, $L_z$.
+
+Now consider the Poisson Bracket:
+\begin{align}
+\{x,L_z\}&=\{x,L_z\}\nonumber\\
+&=\{x,xp_y - yp_x\}\nonumber\\
+&=\{x,xp_y\} - \{x,yp_x\}\nonumber\\
+&=x\{x,p_y\}+p_y\{x,x\} - y\{x,p_x\}-p_x\{x,y\}\nonumber\\
+&=-y
+\end{align}
+where we have made use of the properties from equations \ref{eqn:PBprops}. One can easily show that:
+\begin{align}
+\{x,L_z\}&=-y=f_x\nonumber\\
+\{y,L_z\}&=x=f_y\nonumber\\
+\{z,L_z\}&=0=f_z
+\end{align}
+Thus, the Poisson Bracket of a coordinate with a component of angular momentum gives the coefficient ($f_i$) corresponding to the transformation of that coordinate with respect to infinitesimal rotations.
+
+Now consider the Poisson Bracket with the components of momentum:
+\begin{align}
+\{p_x,L_z\}&=-p_y=f_x\nonumber\\
+\{p_y,L_z\}&=p_x=f_y\nonumber\\
+\{p_z,L_z\}&=0=f_z
+\end{align}
+which are easily demonstrated. The momentum vector transforms the same way as coordinates under a rotation, so the Poisson Brackets also correspond to the correct coefficients for rotations of the momentum vector. We find that the $f_i$ corresponding to how a particular quantity is rotated about the z-axis are given by the Poisson Bracket of the quantity with the z-component of angular momentum. We say that angular momentum is the ``generator'' of rotations.
+
+\begin{example}{0pt}{Show that a charged sphere rotating about some arbitrary axis precesses about an axis parallel to a uniform magnetic field. Assume the magnetic field is in the z-direction}{}
+The Hamiltonian for the sphere is simply the total energy of the rotating sphere. The kinetic energy is a constant and will thus not influence the motion, and we can ignore it. The potential energy is related to the magnetic dipole of the sphere:
+\begin{align*}
+V=\vec\mu\cdot\vec B
+\end{align*}
+The magnetic moment will be proportional to the angular momentum of the sphere, and will point in the direction of the angular momentum:
+\begin{align*}
+\vec\mu&\propto \vec L\\
+\therefore H=V&\propto \vec L\cdot \vec B=\omega L_z
+\end{align*}
+where $\omega$ is a constant including the magnitude of the magnetic field, the charge and the radius of the sphere, and we used the fact that $B$ points in the z-direction. Now consider how the components of angular momentum change with time (using Poisson Brackets):
+\begin{align}
+\dot L_z=\{L_z,H\}=\{L_z,\omega L_z\}=0\\
+\dot L_x=\{L_x,H\}=\{L_x,\omega L_z\}=-kL_y\\
+\dot L_y=\{L_y,H\}=\{L_y,\omega L_z\}=kL_x
+\end{align}
+Thus the z-component of the angular momentum does not change. The equations for the $x$ and $y$ components correspond to the equations for a particle rotating around a circle with angular speed $\omega$. Indeed, consider a particle rotating on a circle:
+\begin{align*}
+x&=\cos(\omega t)\\
+y&=\sin(\omega t)\\
+\dot x &=-\omega\sin(\omega t)=-\omega y\\
+\dot y &=\omega\cos(\omega t)=\omega x
+\end{align*}
+Thus the tip of the angular momentum vector of the charged sphere rotates at an angular speed $\omega$ in a circle that is perpendicular to the $z$ axis. In other words, the charged sphere precesses about the axis of the magnetic field.
+\end{example}
+
+Let's examine the relation between Poisson Brackets, symmetries and conserved quantities further. Recall that we showed that if the Lagrangian is invariant under translation in a direction, then momentum in that direction is conserved. The infinitesimal translation about the x-axis transformation equations and the associated conserved quantity are given by:
+\begin{align}
+x'&=x+f_x\delta\epsilon =x+\delta\epsilon\nonumber\\
+y'&=y+f_y\delta\epsilon =y\nonumber\\
+z'&=z+f_z\delta\epsilon =z\nonumber\\
+Q &=p_x
+\end{align}
+And we find that the Poisson Brackets are evaluated trivially:
+\begin{align}
+\{x,p_x\}&=1=f_x\nonumber\\
+\{y,p_x\}&=0=f_y\nonumber\\
+\{z,p_x\}&=0=f_z
+\end{align}
+
+More generally, given a function, $F$, we have:
+\begin{align}
+\{F,p_x\}=\die{F}{x}
+\end{align}
+
+Under an infinitesimal translation a distance $\delta x=\delta\epsilon$ in the x-direction, the variation of $F$ is:
+\begin{align}
+F'&=F+\die{F}{x}\delta\epsilon =F+\{F,p_x\}\delta\epsilon\nonumber\\
+\delta F&=\{F,p_x\}\delta\epsilon
+\end{align}
+Thus, taking the Poisson Bracket of a conserved quantity and a coordinate, tells us how that coordinate transforms under the symmetry that corresponds to that conserved quantity.
+
+Recall that if the Hamiltonian does not depend on time, then energy is conserved. Energy in this case is the Hamiltonian (so the statement is a little redundant). We can thus find how a quantity transforms under a translation in time by taking the Poisson Bracket with the Hamiltonian. Under a time translation, $\delta t = \delta \epsilon$:
+\begin{align}
+F'=F+\{F,H\}\delta\epsilon
+\end{align}
+
+Now, consider a general function, $G(q_i,p_i)$ of the $2n$ coordinates. Let's define a transformation of the coordinates given by:
+\begin{align}
+q_i'&=q_i+\{q_i,G\}\delta\epsilon=q_i+\die{G}{p_i}\delta\epsilon  \nonumber\\
+p_i'&=p_i+\{p_i,G\}\delta\epsilon=p_i-\die{G}{q_i}\delta\epsilon
+\end{align}
+We will call $G$ the ``generator'' for this transformation. The Hamiltonian will transform just as any other function of $q_i$ and $p_i$. If the Hamiltonian is invariant under the transformation generated by $G$:
+\begin{align}
+H'&=H+\{H,G\}\delta\epsilon\nonumber\\
+&=H \nonumber\\
+\therefore \{H,G\}&=0
+\end{align}
+That is, if the Poisson Bracket $\{H,G\}=0$, then the Hamiltonian in invariant under the coordinate transformation generated by $G$. But this also means that $\{G,H\}=0$, hence that $G$ does not change with time (or is a constant). Here, the Poisson Brackets give us this insight into how a conserved quantity is related to the coordinates transformations under which the Hamiltonian is invariant.

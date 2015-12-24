@@ -1,0 +1,182 @@
+\documentclass[10pt]{report}
+\usepackage{paralist}
+\usepackage{calc}
+\usepackage{subfig}
+\usepackage{setspace}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage[font={small,it}]{caption}
+\usepackage[pdftex]{graphicx} 
+\usepackage{fancyhdr,lastpage}
+\usepackage{url}
+\usepackage{longtable}
+\usepackage{comment}
+\usepackage{ifthen}
+\usepackage{color}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+
+\usepackage[explicit]{titlesec}
+\usepackage{lmodern}
+
+\usepackage{parskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Choose what to show%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% "example" environment, choose to show in notes or not
+\newboolean{showexamples}
+\setboolean{showexamples}{true}
+
+% "detailedderivation" environment
+\newboolean{showdetailedderivations}
+\setboolean{showdetailedderivations}{true}
+
+% "hideable section" environment (e.g. problems section)
+\newboolean{showhiddensections}
+\setboolean{showhiddensections}{false}
+
+% "solution" environment (for solutions to problems at end of chapter)
+\newboolean{showproblemsolutions}
+\setboolean{showproblemsolutions}{false}
+
+
+%%%spacing around titles
+\titlespacing*{\chapter}
+{0pt}{0ex}{0ex}
+\titlespacing*{\section}
+{0pt}{0ex}{0ex}
+\titlespacing*{\subsection}
+{0pt}{0ex}{0ex}
+\titlespacing*{\subsubsection}
+{0pt}{0ex}{0ex}
+
+\newlength\chapnumb
+\setlength\chapnumb{4cm}
+
+\titleformat{\chapter}[block]
+{\normalfont\sffamily}{}{0pt}
+{\parbox[b]{\chapnumb}{%
+   \fontsize{120}{110}\selectfont\thechapter}%
+  \parbox[b]{\dimexpr\textwidth-\chapnumb\relax}{%
+    \raggedleft%
+    \hfill{\LARGE#1}\\
+    \rule{\dimexpr\textwidth-\chapnumb\relax}{0.4pt}}}
+\titleformat{name=\chapter,numberless}[block]
+{\normalfont\sffamily}{}{0pt}
+{\parbox[b]{\chapnumb}{%
+   \mbox{}}%
+  \parbox[b]{\dimexpr\textwidth-\chapnumb\relax}{%
+    \raggedleft%
+    \hfill{\LARGE#1}\\
+    \rule{\dimexpr\textwidth-\chapnumb\relax}{0.4pt}}}
+
+
+\newcommand{\die}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\lagd}{\mathcal{L}}
+
+\setlength{\parindent}{0pt}
+\parskip = \baselineskip
+
+\newenvironment{capfig}[3]{\begin{figure}[h!]\center\includegraphics[width=#1]{#2}\caption{#3}\end{figure}}{}
+
+
+%%% Environments for hiding
+\newcounter{example}[chapter]
+\def\theexample{\thechapter-\arabic{example}}
+
+\ifthenelse{\boolean{showexamples}}{%
+  \newenvironment{example}[3]
+  {\refstepcounter{example} \vspace{2ex}\hrule\vspace*{1ex}\noindent EXAMPLE \theexample: #2\\ #3 \\ \small\itshape}
+  {\vspace{1ex}\hrule\vspace{2ex}}
+}
+{%
+  \newenvironment{example}[3]
+  {\refstepcounter{example} \vspace{2ex}\hrule\vspace*{1ex}\noindent EXAMPLE \theexample: #2\\ #3 \vspace*{\dimexpr#1} \small\itshape\begingroup\color{white}}
+  {\endgroup\vspace{1ex}\hrule\vspace{2ex}}
+  %\excludecomment{example}
+}
+
+
+\ifthenelse{\boolean{showhiddensections}}{%
+  \newenvironment{hideablesection}
+  {}
+  {}
+}
+{%
+  \newenvironment{hideablesection}
+  {\begingroup\color{white}}
+  {\endgroup}
+}
+
+
+\ifthenelse{\boolean{showproblemsolutions}}{%
+  \newenvironment{solution}
+  {}
+  {}
+}
+{%
+  \newenvironment{solution}
+  {\begingroup\color{white}}
+  {\endgroup}
+}
+
+
+\ifthenelse{\boolean{showdetailedderivations}}{%
+  \newenvironment{detailedderivation}
+  {}
+  {}
+}
+{%
+  \newenvironment{detailedderivation}
+  {\begingroup\color{white}}
+  {\endgroup}
+}
+
+
+\newcounter{problem}[chapter]
+\def\theproblem{\thechapter-\arabic{problem}}
+
+\newenvironment{problem}[1]
+  {\refstepcounter{problem}\textbf{Problem \theproblem: #1}\\}
+  {\vspace{2ex}\\}
+
+
+          
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=.0in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+
+
+\begin{document}
+\title{Essentials of Classical Mechanics}
+\author{Ryan D. Martin}
+\maketitle
+
+\tableofcontents
+\include{Chapter_Introduction}
+\include{Chapter_Introduction_Problems}
+\include{Chapter_CalculusVariation}
+\include{Chapter_CalculusVariation_Problems}
+\include{Chapter_VirtualWork}
+\include{Chapter_VirtualWork_Problems}
+\include{Chapter_Lagrangian}
+\include{Chapter_Lagrangian_Problems}
+\include{Chapter_ConservationLaws}
+\include{Chapter_ConservationLaws_Problems}
+\include{Chapter_LagrangianApplications}
+\include{Chapter_Hamiltonian}
+\include{Chapter_Hamiltonian_Problems}
+\include{Chapter_CanonicalTransformations}
+\include{Chapter_CanonicalTransformations_Problems}
+%%%%%\include{Chapter_PerturbationTheory}
+\include{Chapter_ContinuousMedia}
+%\include{Chapter_SpecialRelativity}//Look at Landau, Classical theory of fields, chapter 1 and 2
+%\appendix
+%\include{Appendix_DiffEqn}
+
+
+\end{document}

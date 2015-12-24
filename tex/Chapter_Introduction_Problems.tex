@@ -1,0 +1,189 @@
+\section{Problems}
+\begin{problem}{Transformations to generalized coordinates}
+\label{prob_Intro_1}
+Given the following transformations between the cartesian coordinates ($x_i(t)$,$y_i(t)$,$z_i(t)$) of a particle $i$ and a set of generalized coordinates ($q_i(t)$), write the velocities and accelerations of the cartesian coordinates in terms of the velocities and accelerations of the generalized coordinates. Note that unless specified, other variables should be taken as constants with respect to time, $t$.\\
+\textbf{a)}
+ \begin{align*}
+x_1&=L\cos(q_1)\\
+y_1&=L\sin(q_1)\\
+z_1&=q_2
+\end{align*}
+\textbf{b)}
+\begin{align*}
+x_1&=L\cos(q_1)q_2\\
+y_1&=L\sin(q_1)q_2\\
+z_1&=R\sin(\omega t)
+\end{align*}
+\textbf{c)}
+\begin{align*}
+x_1&=\sqrt{q_1^2+q_2^2}\\
+y_1&=\tan^{-1}\left(\frac{q_1}{q_2}\right)
+\end{align*}
+\textbf{d)}
+\begin{align*}
+x_1&=-\frac{1}{2}gt^2+L\sin{q_1}\\
+y_1&=vt+L\cos{q_1}
+\end{align*}
+\textbf{e)}
+\begin{align*}
+x_1&=L\cos(q_1)\\
+y_1&=L\sin(q_1)\\
+z_1&=q_2 \cos(\omega t)\\
+x_2&=x_1+L\cos(q_3)\\
+y_2&=y_1-L\sin(q_3)\\
+z_2&=z_1
+\end{align*}
+\end{problem}
+%
+\begin{problem}{Degrees of freedom and kinetic energy}
+\label{prob_Intro_2}
+For the following situations in two dimensional space, give $n$, the number of degrees of freedom, then choose $n$ generalized coordinates and write out the kinetic energy of the system in terms of the corresponding generalized velocities (start by writing the kinetic energy in Cartesian coordinates $\sum \frac{1}{2}m_i(\dot x_i^2+\dot y_i^2)$.\\
+\textbf{a)}Two masses, $m$, are connected by a massless rigid rod of length L.\\
+\textbf{b)} Three masses, $m$, that are connected by 2 massless rigid rods of length $l$ and a massless spring and are constrained to move in the plane (see figure)\\
+\capfig{0.2\textwidth}{figures/ThreeMassesWithSpring.png}{Three masses connected by 2 rods and a spring, problem \ref{prob_Intro_2}}\\
+\textbf{c)} A pendulum consisting of a mass, $m$, connected to a rigid massless bar of length, $L$, whose other end is constrained to move downwards with a known velocity, $v$ (see figure)\\
+\capfig{0.15\textwidth}{figures/MovingPendulum.png}{Moving pendulum, problem \ref{prob_Intro_2}}\\
+\textbf{d)} Four masses, $m$ connected by 4 massless rigid rods of length $l$, and are constrained to the move in the plane (see figure)\\
+\capfig{0.15\textwidth}{figures/4MassesAndRod_simplelabels.png}{Four masses connected by four rods, problem \ref{prob_Intro_2}}
+\end{problem}
+%
+%\begin{problem}{Constraints}
+%\label{prob_Intro_3}
+%For the following situations, give the equations of constraint:\\
+%\end{problem}
+%
+\begin{problem}{Block sliding down a ramp}
+\label{prob_Intro_3}
+The figure shows a block of mass, $m$, sliding down a ramp of length $L_1$ and a slope given by an angle $\theta$ which is connected to a second ``launching'' ramp of length $L_2$ with angle $\phi$. Assume that the block starts at the top of the first ramp and that the origin is as shown. Furthermore, assume that coefficient of kinetic friction between the block and the ramp is given by $\mu$
+\capfig{0.25\textwidth}{figures/BlockAndRamp.png}{Block sliding down ramp,, problem \ref{prob_Intro_3}}\\
+\textbf{a)} Draw a free body diagram of the forces on the block, and write the differential equations of motion for the $x$ and $y$ components of the velocity of the block. Do this for each ramp.\\
+\textbf{b)} Solve the differential equations of motion from part a) (using an initial velocity of zero) to determine where the components of the velocity vector as the block leaves the second ramp.\\
+\textbf{c)} Use the result from part b) to determine the distance from the origin at which the block will land\\
+\textbf{d)} Repeat the problem using conservation of energy to find the point at which the block will land.
+\end{problem}
+%
+\begin{problem}{Disk rolling down a ramp}
+\label{prob_Intro_4}
+The block from problem \ref{prob_Intro_4} is replaced by a disk of radius $r$, and mass $m$, that rolls without slipping, and has moment of inertia $I=\frac{1}{2}mr^2$.\\
+%\capfig{0.15\textwidth}{figures/BlockAndRamp.png}{Block sliding down ramp}\\
+\textbf{a)} Draw a free body diagram of the forces and torques on the disk, and write the differential equations of motion for the $x$ and $y$ components of the velocity of the disk, as well as for its angular speed, $\omega$. Do this for each ramp.\\
+\textbf{b)} Solve the differential equations of motion from part a) (using an initial velocity of zero) to determine where the components of the velocity vector and the magnitude of the angular velocity as the disk leaves the second ramp.\\
+\textbf{c)} Use the result from part b) to determine the distance from the origin at which the disk will land\\
+\textbf{d)} Repeat the problem using conservation of energy to find the point at which the disk will land and its angular velocity just before landing.
+\end{problem}
+%
+\begin{problem}{Person on a ladder}
+\label{prob_Intro_5}
+The figure shows a person of mass $m$ standing in the middle of a ladder of mass $M$ and length $L$ inclined against a friction-less vertical wall. What is the minimum value for the coefficient of static friction, $\mu$, between the ladder and the ground for the ladder not to slide when inclined at an angle $\theta$?
+\capfig{0.25\textwidth}{figures/PersonLadder.png}{Person on a ladder,, problem \ref{prob_Intro_5}}
+\end{problem}
+%
+\begin{problem}{Compound pendulum}
+\label{prob_Intro_6}
+Consider the compound pendulum in Example \ref{ex:vectorCompPend}. Use Newton's Laws to do the following:\\
+\textbf{a)} Write out the differential equations of motion for $\ddot{x}_1$, $\ddot{y}_1$, $\ddot{x}_2$, $\ddot{y}_2$\\
+\textbf{b)} Show that the system can be described by the generalized coordinates $\theta$, and $\phi$, and write out the differential equations of motion for $\ddot{\theta}$ and $\ddot{\phi}$.\\
+\textbf{c)} Use a computer to solve the differential equations of motion and make plots of $\theta(t)$, and $\phi(t)$ for $t=0\dots 10\,s$. Use $L_1$=1\,m, $L_2$=0.75\,m, $m_1$=1\,kg, $m_2$=2\,kg, and initial conditions at $t=0$ of $\theta=\frac{\pi}{2}$ and $\phi=0$.
+\end{problem}
+%
+\begin{problem}{Two masses and two springs}
+\label{prob_Intro_7}
+The figure shows two masses, $m_1$ and $m_2$, each connected to two springs with spring constants $k_1$ and $k_2$. Mass $m_1$ is constrained to slide without friction along the x-axis, whereas mass $m_2$ is constrained to move in the vertical direction, constrained by a massless frictionless vertical rod that is attached to $m_1$. Both springs have a resting length of $L$.
+\capfig{0.25\textwidth}{figures/TwoMassesTwoSprings.png}{Two masses and two springs,, problem \ref{prob_Intro_7}}
+\textbf{a)} Write out the differential equations of motion for $x_1$, $x_2$, $y_1$, and $y_2$.\\
+\textbf{b)} How many degree of freedom, $n$, are there? Choose $n$ generalized coordinates and write out their differential equations of motion.\\
+\textbf{c)} Write out the total energy of the sytem (kinetic + potential) in terms of the generalized coordinates and velocities.\\
+\textbf{d)} Use a computer to plot the path in the xy plane for mass $m_2$ for $t=0\dots 10$s given the following values and initial conditions at $t=0$: $m_1=1$\,kg, $m_2=5$\,kg, $L=1$\,m, $k_1=10$\,N/m, $k_2=2$\,N/M, $x_1=1.2$\,m, $v_{1x}=0$\,m/s, $y_2=-0.5$\,m, $v_{2y}=0$\,m/s.
+\end{problem}
+%
+
+%
+%
+
+
+
+%%\clearpage
+%%
+%%\section{Solutions}
+%%
+%%\paragraph{Problem \ref{prob_Intro_1}:}
+%%\begin{solution}
+%%\textbf{a)}
+%% \begin{align*}
+%%x_1&=L\cos(q_1)\rightarrow\dot x_1=-L\sin q_1\dot q_1\rightarrow \ddot x_1=-L(\sin q_1\ddot q_1+\cos q_1\dot q_1^2)\\
+%%y_1&=L\sin(q_1)\rightarrow\dot y_1=L\cos q_1\dot q_1\rightarrow \ddot y_1=L(\cos q_1\ddot q_1-\sin q_1\dot q_1^2)\\
+%%z_1&=q_2\rightarrow\dot z_1=\dot q_2\rightarrow \ddot z_1=\ddot q_2
+%%\end{align*}
+%%\end{solution}
+%%
+%%\paragraph{Problem \ref{prob_Intro_2}:}
+%%\begin{solution}
+%%\end{solution}
+%%
+%%\paragraph{Problem \ref{prob_Intro_6}:}
+%%\begin{solution}
+%%We setup the problem as we did in example \ref{ex:vectorCompPend}. {\capfig{0.5\textwidth}{figures/CompoundPenduluum.png}{Vectorial analysis of the compound pendulum}}
+%%In order to describe the motion of the two masses as a function of time, we start by defining an origin, and label the coordinates of mass $i$ with $x_i$ and $y_i$. We wish to find the functions $x_i(t)$ and $y_i(t)$ given initial conditions on the positions and velocities of the masses. We have 6 unknowns (the accelerations in $x$ and $y$ of the two masses, and the two string tensions).\\
+%%\textbf{a)}\\
+%%Newton's second law gives, in vectorial form:
+%%\begin{align*}
+%%m_1\vec{a}_1&=\vec{T}_1+\vec{T}_2+m_1\vec{g}\\
+%%m_2\vec{a}_2&=\vec{T}_2+m_2\vec{g}\\
+%%\end{align*}
+%%Writing this out, component by component, we have:
+%%\begin{align*}
+%%m_1 \ddot x_1&=T_2\sin\phi-T_1\sin\theta\\
+%%m_1 \ddot y_1&=T_1\cos\theta-T_2\cos\phi-m_1g\\
+%%m_2 \ddot x_2&=-T_2\sin\phi\\
+%%m_2 \ddot y_2&=T2\cos\phi-m_2g
+%%\end{align*}
+%%\textbf{b)}
+%%Due to the constraints of the masses being attached to the rods, we can reduce the number of degrees of freedom to 2, using $\theta$, and $\phi$. The relation between the new generalized coordinates and the Cartesian coordinates are:
+%%\begin{align*}
+%%x_1&=L_1\sin\theta\\
+%%y_1&=-L_1\cos\theta\\
+%%x_2&=x_1+L_2\sin\phi\\
+%%y_2&=y_1-L_2\cos\phi
+%%\end{align*}
+%%We can now get rid of the accelerations in Cartesian coordinates by using the Chain Rule to re-express the accelerations in terms of $\theta$ and $\phi$:
+%%\begin{align*}
+%%\dot x_1&=\frac{d}{dt}L_1\sin\theta=L_1\cos\theta\dot\theta\\
+%%\therefore\ddot x_1&=\frac{d}{dt}L_1\cos\theta\dot\theta=L_1(\cos\theta\ddot\theta-\sin\theta\dot\theta^2)\\
+%%\dot y_1&=L_1\sin\theta\dot\theta\\
+%%\therefore\ddot y_1&=L_1(\sin\theta\ddot\theta+\cos\theta\dot\theta^2)\\
+%%\dot x_2&=\dot x_1+L_2\cos\phi\dot\phi\\
+%%\therefore\ddot x_2&=\ddot x_1+L_2(\cos\phi\ddot\phi-\sin\phi\dot\phi^2)\\
+%%\dot y_2&=\dot y_1+L_2\sin\phi\\
+%%\therefore \ddot y_2&=\ddot y_1+L_2(\sin\phi\ddot\phi+\cos\phi\dot\phi^2)
+%%\end{align*}
+%%\textbf{b)}\\
+%%Together with the 4 equations for the accelerations from Newton's second Law in Cartesian coordinates, we can reduce this to 2 equations by eliminating $\ddot x_1$, $\ddot x_2$, $\ddot y_1$, $\ddot y_2$, $T_1$, and $T_2$. We can first get rid of the tensions from two $x_i$ acceleration equations:
+%%\begin{align*}
+%%T_2&=-m_2\ddot x_2\frac{1}{\sin\phi}\\
+%%m_1 \ddot x_1&=(-m_2\ddot x_2\frac{1}{\sin\phi})\sin\phi-T_1\sin\theta=-m_2\ddot x_2-T_1\sin\theta\\
+%%T_1 &=\frac{-1}{\sin\theta}(m_1\ddot x_1+m_2\ddot x_2)
+%%\end{align*}
+%%And substitute into the $y_i$ equations: 
+%%\begin{align*}
+%%m_1 \ddot y_1&=-\frac{\cos\theta}{\sin\theta}(m_1\ddot x_1+m_2\ddot x_2)+\ m_2\ddot x_2\frac{\cos\phi}{\sin\phi}-m_1g\\
+%%m_2 \ddot y_2&=-m_2\ddot x_2\frac{\cos\phi}{\sin\phi}-m_2g
+%%\end{align*}
+%%We can now substitute in the transformation equations (and removing $m_2$ from the second equation):
+%%\begin{align*}
+%%m_1 \left(L_1(\sin\theta\ddot\theta+\cos\theta\dot\theta^2)  \right)&=-\frac{\cos\theta}{\sin\theta}\Bigl[m_1\left( L_1(\cos\theta\ddot\theta-\sin\theta\dot\theta^2) \right)\\
+%%&+m_2\left(L_1(\cos\theta\ddot\theta-\sin\theta\dot\theta^2)+ L_2(\cos\phi\ddot\phi-\sin\phi\dot\phi^2)\right)\Bigr]\\ 
+%%&+m_2\left(L_1(\cos\theta\ddot\theta-\sin\theta\dot\theta^2)+ L_2(\cos\phi\ddot\phi-\sin\phi\dot\phi^2)  \right)\frac{\cos\phi}{\sin\phi}-m_1g\\
+%%L_1(\sin\theta\ddot\theta+\cos\theta\dot\theta^2)+ L_2(\sin\phi\ddot\phi+\cos\phi\dot\phi^2) &=-\left(L_1(\cos\theta\ddot\theta-\sin\theta\dot\theta^2)+ L_2(\cos\phi\ddot\phi-\sin\phi\dot\phi^2)  \right)\frac{\cos\phi}{\sin\phi}-g
+%%\end{align*}
+%%Rearranging the equations and factoring out the angular terms:
+%%\begin{align*}
+%%\left(m_1\sin\theta+(m_1+m_2)\cos\theta\frac{\cos\theta}{\sin\theta}-m_2\cos\theta\frac{\cos\phi}{\sin\phi}\right)L_1\ddot\theta&=\left( m_2\cos\theta -m_2\sin\theta\frac{\cos\phi}{\sin\phi}\right)L_1\dot\theta^2\\
+%%&+\left(\frac{\cos\phi}{\sin\phi}-\frac{\cos\theta}{\sin\theta}\right)m_2\cos\phi L_2\ddot\phi\\
+%%&+\left( \frac{\cos\theta}{\sin\theta}-\frac{\cos\phi}{\sin\phi} \right)m_2\sin\phi L_2 \dot\phi^2\\
+%%\left(\cos\phi\frac{\cos\phi}{\sin\phi}-\cos\phi\right)L_2\ddot\phi&=\left(\sin\theta\frac{\cos\phi}{\sin\phi}-\cos\theta\right)L_1\dot\theta^2\\
+%%&-\left(\sin\theta+\cos\theta\frac{\cos\phi}{\sin\phi}\right)L_1\ddot\theta\\
+%%&+\left(\cos\phi+\cos\phi\frac{\cos\phi}{\sin\phi}\right)L_2\dot\phi^2
+%%\end{align*}
+%%This can be rearranged to get independent differential equations for $\ddot\theta$ and $\ddot\phi$.\\
+%%\textbf{c)} Here is a figure showing the motion of the system
+%%\end{solution}

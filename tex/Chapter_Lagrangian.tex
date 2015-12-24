@@ -1,0 +1,680 @@
+\chapter{The Lagrangian}
+In this chapter, we introduce the ``Lagrangian'', a function of the generalized coordinates and velocities that is a very powerful method for describing physical systems. We will see that this scalar function, $L(q_1,\dots ,q_n,\dot{q}_1,\dots ,\dot{q}_n,t)$, contains all of the information that is required to describe a system. We will see that all of classical mechanics can be described using the Lagrangian and the methods of the calculus of variations. We will find that properties of the Lagrangian result in a much deeper understanding of conservation laws. 
+
+\section{The Lagrangian from D'Alembert's Principle}
+\subsection{Single particle in conservative fields}
+We saw in the previous chapter, Example \ref{ex:dalembpart}, that for a particle that is subject to a conservative force (a force that can be obtained from the gradient of the potential energy), D'Alembert's principle leads to a particularly elegant way of solving for the equations of motion. One needs only write the Lagrangian, $L=T-V$, given by the kinetic minus the potential energy of the particle, and find the condition for the action, $S=\int Ldt$ to be stationary. Let's revisit that example. First, let's motivate the statement that $V$ is the potential energy. If we have a force, $F$, that is given by the negative of the gradient of $V$:
+\begin{align}
+\vec{F}&=-\nabla V\nonumber\\
+&=-\left(\frac{\partial V}{\partial x} \hat{x} + \frac{\partial V}{\partial y} \hat{y}+\frac{\partial V}{\partial z} \hat{z} \right)
+\end{align}
+then the work done by the force along a path is given by:
+\begin{align}
+W&=\int_{\vec{r}_1}^{\vec{r}_2} \vec{F}\cdot d\vec{r}\nonumber\\
+&=\int_{\vec{r}_1}^{\vec{r}_2} -\left(\frac{\partial V}{\partial x} \hat{x} + \frac{\partial V}{\partial y} \hat{y}+\frac{\partial V}{\partial z} \hat{z} \right) \cdot (dx \hat{x}+dy \hat{y} +dz \hat{z} )\nonumber\\
+&=-\int_{\vec{r}_1}^{\vec{r}_2} \left(\frac{\partial V}{\partial x} dx + \frac{\partial V}{\partial y} dy +\frac{\partial V}{\partial z} dz\right)
+\end{align}
+Note that this is just $dV$:
+\begin{align}
+dV=\frac{\partial V}{\partial x} dx + \frac{\partial V}{\partial y} dy +\frac{\partial V}{\partial z} dz
+\end{align}
+Thus, the work is:
+\begin{align}
+W&=-\int_{\vec{r}_1}^{\vec{r}_2}dV\nonumber\\
+&=-\left [ V(\vec{r}_2)-V(\vec{r}_1)\right ]
+\end{align}
+which is precisely the definition of the potential energy (the negative of the work done by the force).
+
+We are thus convinced that for a conservative force acting particle, $T-V$, really is the difference between kinetic and potential energy (sometimes called the ``excess kinetic energy'').
+
+Recall that D'Alembert's principle gave us:
+\begin{align}
+&\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_j} \right) - \frac{\partial T}{\partial q_j}=Q_j\nonumber\\
+&Q_j\equiv \sum_{i=1}^N\vec{F}_i\cdot\frac{\partial\vec{r}_i}{\partial q_j}
+\end{align}
+where the sum over $i$ is over all the forces on the particle. For a single particle, this can be the broken up into the sum of $N_C$ conservative forces, $\vec{F}_i^{C}$, plus the sum of $N_{NC}$ non-conservative forces, $\vec{F}_i^{NC}$:
+\begin{align}
+Q_j&=\sum_{i=1}^N\vec{F}_i\cdot\frac{\partial\vec{r}_i}{\partial q_j}\nonumber\\
+   &=\sum_{i=1}^{N_C}\vec{F}_i^{C}\cdot\frac{\partial\vec{r}_i}{\partial q_j}+\sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}\nonumber\\
+   &=-\sum_{i=1}^{N_C}(\frac{\partial V_i}{\partial x}\hat{x}+\frac{\partial V_i}{\partial y}\hat{y}+\frac{\partial V_i}{\partial z}\hat{z} )\cdot\frac{\partial}{\partial q_j}(x_i\hat{x}+y_i\hat{y}+z_i\hat{z}) +\sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}\nonumber\\
+   &=-\sum_{i=1}^{N_C}\sum_{k=1}^{3}\frac{\partial V_i}{\partial x_k} \frac{\partial x_{ik}}{\partial q_j}+ \sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}\nonumber\\
+   &=-\sum_{i=1}^{N_C}\frac{\partial V_i}{\partial q_j} +\sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}\nonumber\\
+   &=-\frac{\partial V}{\partial q_j} +\sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}
+\end{align}
+where we have introduced a potential energy, $V_i$, for each conservative force, and the total potential energy, $V$, as the sum of the potential energies. Note that the potential energy can now be expressed in terms of the generalized coordinates. Writing D'Alembert's principle, we get:
+\begin{align}
+\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_j} \right) - \frac{\partial T}{\partial q_j}&=Q_j^{C}+Q_j^{NC}\nonumber\\
+&=-\frac{\partial V}{\partial q_j} +\sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}
+\end{align}
+where we have split up the generalized forces into a conservative part and a non-conservative part. The conservative forces are written as:
+\begin{align}
+Q_j^C=-\frac{\partial V}{\partial q_j}
+\label{eqn:ConsGen}
+\end{align}
+If $V$ does not depend on velocity, then:
+\begin{align}
+\frac{\partial V}{\partial \dot{q}_j}=0 \to \frac{d}{dt}\left(\frac{\partial }{\partial \dot{q}_j} T-V \right) &=\frac{d}{dt}\left(\frac{\partial }{\partial \dot{q}_j} T \right)\nonumber\\
+\therefore \frac{d}{dt}\left(\frac{\partial }{\partial \dot{q}_j} (T-V) \right) - \frac{\partial }{\partial q_j}(T-V)&=\sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}
+\end{align} 
+which is a general version of D'Alembert's principle that includes non-conservative forces. This does require that the system be holonomic, that is, the generalized coordinates are independent of each other (since this result depends on being able to take variations of the generalized coordinates independently). Introducing the Lagrangian, $L=T-V$, we get:
+\begin{align}
+\therefore \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j} \right) - \frac{\partial L}{\partial q_j}&=\sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}
+\end{align} 
+
+\begin{example}{0pt}{Determine the equation of motion for a block of mass, $m$, that is sliding with friction down an inclined slope of angle $\theta$. The friction force has a magnitude $f$.}{\capfig{0.3\textwidth}{figures/Incline.png}{\label{fig:Incline}Block sliding with friction}}
+We start by identifying that there is only 1 degree of freedom, and we choose the variable $r$ as the generalized coordinate (the distance from the block to the origin in Figure \ref{fig:Incline}). The coordinate transformations are thus:
+\begin{align*}
+x&=r\cos{\theta}\nonumber\\
+y&=r\sin{\theta}\nonumber\\
+\therefore\dot{x}&=\dot{r}\cos{\theta}\nonumber\\
+\therefore\dot{y}&=\dot{r}\sin{\theta}\nonumber\\
+v^2&=\dot{x}^2+\dot{y}^2=\dot{r}^2
+\end{align*}
+We can thus write the kinetic and potential energies, and the Lagrangian as:
+\begin{align*}
+T&=\frac{1}{2}mv^2=\frac{1}{2}m\dot{r}^2\nonumber\\
+V&=mgy=mgr\sin{\theta}\nonumber\\
+L&=\frac{1}{2}m\dot{r}^2-mgr\sin{\theta}
+\end{align*}
+The sum of the generalized non-conservative forces is (using $q_j=r$):
+\begin{align*}
+Q^{NC}&=\sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}\nonumber\\
+&=(f\cos{\theta}\hat{x}+f\sin{\theta}\hat{y})\cdot\frac{\partial}{\partial r}(r\cos{\theta}\hat{x}+r\sin{\theta}\hat{y})\nonumber\\
+&=f\cos^2{\theta}+f\sin^2{\theta}\nonumber\\
+&=f
+\end{align*}
+Putting this into D'Alembert's equation (there is only one $q_j=r$):
+\begin{align*}
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j} \right) - \frac{\partial L}{\partial q_j}&=f\nonumber\\
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{r}} \right) - \frac{\partial L}{\partial r}&=f\nonumber\\
+\frac{d}{dt}(m\dot{r})+mg\sin{\theta}&=f\nonumber\\
+m\ddot{r}+mg\sin{\theta}&=f\nonumber\\
+\therefore m\ddot{r}&=f-mg\sin{\theta}
+\end{align*}
+which of course is exactly the result from Newton's law, except that we did not need to worry about the normal force.
+\end{example}
+
+\subsection{The generalized potential}
+In the above, we considered the conservative generalized force given by equation \ref{eqn:ConsGen}:
+\begin{align*}
+Q_j^C=-\frac{\partial V}{\partial q_j}
+\end{align*}
+When the potential did not depend on velocity, we could combine $T$ and $V$ conveniently into the Lagrangian:
+\begin{align*}
+\frac{\partial V}{\partial \dot{q}_j}=0 \to \frac{d}{dt}\left(\frac{\partial }{\partial \dot{q}_j} T-V \right) &=\frac{d}{dt}\left(\frac{\partial }{\partial \dot{q}_j} T \right)\nonumber\\
+\therefore \frac{d}{dt}\left(\frac{\partial }{\partial \dot{q}_j} (T-V) \right) - \frac{\partial }{\partial q_j}(T-V)&=\sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}
+\end{align*} 
+We can generalize the form of the generalized force to include forces that depend on a ``generalized'' potential, $U$, in the following manner:
+\begin{align*}
+Q_j^C=\frac{d}{dt}\frac{\partial U}{\partial \dot{q}_j}-\frac{\partial U}{\partial q_j}
+\end{align*}
+Such a force is called ``monogenic''. If we construct the Lagrangian, $L=T-U$, we have, using D'Alembert's equation:
+\begin{align*}
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j} \right) - \frac{\partial L}{\partial q_j}&=\sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}\nonumber\\
+\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_j} \right) - \frac{\partial T}{\partial q_j}-\frac{d}{dt}\frac{\partial U}{\partial \dot{q}_j}+\frac{\partial U}{\partial q_j}&=\sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}\nonumber\\
+\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_j} \right) - \frac{\partial T}{\partial q_j}&=Q_j^C+\sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}
+\end{align*}
+giving us back D'Alembert's equation in generalized coordinates. Without loss of generality, we will let $V$ stand for any generalized potential and the Lagrangian $L$ will include the potentials associated with any monogenic forces. 
+
+\begin{example}{0pt}{A charge, $e$, is moving with a velocity, $\vec{v}$, in a region of electric field, $\vec{E}$ and magnetic field $\vec{B}$ Both fields are free to vary in space and time. Show that a generalized potential given by $V=e\phi-e\vec A\cdot \vec v $ (where $phi$ is the electric potential, $\vec A$ is the vector potential, and $\vec v$ is the velocity vector) results in the Lorentz force and write out the Lagrangian for the particle.}{}
+Since the particle is moving in free space, we can use Cartesian coordinates as the generalized coordinates. In general, an electric and magnetic field are described by a scalar electric potential, $\phi$, and the vector potential, $\vec{A}$, where
+\begin{align*}
+\vec{B}&=\nabla \times \vec{A}\nonumber\\
+\vec{E}&=-\nabla\phi-\frac{\partial\vec{A}}{\partial t}
+\end{align*} 
+Consider the generalized potential given by:
+\begin{align*}
+V&=e\phi -e\vec{A}\cdot\vec{v}\nonumber\\
+&=e\phi-e(A_x\dot{x}+A_y\dot{y}+A_z\dot{z})
+\end{align*}
+where the first term is clearly the electrical potential energy and the second term is velocity dependent. This generalized potential gives rise to a force, in the direction, $j$:
+\begin{align*}
+Q_j&=\frac{d}{dt}\frac{\partial V}{\partial \dot{q}_j}-\frac{\partial V}{\partial q_j}
+\end{align*}
+Expanding this for the case of $q_j=x$:
+\begin{align*}
+Q_x&=\frac{d}{dt}\frac{\partial V}{\partial \dot{x}}-\frac{\partial V}{\partial x}\nonumber\\
+&=-e\frac{dA_x}{dt}-e\frac{\partial\phi}{\partial x}+e\dot{x}\frac{\partial A_x}{\partial x}+e\dot{y}\frac{\partial A_y}{\partial x}+e\dot{z}\frac{\partial A_z}{\partial x}
+\end{align*}
+where we have used the fact that the velocities do not depend explicitly on position ($\frac{\partial \dot{x}}{\partial x}=0$). Note that:
+\begin{align*}
+dA_x&=\frac{\partial A_x}{\partial x}dx+\frac{\partial A_x}{\partial y}dy+\frac{\partial A_x}{\partial z}dz+\frac{\partial A_x}{\partial t}dt\\
+\therefore \frac{dA_x}{dt} &=\frac{\partial A_x}{\partial x}\dot{x}+\frac{\partial A_x}{\partial y}\dot{y}+\frac{\partial A_x}{\partial z}\dot{z}+\frac{\partial A_x}{\partial t}
+\end{align*}
+plugging this back into the equation for $Q_x$:
+\begin{align*}
+Q_x&=-e\left(\frac{\partial A_x}{\partial x}\dot{x}+\frac{\partial A_x}{\partial y}\dot{y}+\frac{\partial A_x}{\partial z}\dot{z}+\frac{\partial A_x}{\partial t}\right) - e\frac{\partial\phi} {\partial x}+e\dot{x}\frac{\partial A_x}{\partial x}+e\dot{y}\frac{\partial A_y}{\partial x}+e\dot{z}\frac{\partial A_z}{\partial x}\\
+&=e\left(-\frac{\partial\phi}{\partial x}-\frac{\partial A_x}{\partial t}\right)+e\dot{y}(\frac{\partial A_y}{\partial x}-\frac{\partial A_x}{\partial y})+e\dot{z}(\frac{\partial A_z}{\partial x}-\frac{\partial A_x}{\partial z})\\
+&=eE_x+e\dot{y}B_z-e\dot{z}B_y\\
+&=eE_x+e(\vec{v}\times\vec{B})_x
+\end{align*}
+where we recognize the second term as the Lorentz force. Thus the generalized force related to the velocity-dependent generalized potential $V=e\phi -e\vec{A}\cdot\vec{v}$ is the \textbf{sum} of the electric and magnetic forces! The Lagrangian and equations of motions are thus:
+\begin{align*}
+L&=\frac{1}{2}m(\dot{x}^2+\dot{y}^2+\dot{z}^2)-e\phi+e\vec{A}\cdot\vec{v}\\
+m\ddot{x}&=eE_x+e(\vec{v}\times\vec{B})_x\\
+m\ddot{y}&=eE_y+e(\vec{v}\times\vec{B})_y\\
+m\ddot{z}&=eE_z+e(\vec{v}\times\vec{B})_z
+\end{align*}
+as expected from Newton's second law. The specific form of the electromagnetic forces was the whole reason to consider treating a generalized potential that depends on velocity.
+\end{example}
+
+\subsection{Multiple particles}
+So far the description in this chapter has been limited to a single particle in a monogenic field. We showed in the last chapter that D'Alembert's principle can be written generally as:
+\begin{align}
+&\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_j} \right) - \frac{\partial T}{\partial q_j}=Q_j\nonumber\\
+&Q_j\equiv \sum_{i=1}^N\vec{F}_i\cdot\frac{\partial\vec{r}_i}{\partial q_j}
+\end{align}
+where $T$ is the sum of the kinetic energies of all the particles in the system, and $Q_j$ is the sum of all the forces on all the particles in the system. In this chapter we treated $Q_j$ as the sum of all the forces on one particle, then divided that up into monogenic and non-monogenic forces. We introduced $V$ as the sum of all of the potential energies from all of the forces on that one particle. There is no loss in generalization if we claim that now $V$ is the sum of all the potential energies related to all the monogenic forces acting on all the particles in the system (the math is exactly the same and not worth repeating). Similarly, the sum of the monogenic forces on 1 particles is treated the same as the sum of the monogenic forces on all the particles.
+
+\begin{example}{0pt}{Determine the equation of motion for two blocks of mass, $m_1$ and $m_2$, that are connected by a mass-less rod of length, $L$, and are sliding with friction down an inclined slope of angle $\theta$. The friction forces have magnitudes $f_1$ and $f_2$.}{\capfig{0.3\textwidth}{figures/Incline2.png}{\label{fig:Incline2}Two connected block sliding with friction}}
+We start by identifying that there is only 1 degree of freedom, and we choose the variable $r=r_1$ as the generalized coordinate (the distance from the first block to the origin in Figure \ref{fig:Incline2}). The coordinate transformations are thus:
+\begin{align*}
+x_1&=r\cos{\theta}\nonumber\\
+y_1&=r\sin{\theta}\nonumber\\
+\therefore\dot{x_1}&=\dot{r}\cos{\theta}\nonumber\\
+\therefore\dot{y_1}&=\dot{r}\sin{\theta}\nonumber\\
+v_1^2&=\dot{x_1}^2+\dot{y_1}^2=\dot{r}^2\\
+x_2&=(r+L)\cos{\theta}\nonumber\\
+y_2&=(r+L)\sin{\theta}\nonumber\\
+\therefore\dot{x_2}&=\dot{r}\cos{\theta}\nonumber\\
+\therefore\dot{y_2}&=\dot{r}\sin{\theta}\nonumber\\
+v_2^2&=\dot{x_2}^2+\dot{y_2}^2=\dot{r}^2
+\end{align*}
+We can thus write the kinetic and potential energies, and the Lagrangian as:
+\begin{align*}
+T&=\frac{1}{2}m_1v_1^2+\frac{1}{2}m_2v_2^2=\frac{1}{2}(m_1+m_2)\dot{r}^2\nonumber\\
+V&=m_1gy_1+m_2gy_2=m_1gr\sin{\theta}+m_2g(r+L)\sin{\theta}\nonumber\\
+L&=\frac{1}{2}(m_1+m_2)\dot{r}^2-m_1gr\sin{\theta}-m_2g(r+L)\sin{\theta}
+\end{align*}
+The sum of the generalized non-conservative forces is (using $q_j=r$):
+\begin{align*}
+Q^{NC}&=\sum_{i=1}^{N_{NC}}\vec{F}_i^{NC}\cdot\frac{\partial\vec{r}_i}{\partial q_j}\nonumber\\
+&=(f_1\cos{\theta}\hat{x}+f_1\sin{\theta}\hat{y})\cdot\frac{\partial}{\partial r} (r\cos{\theta}\hat{x}+r\sin{\theta}\hat{y})+(f_2\cos{\theta}\hat{x}\\
+&+f_2\sin{\theta}\hat{y})\cdot\frac{\partial}{\partial r} ((r+L)\cos{\theta}\hat{x}+(r+L)\sin{\theta}\hat{y})\nonumber\\
+&=f_1\cos^2{\theta}+f_1\sin^2{\theta}+f_2\cos^2{\theta}+f_2\sin^2{\theta}\nonumber\\
+&=f_1+f_2
+\end{align*}
+Putting this into the Euler-Lagrange equation (there is only one $q_j=r$):
+\begin{align*}
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j} \right) - \frac{\partial L}{\partial q_j}&=f_1+f_2\nonumber\\
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{r}} \right) - \frac{\partial L}{\partial r}&=f\nonumber\\
+\frac{d}{dt}((m_1+m2)\dot{r})+(m_1+m_2)g\sin{\theta}&=f_1+f_2\nonumber\\
+(m_1+m_2)\ddot{r}+(m_1+m_2)g\sin{\theta}&=f_1+f_2\nonumber\\
+\therefore (m_1+m_2)\ddot{r}&=f_1+f_2-(m_1+m_2)g\sin{\theta}
+\end{align*}
+again, we recover Newton's Second Law. The use of generalized coordinates makes it more obvious that this can be treated as a single system of mass $m_1+m_2$ and total non-monogenic force $f_1+f_2$.
+\end{example} 
+
+\subsection{The connection to variational calculus and the use of auxiliary constraints}
+It should be clear now that systems can be described by the Lagrangian, $L=T-V$. Although we have shown abundantly that this is equivalent to D'Alembert's Principle (which itself is equivalent to Newton's Second Law), the approach is conceptually very different. The Lagrangian is only constructed using scalar quantities that are related to energy. The concept of a force is no longer fundamental to describing a system, and describing the energy is the fundamental concept. Generalized forces are in general not in the same units as those in Newton's Second Law, and, as we saw in the previous chapter, can also be related to torques. 
+
+In the case that all forces are monogenic, and the system is holonomic, the equations of motion, $q_i(t)$ for $n$ degrees of freedom can be written as the requirement that the action, $S$, is stationary:
+\begin{align}
+S&\equiv\int_{t_1}^{t_2}Ldt\nonumber\\
+\therefore \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j} \right) - \frac{\partial L}{\partial q_j}&=0
+\end{align}
+which are called the ``Euler-Lagrange'' equations from variational calculus. In the case where they are applied to mechanics, we often call them ``Lagrange's equations of motion''.
+
+The requirement that the system be holonomic can be relaxed somewhat. We required that the system be holonomic so that the generalized coordinates can be varied independently. We however know from the calculus of variations that we can include ``auxiliary conditions'' between the generalized coordinates using Lagrange multipliers and treat the system as being holonomic. More precisely, if we have $k$ equations of the form $f(q_1,\dots q_n)=0$, the Lagrangian can be modified to be:
+\begin{align}
+\bar{L}\equiv L-\lambda_1f_1-\dots -\lambda_kf_k
+\end{align}
+and the equations of motion are given by the Euler-Lagrange equations for the modified Lagrangian.
+\begin{align}
+\frac{d}{dt}\left(\frac{\partial \bar{L}}{\partial \dot{q}_j} \right) - \frac{\partial \bar{L}}{\partial q_j}&=0
+\end{align}
+Note that, mathematically, this is equivalent to introducing a series of ``potential energies'', $V_i$, of the form:
+\begin{align}
+V_i=\lambda_if_i
+\end{align}
+which correspond to monogenic forces given by:
+\begin{align}
+Q_{ij}=\lambda_i\left(\frac{d}{dt}\frac{\partial f_i}{\partial \dot{q}_j}-\frac{\partial f_i}{\partial q_j}\right)
+\end{align}
+
+\begin{example}{0pt}{Determine the equations of motion for a hoop of mass $M$ and radius $R$ as is rolls without slipping down an incline of angle $\theta$. Use the method of Lagrange multipliers to handle the constraint of rolling without slipping.}{\capfig{0.3\textwidth}{figures/InclineHoop.png}{\label{fig:InclineHoop} Hoop of mass, $M$ and radius $R$ rolling without slipping down an incline.}}
+Although this situation has only 1 degree of freedom (we could choose $r$ or $\phi$), we will use both $r$ and $\phi$ to describe the hoop and introduce an equation of constraint. Although the constraint is non-holonomic (rolling without slipping is a condition on the velocity of the point of contact), in 1 dimension it can be integrated to be holonomic:
+\begin{align*}
+dr&=Rd\phi\\
+\therefore f(r,\phi)=r-R\phi &=0\\
+\end{align*}
+The kinetic energy is given:
+\begin{align*}
+T&=\frac{1}{2}I\dot{\phi}^2+\frac{1}{2}Mv_{cm}^2\\
+&=\frac{1}{2}MR^2\dot{\phi}^2+\frac{1}{2}M\dot{r}^2
+\end{align*}
+The potential energy is given by that of the center of mass:
+\begin{align*}
+V&=Mgy_{cm}=Mgr\sin{\theta}+k
+\end{align*}
+where $k$ is a constant offset between the height of the center of mass and the point of contact of the hoop and incline. Since $k$ will vanish from the Euler-Lagrange equations, we will neglect it.
+
+The Lagrangian, and modified Lagrangian are:
+\begin{align*}
+L&=\frac{1}{2}MR^2\dot{\phi}^2+\frac{1}{2}M\dot{r}^2-Mgr\sin{\theta}\\
+\bar{L}&=\frac{1}{2}MR^2\dot{\phi}^2+\frac{1}{2}M\dot{r}^2-Mgr\sin{\theta}-\lambda(r-R\phi)
+\end{align*}
+Lagrange's equations of motion in $r$ and $\phi$ are thus:
+\begin{align*}
+\frac{d}{dt}\left(\frac{\partial \bar{L}}{\partial \dot{r}} \right) - \frac{\partial \bar{L}}{\partial r}&=0\to
+M\ddot{r}+Mg\sin{\theta}+\lambda =0\\
+\frac{d}{dt}\left(\frac{\partial \bar{L}}{\partial \dot{\phi}} \right) - \frac{\partial \bar{L}}{\partial \phi}&=0\to
+MR^2\ddot{\phi}-\lambda R=0
+\end{align*}
+where it is clear that $\lambda$ has the dimensions of force. Additionally, differentiating the equation of constraint twice with respect to time, we have:
+\begin{align*}
+r&=R\phi\\
+\therefore \ddot{r}&=R\ddot{\phi}
+\end{align*}
+The equation of motions can be combined to give us:
+\begin{align*}
+MR^2\ddot{\phi}=MR\ddot{r}&=\lambda R\\
+\therefore M\ddot{r}+Mg\sin{\theta}+\lambda &=0\\
+\lambda &=-\frac{1}{2}Mg\sin{\theta}
+\end{align*}
+Re-moving the explicit dependence on $\lambda$ from the equations of motion:
+\begin{align*}
+ M\ddot{r}&=-\frac{1}{2}Mg\sin{\theta}\\
+ MR^2\ddot{\phi}&=-\frac{1}{2}Mg\sin{\theta} R
+\end{align*}
+
+Note that $\lambda$ can be associated with the force that makes the hoop rotate (the contact force that is tangent to the hoop). The last equation is the rotational equivalent of Newton's Second Law, using torque, $\tau$, and the angular acceleration, $\alpha$, ($I\alpha=\tau$). The components of the monogenic forces corresponding to $\lambda$ are:
+\begin{align*}
+Q_{j}&=\lambda\left(\frac{d}{dt}\frac{\partial f}{\partial \dot{q}_j}-\frac{\partial f}{\partial q_j}\right)\\
+Q_r&=-\lambda=\frac{1}{2}Mg\sin{\theta}\\
+Q_\phi &=\lambda R=-\frac{1}{2}Mg\sin{\theta}R
+\end{align*}
+\end{example}
+
+\begin{example}{0pt}{Determine the equations of motion for a hoop of mass $M$ and radius $R$ as is rolls without slipping down an incline of angle $\theta$. Use the method of Lagrange multipliers to handle the constraint of rolling without slipping and that of the hoop being constrained to the incline.}{}
+We repeat the previous problem, but now use three coordinates to describe the hoop. We use $\phi$, the rotation angle, in addition to $x$ and $y$ to describe the position of the point of contact between the hoop and the incline. Using the fact that $y=r\sin{\theta}$ to include the rolling without slipping condition from the previous example, we have:
+\begin{align*}
+f_1(x,y,\phi)=y-x\tan{\theta}&=0\\
+f_2(x,y,\phi)=\frac{1}{\sin{\theta}}y-R\phi=\frac{1}{\cos{\theta}}x-R\phi&=0\\
+\end{align*}
+The kinetic energy is given:
+\begin{align*}
+T&=\frac{1}{2}I\dot{\phi}^2+\frac{1}{2}Mv_{cm}^2\\
+&=\frac{1}{2}MR^2\dot{\phi}^2+\frac{1}{2}M(\dot{x}^2+\dot{y}^2)
+\end{align*}
+The potential energy is given by that of the center of mass:
+\begin{align*}
+V&=Mgy
+\end{align*}
+where, again, we do not need to worry that the point of contact of the hoop is different by a constant offset from the position of the center of mass. The Lagrangian and modified Lagrangian (with two constraints) are thus:
+\begin{align*}
+L&=\frac{1}{2}MR^2\dot{\phi}^2+\frac{1}{2}M(\dot{x}^2+\dot{y}^2)-Mgy\\
+\bar{L}&=\frac{1}{2}MR^2\dot{\phi}^2+\frac{1}{2}M(\dot{x}^2+\dot{y}^2)-Mgy-\lambda_1(y-x\tan{\theta})-\lambda_2(\frac{1}{\sin{\theta}}y-R\phi)
+\end{align*}
+Lagrange's equations of motion in $x$, $y$, and $\phi$ are thus:
+\begin{align*}
+\frac{d}{dt}\left(\frac{\partial \bar{L}}{\partial \dot{x}} \right) - \frac{\partial \bar{L}}{\partial x}&=0\to
+ M\ddot{x}-\lambda_1\tan{\theta}=0\\
+\frac{d}{dt}\left(\frac{\partial \bar{L}}{\partial \dot{y}} \right) - \frac{\partial \bar{L}}{\partial y}&=0\to
+ M\ddot{y}+Mg+\lambda_1+\frac{\lambda_2}{\sin{\theta}}=0\\
+\frac{d}{dt}\left(\frac{\partial \bar{L}}{\partial \dot{\phi}} \right) - \frac{\partial \bar{L}}{\partial \phi}&=0\to
+MR^2\ddot{\phi}-\lambda_2 R=0
+\end{align*}
+The constraint equations give us:
+\begin{align*}
+\ddot{x}&=\frac{1}{\tan{\theta}}\ddot{y}\\
+\ddot{\phi}&=\frac{1}{R\sin{\theta}}\ddot{y}
+\end{align*}
+We thus have:
+\begin{align*}
+\lambda_1&=\frac{M}{\tan^2{\theta}}\ddot{y}\\
+\lambda_2&=\frac{M}{\sin{\theta}}\ddot{y}\\
+\ddot{y}\left(1+\frac{1}{\tan^2{\theta}}+\frac{1}{\sin^2{\theta}}\right)+g&=0\\
+\ddot{y}\left(\frac{2}{\sin^2{\theta}}\right)+g&=0\\
+\ddot{y}&=-\frac{1}{2}g\sin^2{\theta}\\
+\therefore \lambda_1&=-\frac{M}{\tan^2{\theta}}\frac{1}{2}g\sin^2{\theta}=-\frac{1}{2}Mg\cos^2{\theta}\\
+\therefore \lambda_2&=-\frac{M}{\sin{\theta}}\frac{1}{2}g\sin^2{\theta}=-\frac{1}{2}Mg\sin{\theta}\\
+\ddot{x}&=-\frac{1}{2}g\cos{\theta}\\
+\ddot{\phi}&=-\frac{1}{2R}g\sin{\theta}\\
+\end{align*}
+These equations are equivalent to the ones in the previous example. Again, $\lambda_2$ is associated with the force tangent to the hoop that makes the hoop turn. $\lambda_1$ is related to the normal force on the incline (it is maximal at $\theta=0$ and vanishes at $\theta=\frac{\pi}{2}$). The components of the monogenic forces corresponding to $\lambda_1$ and $\lambda_2$ are:
+\begin{align*}
+Q_{ij}&=\lambda_i\left(\frac{d}{dt}\frac{\partial f_i}{\partial \dot{q}_j}-\frac{\partial f_i}{\partial q_j}\right)\\
+Q_{1x}&=-\frac{1}{2}Mg\cos^2{\theta}\tan{\theta}=-\frac{1}{2}Mg\cos^2{\theta}\sin{\theta}\\
+Q_{1y}&=\frac{1}{2}Mg\cos^2{\theta}\\
+Q_{1\phi}&=0\\
+Q_{2x}&=\frac{1}{2}Mg\sin{\theta}\frac{1}{\cos{\theta}}=\frac{1}{2}Mg\tan{\theta}\\
+Q_{2y}&=\frac{1}{2}Mg\sin{\theta}\frac{1}{\sin{\theta}}=\frac{1}{2}Mg\\
+Q_{2\phi}&=-\frac{1}{2}Mg\sin{\theta}R
+\end{align*}
+The only one that is really straightforward to interpret is $Q_{2\phi}$, corresponding to the torque that makes the hoop rotate down the incline.
+\end{example}
+It should become clear to the reader that the concept of force is getting more obscure as we arrive at a more general description of classical mechanics in the analytic framework. It is important to understand that issues of constraint are often related to the forces from vectorial mechanics, although it is generally not necessary to use the concept of force to describe a system.
+
+As we generalize further, we will also restrict ourselves to systems that are holonomic and monogenic. This is in fact a rather good approximation to nature. Most non-monogenic forces (for example, friction) arise from the fact that we limit ourselves to considering a restricted system (for example, we consider only a block sliding with friction). If we consider a system as a whole (for example, the block and the incline), then most forces become workless ``internal'' forces of constraint. Indeed, if we consider the Universe as a whole, then only four fundamental forces are responsible for all interactions (gravity, electromagnetic, strong nuclear, weak nuclear). Furthermore, in the classical macroscopic world, only the electromagntic and gravitational forces are of consideration, and these are both monogenic.
+
+\section{The Lagrangian from Hamilton's Principle}
+Hamilton's Principle is based on the idea that a physical system is fully described by a function of, $L(q_1,\dots ,q_n,\dot{q}_1,\dots ,\dot{q}_n,t)$ that depends only on the generalized position and velocities of the particles in the system. The evolution of the system is determined by fixing the value of $L$ at two positions in configuration time and requiring that the functional:
+\begin{align}
+S=\int_{t_1}^{t_2} L(q_1,\dots ,q_n,\dot{q}_1,\dots ,\dot{q}_n,t) dt
+\end{align}
+(called the action) is stationary. We have seen that if $L$ is the Lagrangian, then Hamilton's principle is equivalent to D'Alembert's Principle and, thus, Newton's Second Law. From variational calculus, we know that Hamilton's principle leads to the Euler-Lagrange equations of motion for each coordinate $q_i$:
+\begin{align}
+\delta S=0\to\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q_i}} \right) - \frac{\partial L}{\partial q_i}&=0
+\end{align}
+\subsection{The Lagrangian for a free particle}
+We can now ask ourselves what the function $L$ can look like for describing a free particle. Our main requirement is that $L$ should be a function that does not depend on the inertial frame of reference that we choose to describe the system. Given two frames of references, moving with a velocity $\vec{V}$ with respect to each other, the position, $\vec{r}$ and velocity of a particle, $v$, must transform according to:
+\begin{align}
+\vec{r'}=\vec{r}+\vec{V}t\nonumber\\
+\vec{v'}=\vec{v}+\vec{V}
+\end{align}
+Note that we implicitly assume that time is ``absolute'' and independent of reference frame. This of course is not true in Special Relativity.
+
+The Lagrangian should be such that applying Hamilton's Principle is independent of the inertial frame of reference that is chosen. This means that the Lagrangian cannot depend on the absolute position of the particle. For a free particle, it should not matter where in space the particle is; it should always be described in the same way. We thus require:
+\begin{align}
+\frac{\partial L}{\partial \vec{r}}=0
+\end{align}
+Similarly, the Lagrangian cannot depend on the direction of the velocity. Space is isotropic and the behaviour of the free particle will not depend on which direction it travels. The Lagrangian can thus only depend on its magnitude, $v^2$:
+\begin{align}
+L&=L(v^2)\\
+\therefore \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q_i}} \right)&=0
+\end{align}
+Lagrange's equations thus requires that $\frac{\partial L}{\partial \dot{q_i}}$ is a constant in time, thus requiring that the magnitude of $v$ be constant in time. Of course, that is the result that we expect for a free particle. However, we don't know the form for the Lagrangian, in principle it could be any function of $v^2$, such as a polynomial, $L=av^2+b(v^2)^2+\dots$.
+
+Let's consider how things are affected when we transform the Lagrangian to a frame of reference that is moving with an infinitesimal velocity $\vec{\epsilon}$ with respect to the original inertial frame of reference. The particle thus has a velocity $\vec{v'}=\vec{v}+\vec{\epsilon}$
+\begin{align}
+L(v'^2)&=L((\vec{v}+\vec{\epsilon})\cdot(\vec{v}+\vec{\epsilon}))\nonumber\\
+&=L(v^2+2\vec{v}\cdot\vec{\epsilon}+\epsilon^2)
+\end{align}
+We can expand this as a Taylor series of $L$ centered at $v^2$, neglecting terms of order $\epsilon^2$ and higher:
+\begin{align}
+L(v'^2)&=L(v^2)+\frac{\partial L}{\partial v^2}2\vec{v}\cdot\vec{\epsilon}+\dots\nonumber\\
+&=L(v^2)+\frac{\partial L}{\partial v^2}x
+\end{align}
+where $2\vec{v}\cdot\vec{\epsilon}$ is just some constant number that we call $x$ (it is constant since $\vec{v}$ and $\vec{\epsilon}$ are constants). Applying Hamilton's Principle and using the Euler-Lagrange equations:
+\begin{align}
+\frac{d}{dt}\left(\frac{\partial L(v'^2)}{\partial \dot{q}_i} \right) - \frac{\partial L(v'^2)}{\partial q_i}&=0\nonumber\\
+\frac{d}{dt}\left(\frac{\partial L(v'^2)}{\partial \dot{q}_i} \right)&=0\nonumber\\
+\frac{d}{dt}\left(\frac{\partial L(v^2)}{\partial \dot{q}_i} \right)+\frac{d}{dt}\left(\frac{\partial}{\partial \dot{q}_i}\frac{\partial L}{\partial v^2}x \right)&=0\nonumber\\
+\frac{\partial}{\partial \dot{q}_i}\frac{\partial L}{\partial v^2}&=k
+\end{align}
+where we used the fact that the original Lagrangian does not depend on position, that the velocity, $\vec{v}$ is constant, and we introduced $k$ as another constant. For the last line to be true, $L$ must be linear in the velocity squared:
+\begin{align}
+L(v^2)=av^2
+\end{align}
+Note that for a single particle, the Lagrangian can be multiplied by any number and remain invariant (the number $a$ just factors out). In principle, if we have a system of $N$ non-interacting particles, they will each have their own value of $a$, and only the ratios of the different values of $a$ are relevant. 
+We choose a new constant instead of $a$ and call it $\frac{1}{2}m$, so that we have the Lagrangian:
+\begin{align}
+L=\frac{1}{2}mv^2
+\end{align}
+and we call $m$ the ``mass'' of the particle. Note that we found this particular form of the Lagrangian simply by requiring that the Lagrangian be invariant under transformations from one inertial frame of reference to another. More fundamentally, we can see that for a system of non-interacting particles, it is the ratio of their masses that matters, not their absolute value.
+
+\section{Properties of the Lagrangian}
+The Lagrangian has several properties that we explore here.
+\subsection{Invariance with respect to point transformations}
+Coordinate transformations $q\to q'$ can generally be called ``contact transformations'' and written in the form:
+\begin{align}
+q_i'=q_i'(q_1,\dots , q_n, \dot{q}_1, \dots , \dot{q}_n, t)
+\end{align}
+The functional forms of the $q_i'$ must satisfy certain conditions to be allowable (e.g. continuous, differentiable, non-zero Jacobian). When the transformation does not depend on the derivatives (velocities), the transformation is called a ``point transformation''. A point transformation is a mapping of a space onto a different space and requires that each point be mapped onto a unique point in the mapped spaced. Thus, points that are near each other remain near each other in the mapped space. A common mapping would be to change coordinates from cartesian to polar coordinates:
+\begin{align}
+r&=r(x,y)=\sqrt{x^2+y^2}\nonumber\\
+\theta &=\theta(x,y)=\tan^{-1}(\frac{y}{x})
+\end{align}
+In this case, a square in cartesian space does not map into a square in the space of polar coordinates, as seen in Figure \ref{fig:PolarTransform}. Other properties are however preserved. If two lines do not intersect in one space, then they won't intersect in the other space either. As one considers points that are closer together their geometrical properties in the mapped space become more similar. For example, a very small square in cartesian coordinates, maps into something that almost looks like a square in polar coordinates. 
+
+\capfig{0.5\textwidth}{figures/PolarTransform.png}{\label{fig:PolarTransform} Mapping of a square in cartesian space to polar coordinate space.}
+
+Lagrange's equations determine the evolution of a system in n-dimensional configuration space (the space of the $n$ generalized coordinates). One can extend the configuration space by one dimension, to include time as well. The evolution of a system is then a curve in the n+1 dimensional space, and the Lagrange equations determine the shape of that curve given that the end points are fixed. Through a point transformation, that curve will map to a curve that also follows the Lagrange equations in the mapped space (since infinitesimals are preserved through a point transformation). Thus, the Lagrangian description of motion is invariant under point transformations. That is, even though the actual functional form of the Lagrangian is different under a transformation of the coordinates, it invariably describes the same physical process.
+
+This means that we are generally free to choose the set of generalized coordinates for which to describe the system (it makes sense that the Lagrangian description not depend on the choice of coordinates). This is one of the great powers of the Lagrangian method. One should be a little careful here, as describing a system using a moving frame of reference is still an acceptable point transformation. In Special Relativity, we know that the description of time depends on the relative speed of the two reference frames. We will see later that in the case of Special Relativity, we have to treat time the same way as one of the coordinates, and time will also be allowed to transform from one coordinate system to the other. With that modification, the Lagrangian will be truly independent of the coordinate system (provided they are related to an inertial system through a point transformation).
+
+\begin{example}{0pt}{Describe a particle in a gravitational field using cartesian and polar coordinates}{}
+The Lagrangian in cartesian coordinates is:
+\begin{align*}
+L=\frac{1}{2}m(\dot{x}^2+\dot{y}^2+\dot{y}^2)-mgz
+\end{align*}
+The equations of motion from Lagrange's equation are easily seen to be:
+\begin{align*}
+\ddot{x}&=0\\
+\ddot{y}&=0\\
+\ddot{z}&=-g
+\end{align*}
+In polar coordinates, we have:
+\begin{align*}
+L=\frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2+\dot{z}^2)-mgz
+\end{align*}
+The equations of motion from Lagrange's equation are:
+\begin{align*}
+\ddot{r}&=r\dot{\theta}^2\\
+\ddot{\theta}&=0\\
+\ddot{z}&=-g
+\end{align*}
+Thus we find that $\dot{\theta}$ is a constant, and the rate of change of $r$ is such that the particle will go in a straight line (when projected on the $r$-$\theta$ plane).
+\end{example}
+
+\subsection{Addition of Lagrangians}
+The Lagrangians of different particles (or different systems) are additive. That is, given a Lagrangian $L_A$ for a system $A$ and a Lagrangian, $L_B$, for a system $B$, the entire system $A+B$ can be described by the Lagrangian $L=L_A+L_B$. This is easily shown by the additive properties of derivatives in the Euler-Lagrange equations:
+\begin{align}
+\frac{d}{dt}\left(\frac{\partial L_A}{\partial \dot{q_i}} \right) - \frac{\partial L_A}{\partial q_i}&=0\nonumber\\
+\frac{d}{dt}\left(\frac{\partial L_B}{\partial \dot{q_i}} \right) - \frac{\partial L_B}{\partial q_i}&=0\nonumber\\
+\therefore \frac{d}{dt}\left(\frac{\partial (L_A+L_B)}{\partial \dot{q_i}} \right) - \frac{\partial (L_A+L_B)}{\partial q_i}&=0
+\end{align}
+\subsection{Multiplication of the Lagrangian by a constant}
+The equations of motions are not affected if the Lagrangian is multiplied by an overall constant:
+\begin{align}
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q_i}} \right) - \frac{\partial L}{\partial q_i}&=0\nonumber\\
+\therefore\frac{d}{dt}\left(\frac{\partial (kL)}{\partial \dot{q_i}} \right) - \frac{\partial (kL)}{\partial q_i}&=0
+\end{align}
+For a free particle, multiplication of the Lagrangian by a constant is analogous to changing the units of mass.
+\subsection{Addition of a total time derivative }
+Similarly, the Lagrangian is un-affected if one adds to the Lagrangian a function that is a total time-derivative, $\frac{df}{dt}$:
+\begin{align}
+S&=\int_{t_1}^{t_2} \left(L+\frac{df}{dt}\right) dt\nonumber\\
+&=\int_{t_1}^{t_2} Ldt+\int_{t_1}^{t_2}\frac{df}{dt}dt\nonumber\\
+&=\int_{t_1}^{t_2} Ldt +f(t_1)-f(t_2)
+\end{align}
+When taking the variation of the action, the last two terms will vanish, since the end points of the $L$ curve in configuration space are fixed. Of course, the Lagrangian is unchanged if a constant term is added to the Lagrangian (this can be thought of as a change in the absolute value of the potential energy).
+
+\subsection{Lagrangian does not explicitly depend on time}
+If the Lagrangian is independent of time, the Euler-Lagrange equations simplify, as we saw in the case of equation \ref{eqn:varnoxm}, when we looked at the calculus of variations. In the case where $L$ does not explicitly depend on time, the Euler-Lagrange equations imply that:
+\begin{align}
+\frac{\partial L}{\partial t} &=0\nonumber\\
+\therefore \left(\sum_{i=1}^n \dot{q}_i\frac{\partial L}{\partial \dot{q}_i}\right) -L =h
+\label{eqn:varnot}
+\end{align}
+where $h$ is a constant. In fact, we will see that $h$ is related to the ``Hamiltonian'' of the system. $h$ is called the ``Jacobi integral'' and can be calculated whether or not it is a constant by using the second equation. It is only a constant when $L$ does not explicitly depend on time:
+\begin{align}
+h(q_i, \dot{q}_i, t)&\equiv \left(\sum_{i=1}^n \dot{q}_i\frac{\partial L}{\partial \dot{q}_i}\right) -L\nonumber\\
+\frac{\partial L}{\partial t} =0 &\to \frac{dh}{dt}=0
+\end{align}
+One can in general re-write $h(q_i, \dot{q}_i, t)$ and replace $\dot{q}_i\to p_i$, and obtain a new function, $H(q_i,p_i,t)$ which is called the Hamiltonian.
+
+Equation \ref{eqn:varnot} is the general form for the quantity $h$ that is conserved if $L$ does not explicitly depend on time. If we make the following, further, assumptions:
+\begin{enumerate}
+\item The kinetic energy is of the form $T=\frac{1}{2}\sum_{j=1}^n\sum_{k=1}^na_{jk}\dot{q}_j\dot{q}_k$, that is, quadratic in the velocities. Note that $a_{jk}=a_{kj}$, since these are partial derivatives of the generalized coordinates.
+\item The potential energy, $V$, does not depend explicitly on the velocities ($\frac{\partial V}{\partial\dot{q}_i}=0$).
+\end{enumerate}
+The we have:
+\begin{align}
+\frac{\partial L}{\partial\dot{q}_i}&=\frac{\partial T}{\partial\dot{q}_i}\nonumber\\
+&=\frac{\partial }{\partial\dot{q}_i}\frac{1}{2}\sum_{j=1}^n\sum_{k=1}^na_{jk}\dot{q}_j\dot{q}_k\nonumber\\
+&=\frac{1}{2}\left(\sum_{j=1}^n a_{ij}\dot{q}_j+\sum_{k=1}^n a_{ik}\dot{q}_k\right)\nonumber\\
+&=\sum_{k=1}^na_{ik}\dot{q}_k\nonumber\\
+\therefore \left(\sum_{i=1}^n \dot{q}_i\frac{\partial L}{\partial \dot{q}_i}\right) &= \sum_{i=1}^n\sum_{k=1}^n\dot{q}_ia_{ik}\dot{q}_k\nonumber\\
+&=2T\nonumber\\
+\therefore h&=\left(\sum_{i=1}^n \dot{q}_i\frac{\partial L}{\partial \dot{q}_i}\right)-L\nonumber\\
+&=2T - T +V\nonumber\\
+&=T+V
+\end{align}
+and we see that, in the case where $L$ does not explicitly depend on time, $T$ is quadratic in the velocities, and $V$ does not depend on velocities, the total energy of the system, $T+V$, is the conserved quantity $h$. This situation leads to a particularly simple treatment for problems with 1 degrees of freedom, as the solution for the equation of motion, $q(t)$ can always be written out as an integral:
+\begin{align}
+T(\dot{q})&=h-V(q)\nonumber\\
+\therefore \dot{q}&=f(h,V)\nonumber\\
+dt &=\int_{q_a}^{q_b}\frac{dq}{f(h,V)}
+\label{eqn:econs1d}
+\end{align} 
+which can then be inverted to obtain $q(t)$.
+\begin{example}{0pt}{Calculate the period for a simple harmonic oscillator with spring constant $k$ which has been released at $t=0$ with starting position $x=x_0$ at rest.}{}
+The system has one degree of freedom, and we will use $x$ as the generalized coordinate. The Lagrangian is independent in time, quadratic in $x$, and the potential does not depend on velocity:
+\begin{align*}
+L=\frac{1}{2}m\dot{x}^2-\frac{1}{2}kx^2
+\end{align*}
+The total energy, $h=T+V=\frac{1}{2}kx_0^2$ is thus conserved. We can use equation \ref{eqn:econs1d} to obtain the period, $t$, for the motion (noting that the period is four time the time to go from $x_0$ to $0$):
+\begin{align*}
+T&=h-V\\
+m\dot{x}^2&=k(x_0^2-x^2)\\
+\dot{x}&=f(x,h)=\sqrt{\frac{k}{m}(x_0^2-x^2)}\\
+t&=4\int_{x_0}^{0}\frac{dx}{\sqrt{\frac{k}{m}(x_0^2-x^2)}}
+\end{align*}
+\end{example}
+
+\subsection{Cyclic coordinates - Lagrangian does not depend on a specific coordinate}
+In some cases, the Lagrangian does not depend explicitly on all of the generalized coordinates. The Lagrangian will still depend implicitly on those coordinates through their velocities in the kinetic energy. We call those coordinates that do not explicitly appear in the Lagrangian ``cyclic'', or ``ignorable'', or ``kinosthenic''. In this case, the equations of motion also simplify for those coordinates:
+\begin{align}
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q_i}} \right) - \frac{\partial L}{\partial q_i}&=0\nonumber\\
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q_i}} \right)&=0\nonumber\\
+\therefore \frac{\partial L}{\partial \dot{q_i}}&=p_i \text{		=  constant}
+\label{eqn:cyclic}
+\end{align}
+where $p_i$ are constants for each of the cyclic coordinates.
+
+\begin{example}{0pt}{Determine the equations of motion for a particle in a gravitational field, where the Lagrangian does not depend on time, and find conserved quantities.}{}
+The Lagrangian for a particle in a gravitational field is given by:
+\begin{align*}
+L=\frac{1}{2}m(\dot{x}^2+\dot{y}^2+\dot{z}^2)-mgz
+\end{align*}
+We can see that the coordinates $x$ and $y$ are cyclic. Thus the following quantities are conserved:
+\begin{align*}
+\die{L}{\dot{x}}&=m\dot{x}=p_x\\
+\die{L}{\dot{y}}&=m\dot{y}=p_y
+\end{align*}
+which we can identify with the linear momentum, which should be conserved in the two directions not affected by gravity.
+
+Also note that $L$ does not explicitly depend on time. We can thus write the following equation for the conserved quantity, $h$:
+\begin{align*}
+h&=\left(\sum_{i=1}^n \dot{q}_i\frac{\partial L}{\partial \dot{q}_i}\right) -L \nonumber\\
+&=\dot{x}m\dot{x}+\dot{y}m\dot{y}+\dot{z}m\dot{z}-\frac{1}{2}m(\dot{x}^2+\dot{y}^2+\dot{z}^2)+mgz\nonumber\\
+&=\frac{1}{2}m(\dot{x}^2+\dot{y}^2+\dot{z}^2)+mgz\nonumber\\
+&=T+V=E
+\end{align*}
+We see that the constant quantity, $h$, is in fact the total energy of the system, $E$. We recover the observation that the total energy of the system is conserved if the Lagrangian does not depend explicitly on time. Using the constants of the motion ($p_x$, $p_y$, $h$), we can easily write the equations of motion:
+\begin{align*}
+\dot{x}&=\frac{1}{m}p_x\\
+\dot{y}&=\frac{1}{m}p_y\\
+\dot{z}&=\sqrt{2E-2gz-\left(\frac{1}{m}p_x\right)^2-\left(\frac{1}{m}p_z\right)^2}
+\end{align*}
+
+As a flavour of what is to come, let's consider the quantities:
+\begin{align*}
+p_i&\equiv \frac{\partial L}{\partial \dot{q}_i}\\
+p_x&=m\dot{x}\\
+p_y&=m\dot{y}\\
+p_z&=m\dot{z}\\
+\end{align*}
+and it is clear that these are just the component of the linear momentum. Furthermore, we can write $H$ as a function of only $p_i$ and $q_i$, without using the velocities, $\dot{q}_i$:
+\begin{align*}
+H&=\frac{1}{2m}(p_x^2+p_y^2+p_z^2)+mgz
+\end{align*}
+In principle then, the system is completely described by the new coordinates (momentum and position). Finally, note that the Lagrangian does not depend explicitly on $x$ or $y$. We saw in Equation \ref{eqn:cyclic} that this results in $p_x$ and $p_y$ being constants. Of course, this makes sense, as the linear momentum is constant except in the direction acted upon by gravity.
+\label{ex:gpintro}
+\end{example}
+
+\section{The generalized momentum}
+We saw in example \ref{ex:gpintro}, that in the case of a simple Lagrangian, the quantities $p_i\equiv\frac{\partial L}{\partial \dot{q}_i}$ are related to the linear momentum of a particle. For a more general system, the $p_i$, are called the generalized momenta of the system. We also saw that in the case where the Lagrangian does not explicitly depend on a coordinate, the corresponding generalized momentum is a constant of motion. We call the generalized momentum $p_i$ the ``conjugate momentum'' of coordinate $q_i$. The generalized momenta are not necessarily related to the linear momentum of the system.
+
+Inserting this into the Lagrange equations:
+\begin{align}
+p_i&\equiv\frac{\partial L}{\partial \dot{q}_i}\\
+\frac{dp_i}{dt}-\frac{\partial L}{\partial q_i}&=0
+\end{align}
+we see that we recover Newton's Second Law in the case where the $p_i$ are linear momenta and the forces monogenic (thus given by the second term).
+
+\begin{example}{0pt}{Determine the generalized momenta of a free particle described in polar coordinates}{}
+The Lagrangian is given by:
+\begin{align*}
+L=\frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2+\dot{z}^2)
+\end{align*}
+The generalize momenta are given by:
+\begin{align*}
+p_r&=\frac{\partial L}{\partial \dot{r}}=m\dot{r}\\
+p_\theta&=\frac{\partial L}{\partial \dot{\theta}}=mr^2\dot{\theta}\\
+p_z&=\frac{\partial L}{\partial \dot{z}}=m\dot{z}\\
+\end{align*}
+$p_\theta$ is easily identified with the angular momentum, which is conserved, since the Lagrangian does not depend on $\theta$ explicitly. $p_r$ cannot be identified with any of the usual quantities and is not conserved, since $L$ depends explicitly on $r$. $p_z$ is the linear momentum in $z$ and is also conserved, since $L$ does not depend explicitly on $z$. It is interesting to note that the (arbitrary) choice of coordinates highlighted which conserved quantities are relevant. Had we chosen cartesian coordinates, as we did in the previous example, we would have seen that the linear momenta are conserved.
+\label{ex:polarmomentum}
+\end{example}
+
+\section{The Routhian and eliminating cyclic coordinates}
+In the case where we have cyclic coordinates, it is possible to use a method developed by Routh to eliminate them from the Lagrangian completely. Supposed that the Lagrangian has $n$ degrees of freedom and the first $k$ coordinates are cyclic. Thus:
+\begin{align}
+\die{L}{\dot{q}_i}=\beta_i \;\;\;\text{(i=1\dots k)}
+\label{eqn:lbeta}
+\end{align} 
+where the $\beta_i$ are really just the generalizes momenta, but we use the $\beta_i$ to distinguish the constant momenta. We first rewrite the Langrangian, $L$, by using the $\beta_i$ to replace the $k$ velocities corresponding to cylclic coordinates, $\dot{q}_i$. We then define the ``Routhian'' as:
+\begin{align}
+R&\equiv L-\sum_{i=1}^k\beta_i\dot{q}_i\nonumber\\
+&=R(q_i,\dot{q}_i,\beta_i, t)
+\end{align}
+The Routhian thus depends on $n-k$ of the $q_i$ (and their velocities) in $L$, as well as $k$ quantities $\beta_i$ (in the sum), and time. Now consider the variation of the Routhian:
+\begin{align}
+\delta R=\sum_{i=k+1}^{n}\die{R}{q_i}\delta q_i+\sum_{i=k+1}^{n}\die{R}{\dot{q}_i}\delta \dot{q}_i+\sum_{i=1}^k\die{R}{\beta_i}\delta \beta_i+\die{R}{t}
+\end{align}
+Using the definition of the Routhian, this must also equal:
+\begin{align}
+\delta R=&\delta\left(L-\sum_{i=1}^k\beta_i\dot{q}_i \right)\nonumber\\
+=&\sum_{i=k+1}^{n}\die{L}{q_i}\delta q_i+\sum_{i=k+1}^{n}\die{L}{\dot{q}_i}\delta \dot{q}_i+\die{L}{t}-\delta\left(\sum_{i=1}^k\beta_i\dot{q}_i\right)\nonumber\\
+=&\sum_{i=k+1}^{n}\die{L}{q_i}\delta q_i+\sum_{i=k+1}^{n}\die{L}{\dot{q}_i}\delta \dot{q}_i+\die{L}{t}-\sum_{i=1}^k\left(\beta_i\delta\dot{q}_i+\dot{q}_i\delta\beta_i\right)\nonumber\\
+=&\sum_{i=k+1}^{n}\die{L}{q_i}\delta q_i+\sum_{i=k+1}^{n}\die{L}{\dot{q}_i}\delta \dot{q}_i+\die{L}{t}-\sum_{i=1}^k\die{L}{\dot{q}_i}\delta\dot{q}_i-\sum_{i=1}^k\dot{q}_i\delta\beta_i
+\end{align}
+However, the second last term is zero, because we have explicitly rewritten the Lagrangian to remove the first $k$ of the $\dot{q}_i$. We can thus compare the two versions of the equations for $\delta R$ and match each term:
+\begin{align}
+\die{L}{q_i}&=\die{R}{q_i}\nonumber\\
+\die{L}{\dot{q}_i}&=\die{R}{\dot{q}_i}\nonumber\\
+\dot{q}_i&=-\die{R}{\beta_i}\;\;\;\text{(i=1\dots k)}\nonumber\\
+\die{L}{t}&=\die{R}{t}
+\end{align}
+Given these equivalences, it is clear that the Routhian will also follow the Lagrange equations:
+\begin{align}
+\frac{d}{dt}\die{R}{\dot{q}_i}-\die{R}{q_i}=0\;\;\;(i=k+1\dots n)
+\end{align}
+where we have now effectively reduced the number of degrees of freedom in the problem, since the Routhian only has $n-k$ coordinates. The equations of motion are thus given by:
+\begin{align}
+\dot{q}_i&=-\die{R}{\beta_i}\;\;\;\text{(i=1\dots k)}\nonumber\\
+\frac{d}{dt}\die{R}{\dot{q}_i}-\die{R}{q_i}&=0\;\;\;(i=k+1\dots n)
+\end{align}
+
+The procedure for solving a problem with the Routhian is:
+\begin{enumerate}
+\item Write the Lagrange and identify the cyclic coordinates
+\item Calculate the $\beta_i$ and use them to eliminate the corresponding $\dot{q}_i$ in the Lagrangian
+\item Write the Routhian
+\item The equations of motion for the $k$ velocities from the cyclic variables are easily written in terms of the $\beta_i$ 
+\item The equations of motion for the remaining $n-k$ coordinates are obtained by applying the usual Lagrange equations to $R$.
+\end{enumerate}
+
+\begin{example}{0pt}{Use the Routhian to describe the motion of a particle in a gravitational field}{}
+The Lagrangian is given by:
+\begin{align*}
+L=\frac{1}{2}m(\dot{x}^2+\dot{y}^2+\dot{z}^2)-mgz
+\end{align*}
+where the coordinates $x$ and $y$ are cyclic. We have 3 degrees of freedom and 2 cyclic coordinates. We thus have:
+\begin{align*}
+\die{L}{\dot{x}}&=m\dot{x}=\beta_x\\
+\die{L}{\dot{y}}&=m\dot{y}=\beta_y
+\end{align*}
+We can thus eliminate $\dot{x}$ and $\dot{y}$ from the Lagrangian, in favour of the $\beta_i$:
+\begin{align*}
+L=\frac{1}{2}m\left(\frac{\beta_x^2}{m^2}+\frac{\beta_y^2}{m^2}+\dot{z}^2\right)-mgz
+\end{align*}
+The Routhian is thus:
+\begin{align*}
+R&=\frac{1}{2}m\left(\frac{\beta_x^2}{m^2}+\frac{\beta_y^2}{m^2}+\dot{z}^2\right)-mgz-\beta_x\dot{x}-\beta_y\dot{y}\nonumber\\
+&=\frac{1}{2}m\left(\frac{\beta_x^2}{m^2}+\frac{\beta_y^2}{m^2}+\dot{z}^2\right)-mgz-\frac{\beta_x^2}{m}-\frac{\beta_y^2}{m}\nonumber\\
+&=\frac{1}{2}m\dot{z}^2-mgz-\frac{\beta_x^2}{2m}-\frac{\beta_y^2}{2m}
+\end{align*}
+and it does not depend on the cyclic coordinates or their velocities.
+We can then write the equations of motion:
+\begin{align*}
+\dot{x}&=-\die{R}{\beta_x}=\frac{\beta_x}{m}\to x(t)=x_0+\frac{\beta_x}{m}t\\
+\dot{y}&=-\die{R}{\beta_y}=\frac{\beta_y}{m}\to y(t)=y_0+\frac{\beta_y}{m}t\\
+\ddot{z}&=-g
+\end{align*}
+\end{example}
+
+

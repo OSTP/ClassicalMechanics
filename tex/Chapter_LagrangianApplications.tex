@@ -1,0 +1,514 @@
+\chapter{Applications of the Lagrangian formalism}
+\label{chap:LagrangianApplications}
+In this chapter, we pause and look at some common applications of Lagrangian mechanics. In particular, we look at the central force problem and the problem of small oscillations. Both of these situations are of interest as many problems can be formulated in similar frameworks, and the techniques that are used here can often be applied in other situations.
+
+\section{Central Force Problem}
+\subsection{One particle with 1 degree of freedom}
+Consider a simple system, with one (cartesian) degree of freedom and a potential of the form $V(q_1)$, so that the Lagrangian is:
+\begin{align}
+L=\frac{1}{2}m\dot{q}_1^2-V(q_1)
+\end{align}
+
+This is called a ``central force problem'', since it represents a particle of mass $m$ with a force that is related to the distance from the origin and is directed towards or away from the origin. Example of such forces are Newtonian gravity, the Coulomb force, and the spring force. Since the Lagrangian does not explicitly depend on time, the total energy, $E$ is conserved and is a constant. This allows the velocity to be determined from the position
+\begin{align}
+E&=\frac{1}{2}m\dot{q}_1^2+V(q_1)\nonumber\\
+\dot{q}_1&=\sqrt{\frac{2}{m}(E-V(q_1))}
+\label{eqn:consE1dof}
+\end{align}
+Note that this implies that $E-V(q_1)>0$, or the velocity would be imaginary. 
+
+The velocity equation can be integrated to get time as a function of position, and in principle, inverted to get position as a function of time:
+\begin{align}
+\int_{t_0}^t dt=\int_{q_0}^{q_1(t)}\frac{dq_1}{\sqrt{\frac{2}{m}(E-V(q_1))}}
+\end{align}
+\subsection{Two particles and two degrees of freedom}
+Now consider two particles of mass $m_1$, $m_2$, each having a single degree of freedom and interacting with each other through a force that is related to the distance between the two particles. The total potential energy for the system would thus have a form $V(q_2-q_1)$ and the Lagrangian is:
+\begin{align}
+L=\frac{1}{2}m_1\dot{q}_1^2+\frac{1}{2}m_2\dot{q}_2^2-V(q_2-q_1)
+\end{align}
+Again, the total energy of the system is a constant, since the Lagrangian does not depend explicitly on time. Interpreting $q_i$ as the position of each particle along a q-axis, then the Lagrangian is invariant along translations in the q-direction:
+\begin{align}
+q_1&\to q_1+\epsilon\\
+q_2&\to q_2+\epsilon
+\end{align}
+so there must be a conserved quantity:
+\begin{align}
+Q&=\sum_ip_i\nonumber\\
+&=m_1\dot{q}_1+m_2\dot{q}_2
+\end{align}
+which is the total momentum in the q-direction.
+
+Consider the following change of variables from ($q_1$,$q_2$) to ($r$, $R$):
+\begin{align}
+r&\equiv q_2-q_1\nonumber\\
+R&\equiv \frac{m_1}{m_1+m_2}q_1+\frac{m_2}{m_1+m_2}q_2\nonumber\\
+M&\equiv m_1+m_2\nonumber\\
+\mu&\equiv \frac{m_1m_2}{m_1+m_2}
+\label{eqn:centralCoord}
+\end{align}
+where $R$ is the coordinate of the center of mass, and $\mu$ is called the ``reduced mass''.
+\begin{example}{0pt}{Invert the transformation equations \ref{eqn:centralCoord} for $q_1$ and $q_2$ to obtain the kinetic energy in terms of $r$ and $R$.}{}
+We have:
+\begin{align*}
+R&=\frac{1}{m_1+m_2}(m_1q_1+m_2q_2)\nonumber\\
+&=\frac{1}{m_1+m_2}(m_1q_1+m_2(q_1+r))\nonumber\\
+&=\frac{m_2}{m_1+m_2}r+q_1\nonumber\\
+\therefore q_1&=R-\frac{m_2}{m_1+m_2}r\nonumber\\
+\therefore q_2&=R+\frac{m_1}{m_1+m_2}r\nonumber\\
+\end{align*}
+The total kinetic energy is thus:
+\begin{align*}
+\frac{1}{2}m_1\dot{q_1}^2+\frac{1}{2}m_2\dot{q_2}^2&=\frac{1}{2}m_1(\dot{R}-\frac{m_2}{m_1+m_2}\dot{r})^2+\frac{1}{2}m_2(\dot{R}+\frac{m_1}{m_1+m_2}\dot{r})^2\nonumber\\
+&=\frac{1}{2}m_1(\dot{R}^2-2\frac{m_2}{m_1+m_2}\dot{R}\dot{r}+\frac{m_2^2}{(m_1+m_2)^2}\dot{r}^2)+\frac{1}{2}m_2(\dot{R}^2+2\frac{m_1}{m_1+m_2}\dot{R}\dot{r}+\frac{m_1^2}{(m_1+m_2)^2}\dot{r}^2)\nonumber\\
+&=\frac{1}{2}m_1(\dot{R}^2+\frac{m_2^2}{(m_1+m_2)^2}\dot{r}^2)+\frac{1}{2}m_2(\dot{R}^2+\frac{m_1^2}{(m_1+m_2)^2}\dot{r}^2)\nonumber\\
+&=\frac{1}{2}(m_1+m_2)\dot{R}^2+\frac{1}{2}\frac{m_1m_2^2+m_2m_1^2}{(m_1+m_2)^2}\dot{r}^2\nonumber\\
+&=\frac{1}{2}(m_1+m_2)\dot{R}^2+\frac{1}{2}m_1m_2\frac{m_1+m_2}{(m_1+m_2)^2}\dot{r}^2\nonumber\\
+&=\frac{1}{2}M\dot{R}^2+\frac{1}{2}\mu\dot{r}^2
+\end{align*}
+\end{example}
+
+In terms of the new coordinates, the Lagrangian is then:
+\begin{align}
+L&=\frac{1}{2}M\dot{R}^2+\frac{1}{2}\mu\dot{r}^2-V(r)\nonumber\\
+\end{align}
+
+The $R$ coordinate is cyclic, and the corresponding momentum:
+\begin{align}
+P=M\dot{R}
+\end{align}
+corresponding to the momentum of the whole system is conserved. The kinetic energy term from the center of mass is thus a constant added to the Lagrangian and does not influence the equations of motion; we can thus ignore it:
+\begin{align}
+L&=\frac{1}{2}\mu\dot{r}^2-V(r)\nonumber\\
+\end{align}
+where we have effectively reduced the problem to an equivalent problem with one degree of freedom and the reduced mass.
+
+\subsection{Two particles and three dimensional motion}
+Let us know consider the general problem of two particles of mass $m_1$ and $m_2$, with position vectors $\vec{r}_1$ and $\vec{r}_2$ and a potential energy of the form $V(\vec{r}_2-\vec{r}_2)$. The Lagrangian is:
+\begin{align}
+L=\frac{1}{2}m_1\dot{\vec{r}}_1^2+\frac{1}{2}m_2\dot{\vec{r}}_2^2-V(\vec{r}_2-\vec{r}_1)
+\end{align}
+Again, we can introduce new coordinates and the reduced mass:
+\begin{align*}
+\vec{r}&\equiv \vec{r}_2-\vec{r}_1\nonumber\\
+\vec{R}&\equiv \frac{m_1}{m_1+m_2}\vec{r}_1+\frac{m_2}{m_1+m_2}\vec{r}_2\nonumber\\
+\mu&\equiv \frac{m_1m_2}{m_1+m_2}\nonumber\\
+\therefore \vec{r}_1&=\vec{R}-\frac{m_2}{m_1+m_2}r\nonumber\\
+\therefore \vec{r}_2&=\vec{R}+\frac{m_1}{m_1+m_2}r\nonumber\\
+\end{align*}
+The algebra to obtain the kinetic energy in the new coordinates is the same as in the previous section, and the Lagrangian can be written as:
+\begin{align}
+L&=\frac{1}{2}\mu\dot{\vec{r}}^2-V(\vec{r})\nonumber\\
+\end{align}
+where we have used the fact that the total momentum is a constant of the motion:
+\begin{align}
+P=M\dot{\vec{R}}
+\end{align}
+Thus, in 3-dimensional space, the problem of two particles acting on each other through a central force (6 degrees of freedom) can be reduced to an equivalent problem with 1 particle acted on by a  central force directed at the origin (3 degrees of freedom). As origin, we use the center of mass of the two particles, with a coordinate system that is co-moving with the center of mass.
+
+Since space is homogeneous, the potential cannot depend on the actual direction of $\vec{r}$ and should only depend on its magnitude. Indeed, if two particles acting on each other through a central potential (e.g. Coulomb force), the orientation in space of the particles will not matter. It is thus natural to describe the system using spherical coordinates, $r$, $\theta$, $\phi$, with the Lagrangian:
+\begin{align}
+L=\frac{1}{2}\mu(\dot{r}^2+r^2\dot{\theta}^2+r^2\sin^2\theta\dot{\phi}^2)-V(r)
+\end{align}
+The Lagrangian is invariant under rotations of the coordinate system, thus the angular momentum in each direction is conserved. Since the total angular momentum is conserved, the motion must be constrained to the place perpendicular to the total angular momentum. We thus choose to orient our coordinate system such that the polar axis points in the direction of the total angular momentum. The angle $\theta$ will thus be $\frac{\pi}{2}$ and constant. The Lagrangian thus simplifies even further to:
+\begin{align}
+L=\frac{1}{2}\mu(\dot{r}^2+r^2\dot{\phi}^2)-V(r)
+\end{align}
+
+The coordinate $\phi$ is cyclic, and the corresponding generalized momentum is conserved:
+\begin{align}
+p_\phi&=\mu r^2\dot\phi=l\nonumber\\
+\therefore \dot\phi&=\frac{l}{r^2\mu}
+\end{align}
+Recall, this does not mean that $\dot\phi$ is constant, only that it can be determined from a constant and from $r$. The constant, $l$, is obviously angular momentum. We can thus write the Lagrangian as:
+\begin{align}
+L=\frac{1}{2}\mu\dot{r}^2+\frac{l^2}{2\mu r^2}-V(r)
+\end{align}
+ 
+Since the middle term depends only $r$, we can introduce an ``effective potential'', $V_{eff}$
+\begin{align}
+V_{eff}\equiv V(r)+\frac{l^2}{2\mu r^2}
+\end{align}
+
+and the Lagrangian is given by:
+\begin{align}
+L=\frac{1}{2}\mu\dot{r}^2-V_{eff}(r)
+\end{align}
+
+and we have again reduced the problem to a single degree of freedom!
+
+Consider the force that arises from the effective potential:
+\begin{align}
+F_r&=-\die{V_{eff}}{r}\nonumber\\
+&=-\die{V(r)}{r}-\die{}{r}\frac{l^2}{2\mu r^2}\nonumber\\
+&=-\die{V(r)}{r}-\die{}{r}\frac{1}{2}\mu r^2\dot\phi^2\nonumber\\
+&=-\die{V(r)}{r}+\mu r\dot\phi^2\nonumber\\
+\end{align}
+The second term (which we added) is in fact the apparent centrifugal force, trying to push the ``particle'' outwards (recall that we are actually modeling two particles in 3 dimensions!). This apparent force is zero if $\dot\phi$ is zero.
+
+Finally, conservation of energy allows us to solve for $r(t)$ by inverting the solution to:
+\begin{align}
+t=\int_{r_0}^{r(t)}\frac{dr}{\sqrt{\frac{2}{\mu}(E-V_{eff}(r))}}
+\end{align}
+
+Using analytic mechanics we have thus been able to understand a lot about a system with a central force, without solving any differential equations and without even knowing the form of the force (or potential)! We have found that:
+\begin{enumerate}
+\item A system of two particles interacting through a central force in three dimensions can be reduced to an equivalent system with 1 degree of freedom
+\item Energy is conserved (since $L$ does not depend on t)
+\item Motion is confined to a plane (angular momentum is conserved)
+\end{enumerate}
+
+\subsection{Qualitative characteristics of orbits}
+
+Let us make a few more general observation on the dynamics of a particle subject to a central force. We start by considering a potential that gives an attractive inverse-square force law (such as gravity):
+\begin{align}
+V(r)&=\frac{-a}{r}\nonumber\\
+\therefore V_{eff}(r)&= \frac{-a}{r}+\frac{l^2}{2\mu r^2}
+\end{align}
+The corresponding $V_{eff}(r)$ is sketched in figure \ref{fig:CentralPotential_labels} for a particular value of the angular momentum and $a$. Three possible cases for the energy are also shown:
+\begin{enumerate}
+\item If the energy is larger than zero, all possible values of $r>r_{min}$, are allowable. $r_{min}$ corresponds to the case where $V_{eff}=E$. If the particle arrives from infinity, it will drift towards $r=0$ until it reaches $r_{min}$ where it will experience a \textbf{repulsive} force that pushes it back out from the center of mass. This repulsive force is from the conservation of angular momentum. The only case that the particle can fall into the center of mass is if $l=0$, that is, there is no angular momentum with respect to the center of mass (the impact parameter is zero).
+\item If the energy is less than zero, but bigger that the minimum of $V_{eff}$, the particle is constrained to be between two circles of radius $r_1$ and $r_2$. This does not necessarily mean that the orbit is ``closed'', only that the trajectory is constrained between two circles.
+\item If the energy is exactly $V_{min}$ then the particle is constrained to a specific radius, $r_c$. In this case, the orbit is necessarily closed and circular. The minimum of $V_{eff}$ occurs when:
+\begin{align}
+\frac{dV_{eff}}{dr}&=0\nonumber\\
+\frac{a}{r^2}&=\frac{l^2}{\mu r^3}\nonumber\\
+\frac{a}{r^2}&=\mu r \dot\phi^2
+\end{align}
+which is precisely the requirement that the centripetal force ($\frac{a}{r^2}$) equal mass times centripetal acceleration. This corresponds to a radius $r_c$ and energy $E=V_{min}$ given by:
+\begin{align}
+r_c&=\frac{l^2}{a\mu}\nonumber\\
+V_{min}&=V_{eff}(r_c)=-\frac{a}{r_c}+\frac{l^2}{2\mu r_c^2}=-\frac{a^2\mu}{2l^2}
+\end{align}
+\end{enumerate}
+The value of the angular momentum and the initial value of the radius will determine the ultimate trajectory of the particles.
+Note that the kinetic energy of the particle (in the radial direction) is always equal to the distance between $E$ and $V_{eff}$:
+\begin{align}
+T_r(r)=\frac{1}{2}\mu\dot r^2=E-V_{eff}(r)
+\end{align}
+which is zero for the circular orbit.
+\capfig{0.7\textwidth}{figures/CentralPotential_labels.png}{\label{fig:CentralPotential_labels}Effective potential for the case where $V(r)=-ar^{-1}$. The horizontal lines show three possible values for the energy.}
+
+Consider a potential that gives an attractive inverse-fourth force law:
+\begin{align}
+V(r)&=\frac{-a}{r^3}\nonumber\\
+\therefore V_{eff}(r)&= \frac{-a}{r^3}+\frac{l^2}{2\mu r^2}
+\end{align}
+The effective potential is sketched in Figure \ref{fig:CentralPotential_fourth}, along with a possible energy $E$. For this particular case of energy choice, the motion will depend on the initial condition. If the particle started with a radius less than $r_1$ the motion will be bound and constrained to a radii smaller than $r_1$. These orbits will pass through the center of mass. In the case where the initial radius was bigger than $r_2$, the particle will experience a repulsive force and never access radii smaller than $r_2$. Of course, the repulsive force, is again the apparent centrifugal force.
+\capfig{0.7\textwidth}{figures/CentralPotential_fourth.png}{\label{fig:CentralPotential_fourth}Effective potential for the case where $V(r)=-ar^{-3}$.}
+
+\subsection{Determining the equation of the orbit}
+For certain potentials, it is possible to solve for the equation of the orbit. Starting from the Lagrangian:
+\begin{align}
+L=\frac{1}{2}\mu\dot{r}^2+\frac{l^2}{2\mu r^2}-V(r)
+\end{align}
+We know that conservation of energy gives
+\begin{align}
+\frac{1}{2}\mu\dot{r}^2+\frac{l^2}{2\mu r^2}+V(r)&=E\nonumber\\
+\end{align}
+This can be integrated to give r(t). However, we really are interested in obtaining $r(\phi)$. Using the Chain Rule, we can convert the above differential equation from an equation for $r(t)$ to an equation for $r(\phi)$. Consider:
+\begin{align}
+\frac{dr}{dt}=\frac{dr}{d\phi}\dot\phi
+\end{align}
+We can use the conservation of angular momentum:
+\begin{align}
+\dot\phi&=\frac{l}{r^2\mu}\nonumber\\
+\therefore \frac{dr}{dt}&=\frac{dr}{d\phi}\frac{l}{r^2\mu}\nonumber\\
+\therefore \frac{1}{2}\mu\left( \frac{dr}{d\phi}\frac{l}{r^2\mu} \right)^2+\frac{l^2}{2\mu r^2}+V(r)&=0\nonumber\\
+\frac{l^2}{2\mu}\left[\frac{1}{r^4}\left( \frac{dr}{d\phi} \right)^2+\frac{1}{r^2}\right]+V(r)&=E
+\end{align}
+Let us now introduce a substitution of variables:
+\begin{align}
+u&\equiv \frac{1}{r}\nonumber\\
+\therefore \frac{du}{d\phi}&=\frac{du}{dr} \frac{dr}{d\phi}= -\frac{1}{r^2} \frac{dr}{d\phi} \nonumber\\
+\therefore \frac{dr}{d\phi}&=-r^2\frac{du}{d\phi}
+\end{align}
+The differential equation then becomes:
+\begin{align}
+\frac{l^2}{2\mu}\left[\left( \frac{du}{d\phi} \right)^2+u^2\right]+V(\frac{1}{u})&=E
+\end{align}
+Let us assume that the potential has the following form:
+\begin{align}
+V(r)=ar^{-n}
+\end{align}
+\textbf{Careful! This is a different definition than in the previous section where we had forced $a$ to be positive. Here, we allow a to be positive (repulsive force) or negative (attractive force)}. The differential equation is then:
+\begin{align}
+\left[\left( \frac{du}{d\phi} \right)^2+u^2\right]+\frac{2\mu}{l^2}au^n&=\frac{2\mu}{l^2}E
+\end{align}
+again, we can write this as an integral:
+\begin{align}
+\int_{\phi_0}^\phi d\phi&=\int_{u_0}^u \frac{du}{\sqrt{\frac{2\mu}{l^2}E-\frac{2\mu}{l^2}au^n-u^2}}\nonumber\\
+&=-\int_{r_0}^r \frac{dr}{r^2\sqrt{\frac{2\mu}{l^2}E-\frac{2\mu}{l^2}ar^{-n}-\frac{1}{r^2}}}
+\end{align}
+where we have used the fact that $du=-\frac{1}{r^2}dr$. This can be integrated analytically for certain values of $n$. 
+
+\subsection{The case of gravity (``Kepler's problem'')}
+Let us solve specifically the case of two masses $m_1$ and $m_2$ interacting with gravity:
+\begin{align}
+V(r)&=ar^{-n}=-\frac{Gm_1m_2}{r}\nonumber\\
+a&=-Gm_1m_2\nonumber\\
+n&=1
+\end{align}
+
+The differential equation for $r(\phi)$ is thus:
+\begin{align}
+\left[\left( \frac{du}{d\phi} \right)^2+u^2\right]-\frac{2\mu}{l^2}au&=\frac{2\mu}{l^2}E
+\end{align}
+Let us introduce a constant, $\alpha$:
+\begin{align}
+\alpha&\equiv\frac{l^2}{a\mu}\nonumber\\
+\therefore \left[\left( \frac{du}{d\phi} \right)^2+u^2\right]-\frac{2}{\alpha}u&=\frac{2E}{a\alpha}
+\end{align}
+We now add $\frac{1}{\alpha^2}$ to both sides:
+\begin{align}
+\left[\left( \frac{du}{d\phi} \right)^2+u^2\right]-\frac{2}{\alpha}u+\frac{1}{\alpha^2}&=\frac{2E}{a\alpha}+\frac{1}{\alpha^2}\nonumber\\
+\end{align}
+We introduce a new function, $f$, and a new constant $K$:
+\begin{align}
+f(\phi)&\equiv u(\phi)-\frac{1}{\alpha}\nonumber\\
+\left(\frac{df}{d\phi}\right)^2&=\left(\frac{du}{d\phi}\right)^2\nonumber\\
+f^2&=u^2-2u\frac{1}{\alpha}+\frac{1}{\alpha^2}\nonumber\\
+K^2&\equiv\frac{1}{\frac{2E}{a\alpha}+\frac{1}{\alpha^2}}
+\end{align}
+The differential equation becomes:
+\begin{align}
+K^2\left[\left( \frac{df}{d\phi} \right)^2+f^2\right]&=1\nonumber\\
+\left[\left( \frac{dKf}{d\phi} \right)^2+(Kf)^2\right]&=1\nonumber\\
+\left[\left( \frac{dg}{d\phi} \right)^2+g^2\right]&=1\nonumber\\
+\end{align}
+where we have introduced a new function $g(\phi)=Kf(\phi)$. We can identify $g$ with a trigonometric function, let's choose:
+\begin{align}
+g&=\cos\phi
+\end{align}
+and the differential equation is obviously satisfied by the trigonometric identity $\cos^2+\sin^2=1$. The solution is thus:
+\begin{align}
+f(\phi)&=\frac{1}{K}\cos(\phi)= u(\phi)-\frac{1}{\alpha}\nonumber\\
+u(\phi)&=\frac{1}{K}\cos(\phi)+\frac{1}{\alpha}\nonumber\\
+&=\sqrt{\frac{2E}{a\alpha}+\frac{1}{\alpha^2}}\cos(\phi)+\frac{1}{\alpha}\nonumber\\
+&=\frac{1}{\alpha}\sqrt{\frac{2E\alpha}{a}+1}\cos(\phi)+\frac{1}{\alpha}\nonumber\\
+\end{align}
+Introducing the quantity, $e$:
+\begin{align}
+e^2&\equiv \frac{2E\alpha}{a}+1\nonumber\\
+\frac{1}{r}&=\frac{e}{\alpha}\cos(\phi)+\frac{1}{\alpha}\nonumber\\
+\end{align}
+Finally, multiplying by $r\alpha$, we obtain the equation for a conical curve of eccentricity $e$ in polar coordinates:
+\begin{align}
+r(e\cos\phi+1)&=\alpha\nonumber\\
+\end{align}
+which is what we expect from Kepler's laws. Note that we only considered the shape of the trajectory, so we ignored the initial condition on $r$ or $\phi$ when performing the integral. If we need to obtain the equations for $r$ as a function of time, it would be important to include the initial condition of $\phi$ and replace $\phi\to\phi-\phi_0$.
+
+Recall the properties of the eccentricity, $e$, for conical curves:
+\begin{enumerate}
+\item $e=0$ corresponds to a circle centered on the origin
+\item $0\leq e \leq 1$ corresponds to an ellipse with a focus at the origin
+\item $e=1$ corresponds to a parabola
+\item $e>1$ corresponds to a hyperbola
+\end{enumerate}
+
+We can relate this to our earlier qualitative comments about the the orbits, based on the energy:
+\begin{align}
+e^2&=\frac{2E\alpha}{a}+1 \nonumber\\
+&=E\frac{2l^2}{a^2\mu}+1\nonumber\\
+\therefore E&=\frac{\mu a^2}{2l^2}(e^2-1)
+\end{align}
+An energy of zero thus results in a parabolic trajectory ($e=1$). The circular orbit ($e=0$) is given by: 
+\begin{align}
+E&=-\frac{\mu a^2}{2l^2}\nonumber\\
+\end{align} 
+which is the result we obtained earlier. If $e$ is bigger than 1, then the energy is positive and the orbit is unbound (a hyperbola). If $e$ is less than 1, then the energy is negative and the orbit is bound (an ellipse). 
+
+\section{Small oscillations and coupled oscillators}
+
+\subsection{Equilibrium}
+Consider a simple system where all forces are monogenic and there is only one (cartesian) degree of freedom.
+\begin{align}
+L=\frac{1}{2}m\dot q^2-V(q)
+\end{align}
+The system will be in static equilibrium if the virtual work done by the monogenic forces is zero. This will be true if the generalized force is zero:
+\begin{align}
+Q_1=-\die{V}{q}=0 
+\end{align}
+Such a condition implies that we have an extremum of $V$. If we then expand the potential in a Taylor series near a point $q_0$, where the potential is at the extremum, we have:
+ \begin{align}
+ V &= V(q_0)+\die{V}{q}(q-q_0)+\frac{1}{2}\die{^2V}{^2q}(q-q_0)^2+\dots\nonumber\\
+ &\sim \frac{1}{2}k(q-q_0)^2\nonumber\\
+ k&\equiv \die{^2V}{^2q}
+ \end{align}
+which is the potential energy of a simple harmonic oscillator. We can always choose to define $V$ such that it is zero at the point where the forces are zero (alternatively, the first term is a constant and does not affect the motion).
+
+An equilibrium is ``stable'' if, when the system is displaced from equilibrium, it returns to that point (or oscillates around it) (e.g. a ball at the bottom of a bowl). The equilibrium is called ``unstable'' if a small perturbation of the system away from equilibrium will lead the system go further from the equilibrium point (e.g. a ball at the top of a hill).
+
+The system will be in static equilibrium at $q_0$. The nature of the equilibrium (stable or unstable) will depend on the sign of $k$. If $k$ is positive, then the point of  equilibrium is a minimum of $V$ and the particle will be bounded by points where $E=V$. If $k$ is negative, then the particle will see a potential barrier at $q_0$, which it can only surmount if $E>0$, otherwise, it will turn around when $E=V$.
+
+\subsection{Simple harmonic oscillator}
+The simple harmonic oscillator Lagrangian is given by:
+\begin{align}
+L=\frac{1}{2}m\dot q^2-\frac{1}{2}kq^2
+\end{align}
+where the system is in equilibrium at $q=0$. Since $L$ does not depend explicitly on time, energy is conserved, and we can solve for the integral (assuming that $k$ and $E$ are positive):
+\begin{align}
+E&=\frac{1}{2}m\dot q^2+\frac{1}{2}kq^2\nonumber\\
+\dot q&=\sqrt{\frac{2E-kq^2}{m}}=\sqrt{\frac{2E}{m}}\sqrt{1-\frac{k}{2E}q^2}\nonumber\\
+\therefore t&=\sqrt{\frac{m}{2E}}\int\frac{dq}{\sqrt{1-\frac{k}{2E}q^2}}\nonumber\\
+t&=\sqrt{\frac{m}{2E}}\sqrt{\frac{2E}{k}}\sin^{-1}\left(\sqrt{\frac{k}{2E}}q\right)+\text{const.}\nonumber\\
+&=\sqrt{\frac{m}{k}}\sin^{-1}\left(\sqrt{\frac{k}{2E}}q\right)+\text{const.}\nonumber\\
+\therefore q(t)&=A\sin\left( \sqrt{\frac{k}{m}}t+\phi_0 \right)\nonumber\\
+&=A\sin\left( \omega t+\phi_0 \right)
+\end{align}
+where we have introduced the frequency $\omega$ and the constants $A$ and $\phi_0$ are determined from the initial conditions. Note that if $k$ is positive, then $E$ must also be positive. If $k$ is negative, the solution is a hyperbolic sine function.
+
+We could also solve this from the Lagrange equation of motion, by postulating a solution:
+\begin{align}
+m\ddot q &=-kq \nonumber\\
+\therefore q(t) &= Ae^{-i\omega t}\nonumber\\
+\omega&=\sqrt{\frac{k}{m}}
+\end{align}
+where $q(t)$ is the real part of the expression.
+
+\subsection{Many oscillators}
+Suppose that we have $n$ degrees of freedom $q_i$ and a Lagrangian of the form:
+\begin{align}
+L&=T-V\nonumber\\
+T&=\frac{1}{2}\sum_{i,j} T_{ij}\dot{q}_i\dot q_j
+\end{align}
+Suppose that the point ($q_{0,1}$, \dots ,$q_{0,n}$) corresponds to a static equilibrium:
+\begin{align}
+\left(\die{V}{q_i}\right)\biggr\rvert_0=0
+\end{align}
+Consider a point, $q_i'$, that is slightly displaced from the equilibrium by a distance, $\eta_i$:
+\begin{align}
+q_i'=q_{0,i}+\eta_i
+\end{align}
+The potential at $q'_i$ can be expanded in a Taylor series near that point:
+\begin{align}
+V(q_1',\dots ,q_n')&=V(q_{0,1}, \dots , q_{0,n})+\sum_i\left(\die{V}{q_i}\right)\biggr\rvert_0\eta_i+\frac{1}{2}\sum_{i,j}\left(\die{V}{q_i}\die{V}{q_j}\right)\biggr\rvert_0\eta_i\eta_j+\dots\nonumber\\
+&\sim\frac{1}{2}\sum_{i,j}\left(\die{V}{q_i}\die{V}{q_j}\right)\biggr\rvert_0\eta_i\eta_j\nonumber\\
+&=\frac{1}{2}\sum_{i,j} V_{ij}\eta_i\eta_j
+\end{align}
+where we have dropped the first two terms, and introduced $V_{ij}$ as the second order derivatives evaluated at the equilibrium. The first term is a constant and does not influence the motion, and the second is zero at the equilibrium. The kinetic energy can also be written in terms of the small displacements from equilibrium, $\eta_i$:
+\begin{align}
+\eta_i&=q'_i-q_{0,i}\nonumber\\
+\therefore \dot\eta_i&=\dot q_i'\nonumber\\
+\therefore T&=\frac{1}{2}\sum_{i,j} T_{ij}\dot\eta_i\dot\eta_j
+\end{align}
+and the Lagrangian, near equilibrium, can be written as:
+\begin{align}
+L=\frac{1}{2}\sum_{i,j} T_{ij}\dot\eta_i\dot\eta_j-\frac{1}{2}\sum_{i,j}V_{ij}\eta_i\eta_j
+\end{align}
+Taking the Lagrange equation for $\eta_i$, we obtain:
+\begin{align}
+\sum_{j}\left(T_{ij}\ddot\eta_j+V_{ij}\eta_j\right)=0
+\end{align}
+where we have used the fact that $V_{ij}=V_{ji}$. Again, we can postulate a solution of the form:
+\begin{align}
+\eta_i(t)=Ca_ie^{-i\omega t}
+\end{align}
+where the $a_i$ correspond to each $\eta_i$, $C$ is an overall (complex) constant, and only the real part is used to represent the motion. This solution is called a ``normal mode'', as all coordinates oscillate with the same frequency. If we substitute this back into the Lagrange equation:
+\begin{align}
+\sum_{j}\left(-\omega^2 T_{ij}\eta_j+V_{ij}\eta_j\right)=0\nonumber\\
+\sum_{j}a_j(V_{ij}-\omega^2T_{ij})=0
+\end{align}
+Consider this as a matrix equation:
+\begin{align}
+\left(\begin{array}{ccc}
+V_{11}-\omega^2T_{11}&\cdots &V_{1n}-\omega^2T_{1n} \\
+\vdots &\ddots &\vdots \\
+V_{n1}-\omega^2T_{n1}&\cdots &V_{nn}-\omega^2T_{nn} \\
+\end{array}\right) \left( \begin{array}{c} a_1\\ \vdots \\ a_n\\ \end{array}  \right)& =0
+\end{align}
+We can re-write it as:
+\begin{align}
+V\vec{a}-\omega^2T\vec{a}&=0\nonumber\\
+V\vec{a}&=\omega^2T\vec{a}\nonumber\\
+T^{-1}V\vec{a}&=\omega^2\vec{a}
+\end{align}
+where we have treated $T$ and $V$ as matrices. The last step required $T$ to be invertible. Note that $V$ is a symmetric matrix. You should recognize that this is a characteristic eigenvalue equation ($\vec{a}$ is an eigenvector and $\omega^2$ is the corresponding eigenvalue).
+
+The particular solution that we postulated corresponds to the ``normal modes'' of the system. These normal modes have characteristic frequencies and characteristic displacement vectors.
+
+\begin{example}{0pt}{Find the linear normal modes of vibration for three equal masse, $m$ connected by two springs with spring constant $k$}{}
+Since we only consider the linear modes, the masses are constrained to move along a single direction and we thus have 3 degrees of freedom. The position of the three masses are labeled as $\eta_i$ and correspond to their displacement from  the rest position. The Lagrangian is thus:
+\begin{align*}
+L&=\frac{1}{2}m(\dot\eta_1^2+\dot\eta_2^2+\dot\eta_3^2)-\frac{1}{2}k\left((\eta_2-\eta_1)^2+(\eta_3-\eta_2)^2  \right)\nonumber\\
+&=\frac{1}{2}m(\dot\eta_1^2+\dot\eta_2^2+\dot\eta_3^2)-\frac{1}{2}k(2\eta_2^2-2\eta_2\eta_1+\eta_1^2+\eta_3^3-2\eta_2\eta_3)
+\end{align*}
+The matrices are thus: 
+\begin{align}
+T&= \left( \begin{array}{ccc}
+m &0 &0\\
+0 &m &0\\
+0 &0 &m\\
+\end{array}      \right) \nonumber\\
+T^{-1}&= \left( \begin{array}{ccc}
+\frac{1}{m} &0 &0\\
+0 &\frac{1}{m} &0\\
+0 &0 &\frac{1}{m}\\
+\end{array}      \right) \nonumber\\
+V&= \left( \begin{array}{ccc}
+k &-k &0\\
+-k &2k &-k\\
+0 &-k &k\\
+\end{array}      \right)
+\end{align}
+Hence, we wish to find the eigenvalues and vectors of:
+\begin{align*}
+\left( \begin{array}{ccc}
+\frac{k}{m} &-\frac{k}{m} &0\\
+-\frac{k}{m} &\frac{2k}{m} &-\frac{k}{m}\\
+0 &-\frac{k}{m} &\frac{k}{m}\\
+\end{array}      \right)
+\end{align*}
+The three eigenvalues are:
+\begin{align*}
+\omega_1^2&=\frac{k}{m}\\
+\omega_2^2&=\frac{3k}{2m}\\
+\omega_3^2&=0
+\end{align*}
+and the three corresponding eigen vectors are:
+\begin{align*}
+\vec{a}_1&=\left(\begin{array}{c}
+-1 \\0 \\1\\
+\end{array} \right)\nonumber\\
+\vec{a}_2&=\left(\begin{array}{c}
+1 \\ -2 \\1\\
+\end{array} \right)\nonumber\\
+\vec{a}_3&=\left(\begin{array}{c}
+1 \\ 1 \\1\\
+\end{array} \right)
+\end{align*}
+These solutions correspond to ``equilibrium'' solutions, or ``normal modes''. The first one corresponds to the middle mass being fixed and the two masses on the sides moving at the same frequency in opposite directions. The second one corresponds to the two masses on the side moving in one direction and the center mass moving in the opposite direction. The last solution has a frequency of zero and all three masses moving in the same direction. This is in fact related to the total momentum of the system being conserved, and suggests that there is a better choice of coordinates that leads to only two degrees of freedom.
+
+
+\label{ex:threecoupledoscillators}
+\end{example}
+
+
+%\section{Problems}
+\begin{problem}{Two masses connected by a spring}
+Two masses $m_1$ and $m_2$ are connected by a spring with spring constant $k$.\\
+\textbf{a)}Write the Lagrangian for this system and show that it can be reduced to a single degree of freedom\\
+\textbf{b)}Plot the effective potential for the system, and show that all orbits are bound\\
+\textbf{c)}Determine the shape of the orbit, and plot it.
+\end{problem}
+
+\begin{problem}{The Coulomb force}
+Two masses $m_1$ and $m_2$ with charges $q_1$ and $q_2$ interact through the Coulomb force.\\
+\textbf{a)}Write the Lagrangian for this system and show that it can be reduced to a single degree of freedom\\
+\textbf{b)}Plot the effective potential for the system when the force is attractive and describe the possible orbits\\
+\textbf{c)}Plot the effective potential for the system when the force is repulsive and show that only hyperbolae are possible orbits\\
+\textbf{d)}Plot the effective potential for the system when the force is repulsive but is constrained to act within a radius $r<R$ (for example, the Coulomb force from a nucleus that is screened by electrons at a large distance) and describe the possible orbits. 
+\end{problem}
+
+\begin{problem}{Kepler's problem}
+\textbf{a)} Show that the analytic treatment presented in this chapter is consistent with Kepler's three laws\\
+\textbf{b)} Show that for elliptic orbits, the major axis only depends on the energy of the system.
+\textbf{c)}Make a plot showing how the effective potential depends on angular momentum (show several curves for different values of angular momentum and comment).
+\end{problem}
+
+\begin{problem}{Simple Harmonic Oscillator}
+\textbf{a)} Discuss the solutions for the simple harmonic oscillator for the cases when $E$ and/or $k$ are negative. If the solution exists, plot the position as a function of time.
+\end{problem}
+
+\begin{problem}{Coupled oscillators}
+\textbf{a)} Show that in the case illustrated in example \ref{ex:threecoupledoscillators}, the total momentum is conserved. In particular, show that the Lagrangian can be written with one less degree of freedom.
+\end{problem}

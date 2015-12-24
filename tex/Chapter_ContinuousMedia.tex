@@ -1,0 +1,265 @@
+\chapter{Continuous Media and the Theory of Fields}
+In this chapter, we develop the formalism to deal with continuous media instead of a finite set of particles. 
+
+\section{The stretched string}
+We first consider the one-dimensional longitudinal vibrations that occur in a stretched string because of its elasticity. We start by modelling a set of $n$ beads of mass $m$ that are held together by springs with spring constant $k$, as in Figure \ref{fig:LongString}.
+\capfig{0.7\textwidth}{figures/LongString.png}{\label{fig:LongString} A set of beads held together by springs to model longitudinal vibrations in a stretched string. At rest, the beads are separated by a distance $h$.} 
+
+The position of each bead is given by $\eta_i$ and the string is fully described by the set of $\eta_i$. The Lagrangian for the system is given by:
+\begin{align}
+L=T-V=\sum_i^n \frac{1}{2}\left[m\dot\eta_i^2-k(\eta_{i+1}-\eta_i)^2\right]
+\end{align}
+and the conditions that $\eta_0=0$ and $\eta_n=0$ (the ends of the string are fixed). We can apply the Euler-Lagrange equation to determine the equation of motion for $\eta_i$:
+\begin{align}
+\frac{d}{dt}\die{L}{\dot\eta_i}-\die{L}{\eta_i}&=0\nonumber\\
+\therefore m\ddot\eta_i-k(\eta_{i+1}-\eta_i)+k(\eta_i-\eta_{i-1})&=0
+\end{align}
+and this can be solved more generally with the method for coupled oscillators from Chapter \ref{chap:LagrangianApplications}.
+
+In going from a discrete medium to a continuous medium, one can imagine making the masses as well as the distances between them infinitesimally smaller. As we move to a continuous system, the meaning of the $\eta_i$ changes from the position of mass $i$ to the amount of distance an element of the string at position $i$ has been displaced. In fact, we can no longer use a discrete index, $i$, to label the "particle" in the system. Rather, we should use a continuous variable, say $x$, to label position along the string. We thus describe the position of the various mass elements along the string with a continuous function $\eta(x)$. Recall, $\eta$ is the generalized coordinate, not $x$! $x$ is just a ``label'' for the generalized coordinate. Formally, $\eta(x)$ is called a ``field''.
+
+Let us introduce, $h$, as the distance between the masses on the string when they are at rest. To go from a discrete to a continuous system, we will let $h$ go to zero. Introducing $h$, we can re-write the Lagrangian as:
+\begin{align}
+L=\sum_i^n h\frac{1}{2}\left[\frac{m}{h}\dot\eta_i^2-hk\left(\frac{\eta_{i+1}-\eta_i}{h}\right)^2\right]
+\end{align}
+It is clear that the term $\frac{m}{h}$ will become the mass per unit length of the string, $\mu$. The term $hk$ is Young's modulus for the string, $Y$. Recall Hooke's Law for a continuous rod/string:
+\begin{align}
+F=Y\lambda
+\end{align}
+where $F$ is the force required to stretch the rod by an amount $\lambda$ per unit length (or conversely, for a given force $F$, Hooke's Law indicates how much the rod will stretch/contract per unit length). In the case of a discrete system, the contraction per unit length is $\frac{\eta_{i+1}-\eta_i}{h}$, and so Hooke's law would read:
+\begin{align}
+F=k(\eta_{i+1}-\eta_i)=hk\left(\frac{\eta_{i+1}-\eta_i}{h}\right)=Y\lambda
+\end{align}
+so that $kh$ can indeed be identified with Young's modulus. We thus have the Lagrangian:
+\begin{align}
+L=\sum_i^n h\frac{1}{2}\left[\mu\dot\eta_i^2-Y\left(\frac{\eta_{i+1}-\eta_i}{h}\right)^2\right]
+\end{align}
+In going to the limit of a continuous system, we have the following conditions:
+\begin{align}
+i&\to x \nonumber\\
+\eta_i &\to \eta(x)\nonumber\\
+\eta_{i+1} &\to \eta(x+h)\nonumber\\
+\eta_{i+1}-\eta_i &\to \eta(x+h)-\eta(x) \to d\eta\nonumber\\
+h&\to dx \nonumber\\
+\sum_i^n h &\to \int \,dx
+\end{align}
+So that the Lagrangian is given by:
+\begin{align}
+L&=\int \frac{1}{2}\left[\mu\left(\frac{d\eta}{dt}\right)^2-Y\left(\frac{d\eta}{dx}\right)^2\right]\,dx\nonumber\\
+&=\int \mathcal{L} \,dx
+\end{align}
+where we have introduced the ``Lagrangian density'':
+\begin{align}
+\mathcal{L}\equiv=\frac{1}{2}\left[\mu\left(\frac{d\eta}{dt}\right)^2-Y\left(\frac{d\eta}{dx}\right)^2\right]
+\end{align}
+and we note that the field, $\eta(x,t)$, is a function of $x$ and $t$. Rather than apply the variational principle to the Lagrangian, we can look at the equation of motion by converting the discrete version of the Euler-Lagrange equation that we had to the continuous version with the same replacements:
+\begin{align}
+m\ddot\eta_i-k(\eta_{i+1}-\eta_i)+k(\eta_i-\eta_{i-1})&=0\nonumber\\
+\mu\ddot\eta_i-kh\frac{(\eta_{i+1}-\eta_i)-(\eta_i+\eta_{i-1})}{h^2}&=0\nonumber\\
+\mu\ddot\eta_i-Y\frac{1}{dx}\frac{(\eta_{i+1}-\eta_i)-(\eta_i-\eta_{i-1})}{dx}&=0\nonumber\\
+\mu\ddot\eta_i-Y\frac{1}{dx}\frac{(\eta(x+dx)-\eta(x))-(\eta(x)-\eta(x-dx))}{dx}&=0\nonumber\\
+\mu\ddot\eta_i-Y\frac{1}{dx}\left(\frac{d\eta}{dx}\bigr\rvert_{x+h}-\frac{d\eta}{dx}\bigr\rvert_x\right)&=0\nonumber\\
+\mu\frac{d^2\eta}{dt^2}-Y\frac{d^2\eta}{dx^2}&=0
+\end{align}
+which is the wave equation, with propagation speed:
+\begin{align}
+v=\sqrt{\frac{Y}{\mu}}
+\end{align}
+In this derivation, we did not actually apply the variational principles of mechanics. Rather, we took the Lagrangian and the result from the discrete case and made both equations continuous by taking the limit of small $h$. Of course, we expect that the variational principle should give us the correct equation of motion  from the Lagrangian density. 
+
+\section{The variational principle applied to a one dimensional Lagrangian density}
+In the stretched string example, we saw that the system is described by a Lagrangian density, $\mathcal{L}$, and the generalized coordinates are replaced by a field, $\eta(x,t)$ that depends on both position and time. The equations of motion are those that completely specify the description of the field in space and time. We also saw that the integral of the Lagrangian density over space gives the Lagrangian (hence the name Lagrangian density). In general, the Lagrangian density depends on:
+\begin{align}
+\mathcal{L}=\mathcal{L}(\eta,\frac{d\eta}{dt},t,\frac{d\eta}{dx},x)
+\end{align}
+where the first three variables are similar to those that determine the Lagrangian, $L(q,\dot q, t)$, and the last two variables $\frac{d\eta}{dx},x$ are related to the fact that $\eta$ is a field. Again, we stress the point that the field plays the role of the generalized coordinate and that it depends on position in space and time. When we apply a variation to the ``coordinate'' $\eta$, we do not vary $x$ and $t$.
+
+Before proceeding, we tidy up the notation slightly by introducing $\eta'=\frac{d\eta}{dx}$ and $\dot\eta=\frac{d\eta}{dt}$, so that the Lagrangian density is written as:
+\begin{align}
+\mathcal{L}=\mathcal{L}(\eta,\dot\eta,\eta',x,t)
+\end{align}
+
+The action integral is given by:
+\begin{align}
+S=\int_{t_a}^{t_b} \int_{x_1}^{x_2}\mathcal{L}\,dx\,dt
+\end{align}
+and we want to find the condition under which $S$ is stationary (Hamilton's variational principle). We proceed in a similar fashion as we did in Chapter \ref{chap:CalculusVariation}. Let us introduce a small parameter, $\epsilon$ and the varied field, $\bar\eta$:
+\begin{align}
+\bar\eta(x,t)&=\eta(x,t)+\epsilon\phi(x,t)\nonumber\\
+\delta \eta \equiv&\bar\eta(x,t)-\eta(x,t) = \epsilon \phi(x,t)
+\end{align}
+where $\phi$ is a continuous and differentiable function over the intervals in $x$ and $t$ where the unvaried field, $\eta(x,t)$, is continuous and differentiable. Note that $\phi(x,t)$ is identically zero at the end points of the integral, since the variation vanishes there.
+
+The variation of the action integral is thus:
+\begin{align}
+\delta S=\int_{t_a}^{t_b} \int_{x_1}^{x_2}\delta\mathcal{L}\,dx\,dt
+\end{align}
+The variation of the Lagrangian density is:
+\begin{align}
+\delta\mathcal{L}&=\mathcal{L}(\eta+\delta\eta,\dot\eta+\delta\dot\eta,\eta'+\delta\eta',x,t)-\mathcal{L}(\eta,\dot\eta,\eta',x,t)\nonumber\\
+\end{align}
+As usual, we expand the first term using a Taylor series near the unvaried Lagrangian density:
+\begin{align}
+\lagd(\eta+\delta\eta,\dot\eta+\delta\dot\eta,\eta'+\delta\eta',x,t)=\lagd(\eta,\dot\eta,\eta',x,t)+\die{\lagd}{\eta}\delta\eta+\die{\lagd}{\dot\eta}\delta\dot\eta+\die{\lagd}{\eta'}\delta\eta'+\dots
+\end{align}
+and neglect terms that are second order in the variations. This gives us the variational integral:
+\begin{align}
+\delta S=\int_{t_a}^{t_b} \int_{x_1}^{x_2} \left(\die{\lagd}{\eta}\delta\eta+\die{\lagd}{\dot\eta}\delta\dot\eta+\die{\lagd}{\eta'}\delta\eta'  \right)\,dx\,dt
+\end{align}
+Because variation and differentiation commute, we have the following:
+\begin{align}
+\delta \eta &=\epsilon \phi\nonumber\\
+\delta \dot\eta &=\epsilon\dot\phi\nonumber\\
+\delta \eta' &=\epsilon \phi'
+\end{align}
+So that the variational integral becomes:
+\begin{align}
+\delta S=\epsilon\int_{t_a}^{t_b} \int_{x_1}^{x_2} \left(\die{\lagd}{\eta}\phi+\die{\lagd}{\dot\eta}\dot\phi+\die{\lagd}{\eta'}\phi'  \right)\,dx\,dt
+\end{align}
+and we require that the rate of change of $\delta S$ with respect to $\epsilon$ vanish (since $S$ must be stationary):
+\begin{align}
+\frac{d\delta S}{d\epsilon}=\frac{\delta S}{\epsilon}=0
+\end{align}
+Now consider the third term in the integrand, which we integrate by parts over $x$:
+\begin{align}
+\int_{t_a}^{t_b} \int_{x_1}^{x_2}\die{\lagd}{\eta'}\phi' \,dx\,dt&=\int_{t_a}^{t_b}\left[\phi\die{\lagd}{\eta'}\right]_{x_1}^{x_2}\,dt-\int_{t_a}^{t_b} \int_{x_1}^{x_2}\phi\frac{d}{dx}\die{\lagd}{\eta'}\,dx\,dt\nonumber\\
+&=\int_{t_a}^{t_b} \int_{x_1}^{x_2}\phi\frac{d}{dx}\die{\lagd}{\eta'}\,dx\,dt
+\end{align}
+however, the first term is zero since $\phi$ is identically zero at $x_1$ and $x_2$. Similarly, we integrate the second term by parts over $t$, where $\phi$ is identically zero at $t_a$ and $t_b$:
+\begin{align}
+\int_{t_a}^{t_b} \int_{x_1}^{x_2}\die{\lagd}{\dot\eta}\dot\phi \,dx\,dt&=\int_{x_1}^{x_2}\left[\phi\die{\lagd}{\dot\eta}\right]_{t_a}^{t_b}\,dt-\int_{t_a}^{t_b} \int_{x_1}^{x_2}\phi\frac{d}{dt}\die{\lagd}{\dot\eta} \,dx\,dt\nonumber\\
+&=\int_{t_a}^{t_b} \int_{x_1}^{x_2}\phi\frac{d}{dt}\die{\lagd}{\dot\eta} \,dx\,dt
+\end{align}
+The variation integral thus becomes:
+\begin{align}
+\frac{\delta S}{\epsilon}=\int_{t_a}^{t_b} \int_{x_1}^{x_2} \phi \left(\die{\lagd}{\eta}-\frac{d}{dt}\die{\lagd}{\dot\eta}- \frac{d}{dx}\die{\lagd}{\eta'} \right)\,dx\,dt
+\end{align}
+Since this must equal zero for any choice of $\phi$, the term in parenthesis must be zero over the entire region of integration. We obtain the Euler-Lagrange equation for a one dimensional field:
+\begin{align}
+\therefore \frac{d}{dt}\die{\lagd}{\dot\eta}+\frac{d}{dx}\die{\lagd}{\eta'}-\die{\lagd}{\eta}=0
+\end{align}
+In the case that the Lagrangian density depends on multiple one-dimension fields, it is straightforward to show that one obtains a Euler-Lagrange equation for each field (recall, the fields are similar to generalized coordinates). 
+
+\begin{example}{0pt}{Show that the Euler-Lagrange for a one-dimensional field gives the wave equation for the Lagrangian density of a stretched string, $\lagd=\frac{1}{2}\left[\mu\left(\frac{d\eta}{dt}\right)^2-Y\left(\frac{d\eta}{dx}\right)^2\right]$}{}
+The Euler-Lagrange equation is:
+\begin{align*}
+\frac{d}{dt}\die{\lagd}{\dot\eta}+\frac{d}{dx}\die{\lagd}{\eta'}-\die{\lagd}{\eta}=0
+\end{align*}
+with
+\begin{align*}
+\frac{d}{dt}\die{\lagd}{\dot\eta}&=\frac{d}{dt}\mu\frac{d\eta}{dt}=\mu\ddot\eta\\
+\frac{d}{dx}\die{\lagd}{\eta'}&=-\frac{d}{dx}Y\frac{d\eta}{dx}=-Y\eta''\\
+\die{\lagd}{\eta}&=0
+\end{align*}
+Thus, we get the wave equation:
+\begin{align*}
+\mu\ddot\eta-Y\eta''=0
+\end{align*}
+\end{example}
+
+
+\section{The variational principle with three-dimensional fields}
+We now generalize to the case where the Lagrangian density depends on a field that is defined in three dimensional space, $\eta(x,y,z,t)$. The Lagrangian density, in general, will be expressed as:
+\begin{align}
+\mathcal{L}=\mathcal{L}(\eta,\frac{d\eta}{dt},\frac{d\eta}{dx},\frac{d\eta}{dy},\frac{d\eta}{dz},t,x,y,z)
+\end{align}
+It should be immediately apparent that the notation is going to be cumbersome if keep all three space coordinates and time as we apply the variational principle. One particularly interesting observation in the previous derivation for the one-dimensional field, is that the variables $t$ and $x$ were treated in the same way. There was nothing special about $t$; it was just another variable that the field depended on. With that in mind, we introduce a new notation where $t$ is treated exactly as another one of the space coordinates. Let the 4-dimensional vector, $x^\mu$, have the following components:
+\begin{align}
+x^\mu\equiv(ct,x,y,z)
+\end{align}
+where the index $\mu$ goes from 0 to 3. We have multiplied $t$ by a constant, $c$, that has dimension of speed so that $ct$ has dimensions of length along with the other three components. Additionally, we introduce the convention that when $x$ is indexed with a roman letter, the indices run from 1 to 3 (the three space coordinates), and when $x$ is indexed with a greek letter, the indices run from 0 to 3 (all four ``coordinates''). The Lagrangian is thus given by:
+\begin{align}
+L=\int \lagd \,dx^i
+\end{align}
+where $dx^i$, with the roman index, stands for $dx\,dy\,dz$. The action is then given by:
+\begin{align}
+S=\int L dt = \int \int \lagd \,dx^i \,dt =\frac{1}{c} \int \lagd \,dx^\mu
+\end{align}
+where $\mu$ now runs over all four coordinates and we had to divide by $c$ since $dt = c dx^0$. Again, note that the Lagrangian does not treat time and the space coordinates in the same way ($dx^i$ instead of $dx^\mu$). However, the equations of motion are obtained from the action, where all four coordinates can be combined.
+
+We thus write the Lagrangian density as:
+\begin{align}
+\lagd(\eta,\frac{d\eta}{dt},\frac{d\eta}{dx},\frac{d\eta}{dy},\frac{d\eta}{dz},t,x,y,z)\to\lagd(\eta,\frac{d\eta}{dx^\mu},x^\mu)
+\end{align}
+
+We also introduce the ``Einstein summation convention'', where repeated indices occurring as a product must be summed over. For example, $x_\mu x^\mu\equiv x_0x^0+x_1x^1+x_2x^2+x_3x^3$, where, at this point, there is no distinction between an index being a subscript or a superscript.
+
+\begin{example}{0pt}{Use the Einstein summation convention to simplify $x_\nu y^\mu \delta^\nu_\mu$,where $\delta^\nu_\mu$ is the ``Kronecker delta'' (equal to 1 if $\nu$ = $\mu$ and 0 otherwise). }{}
+Since the Einstein summation convention implies that we sum over repeated indices, we have:
+\begin{align*}
+x_\nu y^\mu \delta^\nu_\mu&=\sum_{\nu=0}^3\sum_{\mu=0}^3x_\nu y^\mu \delta^\nu_\mu\\
+&=\sum_{\nu=0}^3(x_\nu y^0 \delta^\nu_0+ x_\nu y^1 \delta^\nu_1+x_\nu y^2 \delta^\nu_2+x_\nu y^3 \delta^\nu_3 )\\
+&=(x_0 y^0 \delta^0_0+ x_0 y^1 \delta^0_1+x_0 y^2 \delta^0_2+x_0 y^3 \delta^0_3\\
+&+(x_1 y^0 \delta^1_0+ x_1 y^1 \delta^1_1+x_1 y^2 \delta^1_2+x_1 y^3 \delta^1_3\\
+&+(x_2 y^0 \delta^2_0+ x_2 y^1 \delta^2_1+x_2 y^2 \delta^2_2+x_2 y^3 \delta^2_3\\
+&+(x_3 y^0 \delta^3_0+ x_3 y^1 \delta^3_1+x_3 y^2 \delta^3_2+x_3 y^3 \delta^3_3\\
+\end{align*}
+Dropping the terms with the Kronecker $\delta$ equal to zero, we have:
+\begin{align*}
+\therefore x_\nu y^\mu \delta^\nu_\mu&=x_0y^0+x_1y^1+x_2y^2+x_3y^3\\
+&=x_\nu y^\mu
+\end{align*}
+
+\end{example}
+
+We introduce one last notation, equivalent to the dots and apostrophes that we had for the $t$ and $x$ derivatives:
+\begin{align}
+\eta_{,\mu}\equiv\frac{d\eta}{dx^\mu}
+\end{align}
+The comma is not a mistake! We have the comma to allow for the case when the field, $\eta$, is a vector field (or more generally a ``tensor field''). For example, if $\eta$ is the electric field, you can think of $\eta$ as having ``components'' in each space direction, $\eta_i$. For example, if $\eta$ were the electric field, $\vec E(\vec r,t)$, we would have:
+\begin{align}
+\eta_{1,2}\equiv\frac{dE_x}{dy}
+\end{align}
+In fact, in this formalism, electro-magnetism is indeed handled by a four-dimension field, with the first component related to the electric potential, $\phi$, and the other three components related to the vector potential, $\vec A$.
+
+Thus, the variational principle requires us to consider:
+\begin{align}
+\delta S=\delta \frac{1}{c} \int \lagd(\eta,\eta_{,\mu},x^\mu) \,dx^\nu
+\end{align}
+Since $c$ is constant it can be ignored as it will not influence the variation. We again consider the case where the varied field, $\bar\eta(x^\mu)$ is given by:
+\begin{align}
+\bar\eta(x^\mu)&\equiv\eta(x^\mu)+\epsilon\phi(x^\mu)\nonumber\\
+\delta \eta&\equiv\epsilon\phi(x^\mu)\nonumber\\
+\delta \eta_{,\mu}&=\epsilon\phi_{,\mu}(x^\mu)
+\end{align}
+The variation of the Lagrangian density is:
+\begin{align}
+\delta \lagd &\equiv \lagd(\eta+\delta\eta,\eta_{,\mu}+\delta\eta_{,\mu},x^\mu)-\lagd(\eta,\eta_{,\mu},x^\mu)\nonumber\\
+&=\die{\lagd}{\eta}\delta\eta+\die{\lagd}{\eta_{,\mu}}\delta\eta_{,\mu}
+\end{align}
+where we have used a Taylor series to expand the varied Lagrangian density around the unvaried value and dropped terms that are higher than first order in the variations. Note that the second term contains the product of two terms with the same index, which according to the Einstein summation convention must be summed over. To be explicit:
+\begin{align}
+\die{\lagd}{\eta}\delta\eta+\die{\lagd}{\eta_{,\mu}}\delta\eta_{,\mu}&=\die{\lagd}{\eta}\delta\eta\nonumber\\
+&+\die{\lagd}{\left(\frac{d\eta}{cdt}\right)}\delta\left(\frac{d\eta}{cdt}\right)+\die{\lagd}{\left(\frac{d\eta}{dx}\right)}\delta\left(\frac{d\eta}{dx}\right)+\die{\lagd}{\left(\frac{d\eta}{dy}\right)}\delta\left(\frac{d\eta}{dy}\right)+\die{\lagd}{\left(\frac{d\eta}{dz}\right)}\delta\left(\frac{d\eta}{dz}\right)
+\end{align}
+which correctly reduces to the form we had earlier for the one-dimensional field. Also note how the $c$'s cancel! Of course, the reason we introduced the notation was to avoid having to expand it out, so we will let the reader convince themselves that the math is correct by expanding out future formulas.
+
+The variation of the action is thus:
+\begin{align}
+\delta S&=\int\left(\die{\lagd}{\eta}\delta\eta+\die{\lagd}{\eta_{,\mu}}\delta\eta_{,\mu}\right)\,dx^\nu\nonumber\\
+&=\epsilon\int\left(\die{\lagd}{\eta}\phi+\die{\lagd}{\eta_{,\mu}}\phi_{,\mu}\right)\,dx^\nu
+\end{align}
+Setting that the rate of change of the action with respect to $\epsilon$ be zero, and then integrating by parts, we have:
+\begin{align}
+\frac{\delta S}{\epsilon}&=\int\left(\die{\lagd}{\eta}\phi+\die{\lagd}{\eta_{,\mu}}\phi_{,\mu}\right)\,dx^\nu\nonumber\\
+&=\int\phi\left(\die{\lagd}{\eta}-\frac{d}{dx^\mu}\die{\lagd}{\eta_{,\mu}}\right)\,dx^\nu\nonumber
+\end{align}
+Again, this must be true for any choice of $\phi$, so we obtain the Euler-Lagrange equation for a scalar field in three dimensional space:
+\begin{align}
+\frac{d}{dx^\mu}\die{\lagd}{\eta_{,\mu}}-\die{\lagd}{\eta}=0
+\end{align}
+This result easily generates to the case of multiple fields or multiple components of a single field (i.e. a tensor or vector field). 
+
+
+\section{Problems}
+\begin{problem}{Transverse vibrations of a string}
+Derive the equation of motion for transverse vibrations in a string of mass density $\mu$ with a tension $T$. Show that the Lagrangian density is given by:
+\begin{align*}
+\lagd=\frac{1}{2}\left[\mu\left(\frac{d\eta}{dt}\right)^2-T\left(\frac{d\eta}{dx}\right)^2\right]
+\end{align*}
+where the string is stretched in the $x$ directions and $\eta(x,t)$ correspond to displacement along $y$ of the point on the string at position $x$.
+\end{problem}
+
+\begin{problem}{Transverse and longitudinal vibrations of a string}
+Derive the equation of motion for a string of mass density $\mu$ with a tension $T$, and Young's modulus, $Y$, undergoing both transverse and longitudinal vibrations. 
+\end{problem}

@@ -1,0 +1,74 @@
+
+\section{Problems}
+\begin{problem}{Highest point on a surface} Find the coordinates of the highest point on the surface given by $z(x,y)=x^2y+xy$ that when projected onto the xy-plane lies on a circle of radius $r=5$ centered at $x=2$ and $y=3$. Use a computer to illustrate the result. You will also likely need to solve the equations numerically.
+\label{prob_CalcVar_1}
+\end{problem}
+\begin{problem}{Box with no lid} Find the dimensions that maximize the volume of a box with no lid, if the total surface area of the box is 1\,m$^2$.
+\label{prob_CalcVar_2}
+\end{problem}
+%\begin{problem}{Hanging Beads} The figure shows 3 beads of equal mass $m$, connected by mass-less inextensible strings of length $l$ over a precipice of length $L$.
+%\capfig{0.4\textwidth}{figures/HangingBeads.png}{3 beads of equal mass $m$, connected by mass-less inextensible strings of length $l$ over a precipice of length $L$} 
+%
+%\textbf{a)} Minimize the potential energy of the system to find the positions ($x_i$, $y_i$) of the 3 beads.
+%
+%\textbf{b)} Generalize the result from part a) if there are N beads
+%
+%\textbf{c)} If the beads and strings are replaced by a heavy rope with a mass per unit length of $\mu$, find the differential equation for the curve that describes the shape of the rope and use a computer to plot it.
+%\end{problem}
+
+\begin{problem}{Euler-Lagrange equations for integrand that depends on more than one function}\label{prob_CalcVar_3} Show that the stationary value of the functional $S=\int_a^b L(q_1(t),q_2(t),\dots,\dot{q_1}, \dot{q_2},\dots,t)dt$ gives an Euler-Lagrange equation for each $q_i(t)$:
+\begin{align*}
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q_i}}\right)-\frac{\partial L}{\partial q_i}=0
+\end{align*}
+\end{problem}
+
+\begin{problem}{Euler-Lagrange equation when there is a second order derivative}\label{prob_CalcVar_4} Show that the equivalent of the Euler-Lagrange equation when the function in the integrand depends on the second derivative of $y$:
+\begin{align*}
+I=\int_a^b L(y,y',y'',x)dx
+\end{align*}
+is given by:
+\begin{align*}
+\frac{d^2}{dx^2}\die{L}{y''}-\frac{d}{dx}\die{L}{y'}+\die{L}{y}=0
+\end{align*}
+Note that you will have to integrate by parts twice and that the variation of $y'(x)$ is zero at the end points of the integral.
+\end{problem}
+
+\begin{problem}{Brachistrochrone}\label{prob_CalcVar_5}Refer to the problem of example \ref{ex:brach}.\\
+\textbf{a)} Find the differential equation for the function $y(x)$ that solves the brachistrochrone problem, by minimizing $T$:
+\begin{align*}
+\sqrt{2g}T=\int_0^{x_b} \frac{\sqrt{1+y'^2}}{\sqrt{y}}dx
+\end{align*}
+Note that we have set the problem up such that one end of the wire is at the origin, gravity is in the positive $y$ direction, and the constant $2g$ will not change the shape of the wire. Note that a closed form solution in the form $y=f(x)$ is not possible, and only parametric solutions can be obtained (so called ``cycloids'').
+
+\textbf{b)} Repeat part a), with the wire being constrained to have a length of $L$.
+\end{problem}
+
+\begin{problem}{Geodesic}\label{prob_CalcVar_6} Determine the functional for the shortest distance between two points on a sphere of radius $a$, and write the differential equation that gives the function $\phi(\theta)$, where $\phi$ and $\theta$ are the azimuthal and polar angles in spherical coordinates, respectively.
+\end{problem}
+
+\begin{problem}{Straight line}\label{prob_CalcVar_7} Show that the shortest distance between two points in a plane is a straight line.
+\end{problem}
+
+\begin{problem}{Catenary}\label{prob_CalcVar_8} A rope of uniform linear mass density, $\mu$, and total length, $L$, is hung across a precipice of length, $H$ (both sides of the precipice are at the same height). Minimize the potential energy of the rope:
+\begin{align*}
+V=\int_0^H \mu g y ds
+\end{align*} 
+to obtain the differential equation for the shape of the rope. Use a computer to solve and plot the resulting curve (choose reasonable values).
+\end{problem}
+
+\begin{problem}{Surface and volume of revolution}\label{prob_CalcVar_9}
+\textbf{a)} Find the shape of the curve, $y(x)$, passing through two points, $a$ and $b$, that gives the minimal surface of revolution when rotated about the x-axis (see figure). Note that this would be the shape of a soap film formed between two hoops.\\
+\textbf{b)} Find the shape of the curve, $y(x)$, passing through two points, $a$ and $b$, that creates a solid of revolution with the minimal moment of inertia about the x-axis (see figure). Assume that the volume is made of a material with uniform density. It will not be possible to get a closed form, write the solution as a differential equation for $y(x)$ or give $x$ in terms of an integral over $y$.
+\capfig{0.2\textwidth}{figures/SurfaceOfRevolution.png}{Minimal surface of revolution between two points, problem \ref{prob_CalcVar_9}}\\
+\end{problem}
+
+\section{Solutions}
+
+\paragraph{Problem \ref{prob_CalcVar_1}:}
+\begin{solution}
+\textbf{a)}
+ \begin{align*}
+2+2=4
+\end{align*}
+\end{solution}
+

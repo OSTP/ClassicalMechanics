@@ -1,0 +1,204 @@
+\chapter{Formalism and generalized coordinates}
+\section{Analytic and vector mechanics}
+In introductory physics, one learns to describe the time evolution of a system using Newton's second law of motion. This approach to mechanics is called ``vector mechanics''. Newton's second law:
+\begin{align}
+\vec{F}=m\vec{a}
+\label{eqn:Fma}
+\end{align}
+is a vector equation that is true for each component of the vectors for force and acceleration.
+
+\noindent
+By contrast, in ``analytic mechanics'', the formalism is developed to describe the time-evolution of a system using a single equation involving only scalar quantities. The approach will be seen to be equivalent to the vector mechanics approach. The vector mechanics formalism generally suffers from limitations that make it difficult to apply in complicated situations. For example, the vector equations are not straightforward in non-Cartesian coordinate systems, which may be more suited for certain problems (motion on the surface of a sphere, orbital motion, etc.).
+
+\noindent
+In general, a ``theory'' of classical mechanics should be able to describe the future and past of a system, given knowledge of its current state and the forces involved. We will see that it is sufficient to describe the current state of a system by specifying the positions of all of the particles that are involved. Furthermore, given the particular forces (or potential energies involved), knowing the positions and velocities of all particles is sufficient in order to describe the entire history (past and future) of the system. The analytic treatment of mechanics is formulated using the positions and velocities of the particles involved (as opposed to the vectorial approach that deals with accelerations).
+
+\begin{example}{0pt}{The Compound Pendulum is a typical example of a simple system that is awkward to describe using vectorial analysis, but straightforward using analytic mechanics.}{\capfig{0.5\textwidth}{figures/CompoundPenduluum.png}{Vectorial analysis of the compound pendulum}}
+In order to describe the motion of the two masses as a function of time, we start by defining an origin, and label the coordinates of mass $i$ with $x_i$ and $y_i$. We wish to find the functions $x_i(t)$ and $y_i(t)$ given initial conditions on the positions and velocities of the masses. We have 6 unknowns (the accelerations in $x$ and $y$ of the two masses, and the two string tensions).
+
+Newton's second law gives, in vectorial form:
+\begin{align*}
+m_1\vec{a}_1&=\vec{T}_1+\vec{T}_2+m_1\vec{g}\\
+m_2\vec{a}_2&=\vec{T}_2+m_2\vec{g}\\
+\end{align*}
+Writing this out, component by component, we have:
+\begin{align*}
+m_1 \ddot x_1&=T_2\sin\phi-T_1\sin\theta\\
+m_1 \ddot y_1&=T_1\cos\theta-T_2\cos\phi-m_1g\\
+m_2 \ddot x_2&=-T_2\sin\phi\\
+m_2 \ddot y_2&=T2\cos\phi-m_2g
+\end{align*}
+where we have introduced the notation of $\ddot x \equiv \frac{d^2x}{dt^2}$ for the accelerations (a dot on top of a variable represents a time derivative, two dots represent a second order derivative). It may appear that we have 8 unknowns (the $x_i$, $y_i$, $T_i$ and the two angles). However, due to the constraints of the masses being attached to massless rods of the pendulum, the position coordinates are all related and only two of them are independent. One can choose the two angles to be the independent variables, since they are given by the $x_i$ and $y_i$:
+\begin{align*}
+x_1&=L_1\sin\theta\\
+y_1&=-L_1\cos\theta\\
+x_2&=x_1+L_2\sin\phi\\
+y_2&=y_1-L_2\cos\phi
+\end{align*}
+One can then replace the accelerations using the Chain Rule to re-express the accelerations in terms of $\theta$ and $\phi$:
+\begin{align*}
+\dot x_1&=\frac{d}{dt}L_1\sin\theta=L_1\cos\theta\dot\theta\\
+\ddot x_1&=\frac{d}{dt}L_1\cos\theta\dot\theta=L_1(\cos\theta\ddot\theta-\sin\theta\dot\theta^2)
+\end{align*}
+and eliminate all the $x_i$ and $y_i$. One is then left with four equations and four unknowns ($\ddot\theta$, $\ddot \phi$, $T_1$, $T_2$). The equations for the angular acceleration form a set of coupled second order ODEs that can be solved numerically.
+
+One could alternatively choose to eliminate the angles and the $y_i$, since the $y_i$ can be written in terms of the $x_i$:
+ \begin{align*}
+ y_1&=-\sqrt{L_1^2-x_1^2}\\
+ y_2&=y_1-\sqrt{L_2^2-(x_2-x_1)^2)}
+ \end{align*}
+and one would then use the Chain Rule to re-express the $\ddot y_i$ in terms of the $\ddot x_i$.
+\label{ex:vectorCompPend}
+\end{example}
+
+
+\section{Definitions and notation}
+\subsection{Particle, position, velocity, acceleration}
+We will define a ``particle'' to be a point-like object with a mass. The location in space of such a particle is described by a position vector, $\vec{r}(t)$, that can change as a function of time. The components of the position vector are the ``coordinates'' of the particle. The rate of change of the position vector is called ``velocity'' (and that of velocity, ``acceleration''). If one knows the values of the position and velocity vectors at some instant in time, the whole ``path'' of the particle (backwards and forwards in time and space) can be deduced. The equations that relate position, velocity, and acceleration are called ``equations of motion''. Newton's second law gives the equation of motion for $\vec{r}(t)$ in differential form:
+
+\begin{align}
+\vec{F}&=m\vec{a}=m\frac{d^2}{dt^2}\vec{r}=m\ddot{\vec{r}}\nonumber\\
+\ddot{\vec{r}}&=\frac{1}{m}\vec{F}
+\label{eqn:Fma2}
+\end{align}
+where we have introduced the use of ``dots'' to signify derivatives with respect to time:
+\begin{align}
+\vec{F}&=m\vec{a}=m\frac{d^2}{dt^2}\vec{r}=m\ddot{\vec{r}}\nonumber\\
+\dot{x}&\equiv\frac{d}{dt}x\nonumber\\
+\ddot{x}&\equiv\frac{d^2}{dt^2}x\nonumber\\
+\label{eqn:defdot}
+\end{align}
+
+\subsection{Rigid body}
+A ``rigid body'' is an object made from many particles that are fixed in position relative to each other. The rigid body can thus be treated without knowing the specifics of the particles that make it up. Often, it is sufficient to describe a rigid body by the position of its center of mass, its angles of rotation about three axes, its total mass, and its moment of inertia tensor.
+
+\subsection{Degrees of freedom}
+The ``number of degrees of freedom'' is the number of scalar quantities that are required to specify the state of a system. For a particle in three dimensional space, one requires 3 coordinates to specify the location of a particle. For a rigid object, one requires 6 degrees of freedom (3 coordinates of the center of mass and 3 rotation angles).
+
+\subsection{System}
+A ``system'' is an ensemble of particles and rigid bodies that one wants to describe. A system will generally have 3N+6M degrees of freedom, if there are N particles and M rigid bodies.
+
+\subsection{Constraints}
+When there are ``constraints'' applied to the coordinates of the particles, the number of degrees of freedom is reduced. For example, if 2 particles are connected by a rigid mass-less bar of length, $l$, the number of degrees of freedom is 5. The constraint of a rigid bar can be written as 1 equation of constraint, requiring that the distance between the two particles remain constant.
+\begin{align}
+|\vec{r_1}-\vec{r_2}|^2=(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2=l^2\nonumber\\
+\therefore l^2-(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2=0
+\label{eqn:2massbarrholcons}
+\end{align}
+we call this a ``constraint'' equation. In general, the number of degrees of freedom is reduced by the number of constraint equations that exist. For two masses constrained by a bar, we have 5 degrees of freedom. This makes sense; we can completely specify the position of the two masses by the 3 coordinates of the first mass and 2 angles that specify the rotation of the bar.
+
+\begin{example}{0pt}{How many degrees of freedom are required to describe a system of 4 particles connected by 4 rigid massless rods? Write out the constraint equations. What if the particles are constrained to the xy-plane? }{\capfig{0.2\textwidth}{figures/4MassesAndRod.png}{Four particles connected by rods}}
+Without constraints, the system would be described by 12 degrees of freedom (4 particles with 3 coordinates). Each rod $k$ introduces an equation of the form:
+\begin{align*}
+(x_i-x_j)^2+(y_i-y_j)^2+(z_i-z_j)^2=l_k^2
+\end{align*}
+between the coordinates of particle $i$ and particle $j$. There are thus $12-4=8$ degrees of freedom. If the particles are constrained to the xy-plane, we can introduce 4 more constraint equations of the form:
+\begin{align*}
+z_i=0\text{			(i=1,2,3,4)}
+\end{align*}
+giving us 4 degrees of freedom. Equivalently, we could start in a two-dimensional space, where the un-constrained system would have 8 degrees of freedom, and the 4 constraints from the rods would also bring this down to 4.
+\label{ex:4MassesAndRod}
+\end{example}
+
+\subsection{Types of constraints}
+Different types of constraints have different properties (and names). 
+\paragraph{Holonomic}
+Constraint equations that can be written using the coordinates of the particles in the system are called ``holonomic''. The constraint equation with two masses held by a rigid bar is an example of a holonomic constraint (see eqn. \ref{eqn:2massbarrholcons}). A holonomic constraint can depend on time.
+\begin{example}{0pt}{Rolling without slipping in 1D. Write out the constraint for a disk of radius $r$  to roll without slipping along the x-axis.}{\capfig{0.3\textwidth}{figures/Rolling1D.png}{A disk rolling without slipping}}
+The constraint for rolling without slipping is that the instantaneous velocity of the point of contact is zero. The velocity of the point of contact is in the x-direction and has a magnitude:
+\begin{align*}
+v_{CM}-r\dot{\phi}&=0\nonumber\\
+\therefore v_{CM}&=r\dot{\phi}
+\end{align*}
+Using the generalized coordinate $x$ to describe the position of the center of mass of the disk:
+\begin{align*}
+v_{CM}&=\frac{dx}{dt}\nonumber\\
+\therefore \frac{dx}{dt}=r\frac{d\phi}{dt}
+\end{align*}
+which is not a holonomic constraint. However, we can integrate it to get a holonomic constraint:
+\begin{align*}
+dx=rd\phi\nonumber\\
+\therefore x=r\phi
+\end{align*}
+\end{example}
+
+\paragraph{Non-holonomic}
+Non-holonomic constraint equations cannot be written only in terms of the coordinates, or contain inequalities. For example, the constraint of ``rolling without slipping'' is a constraint on the instantaneous velocity of the point of contact. The equation is expressed in terms of the velocity rather than the position coordinates (it can be integrated in 1 dimension to get a holonomic constraint, but this does not generalize to 2-dimensions). Another type of non-holonomic constraints are those that contain inequalities such as particles that are constrained to move within a volume (the constraint is on the position vectors, but it is expressed as an inequality). In general, it is difficult to deal with non-holonomic constraints.
+\begin{example}{0pt}{The constraint equation for particles constrained to be inside of a sphere of radius $R$:}{}
+If the origin is at the center of the sphere, each particle $i$ provides a constraint equation of the form:
+\begin{align*}
+x_i^2+y_i^2+z_i^2<R^2
+\end{align*}
+\end{example}
+\begin{example}{0pt}{Rolling without slipping in 2D. Write out the constraint for a sphere of radius $r$ to roll without slipping in the xy-plane}{\capfig{0.3\textwidth}{figures/Rolling2D.png}{A sphere rolling without slipping}}
+Again, the constraint for rolling without slipping is that the instantaneous velocity of the point of contact is zero. 
+\begin{align*}
+\frac{ds}{dt}-r\dot{\phi}&=0\nonumber\\
+\frac{ds}{dt}&=r\frac{d\phi}{dt}\nonumber\\
+ds&=r d\phi
+\end{align*}
+where $ds$ is the displacement of the center of mass, and $d\phi$ is the infinitesimal angle around the current axis of rotation (which is perpendicular to $d\vec{s}$). If the (instantaneous) direction of the ball rolling with respect to the x-axis is given by $\theta$. We have:
+\begin{align*}
+dx&=ds\cos{\theta} =r\cos{\theta}d\phi\nonumber\\
+dy&=ds\sin{\theta} =r\sin{\theta}d\phi\nonumber\\
+\end{align*}
+which is not a holonomic constraint. $\theta$ depends on time (we have no constraint on which direction the ball is allowed to roll), thus, we cannot simply integrate these equations, and they remain in their differential form.
+\end{example}
+\paragraph{Sceleronomous}
+A sceleronomous constraint does not depend explicitly on time (the partial derivative with respect to time is zero).
+\paragraph{Rheonomous}
+A rheonomous contraint depends (explicitly) on time (partial derivative with respect to time is non-zero).
+
+\subsection{Generalized coordinates}
+In general, one has the freedom to choose the coordinate system (Cartesian, polar, something more exotic) to describe a system. If we have a system with $N$ particles and $k$ holonomic constraints, there will be $3N$ coordinates, but only $3N-k$ of them will be independent (the number of degrees of freedom). 
+
+It is often useful to restrict the number of coordinates to describe a system so that there are only as many coordinates as there are degrees of freedom. These coordinates are called ``generalized coordinates'', and often denoted as the set  $\{q_1,q_2,q_3,\dots,q_{3N-k}\}$. Their time derivatives are called ``generalized velocities'' $\{\dot{q_1},\dot{q_2},\dot{q_3},\dots,\dot{q}_{3N-k}\}$. The generalized coordinates should not necessarily be thought of as a set of coordinates in space (like Cartesian or Polar); rather, a set of numbers that describes the state of the system. 
+
+Using generalized coordinates, one does not need to think in terms of the coordinates of each particle in the system. That is, the generalized coordinates may not be the position of specific particles, but rather numbers that can describe the ensemble of particles. The system is entirely described by the generalized coordinates. There will exist ``transformation equations'' to convert the generalized coordinates back to the coordinates of the individual particles in the system:
+\begin{align}
+x_1&=x_1(q_1,q_2,q_3,\dots,q_{3N-k},t)\nonumber\\
+y_1&=y_1(q_1,q_2,q_3,\dots,q_{3N-k},t)\nonumber\\
+z_1&=z_1(q_1,q_2,q_3,\dots,q_{3N-k},t)\nonumber\\
+&\dots\nonumber\\
+x_N&=x_N(q_1,q_2,q_3,\dots,q_{3N-k},t)\nonumber\\
+y_N&=y_N(q_1,q_2,q_3,\dots,q_{3N-k},t)\nonumber\\
+z_N&=z_N(q_1,q_2,q_3,\dots,q_{3N-k},t)\nonumber\\
+\end{align}
+The generalized coordinates could have different units than length and could, in general, be quite abstract. The transformation equations to the generalized coordinates can depend on time.
+\noindent
+Similarly, the generalized velocities (and accelerations), can also be obtained from the transformation equations:
+\begin{align}
+\dot{x}_1&=\frac{\partial x_1}{\partial q_1}\dot{q}_1+\dots+\frac{\partial x_1}{\partial q_{3N-k}}\dot{q}_{3N-k}+\frac{\partial x_1}{\partial t}\nonumber\\
+&\dots\nonumber\\
+\dot{z}_N&=\frac{\partial z_N}{\partial q_1}\dot{q}_1+\dots+\frac{\partial z_N}{\partial q_{3N-k}}\dot{q}_{3N-k}+\frac{\partial z_N}{\partial t}\nonumber
+\end{align}
+The partial derivative with respect to time comes from writing $dx = \frac{\partial x_1}{\partial q_1}dq_1+\dots +\frac{\partial x_1}{\partial t} dt$ and then dividing out by $dt$ to get $\dot{x}$ on the left hand side.
+\begin{example}{0pt}{Write out generalized coordinates to describe the motion of a bead of mass $m$ that is constrained to slide along a mass-less rod of length, $L$, that is rotating at a constant angular frequency $\omega$ in the vertical plane about its pivot point (Figure \ref{fig:BeadOnRod}). Write out the constraint equations in the form $f_i(x_1,\dots ,x_n)=0$. Write out the generalized velocities.}{\capfig{0.2\textwidth}{figures/BeadOnRod.png}{\label{fig:BeadOnRod}Bead that can slide on a rotating rod.}}
+Since we are describing a particle, we have 3 degrees of freedom. However, the bead is constrained to be in the horizontal plane ($z=0$) as well as being on the rod. These two constraints thus reduce the number of degrees of freedom to 1. We can choose to describe the particle by its distance from the pivot point of the rod, $r$. We thus have:
+\begin{align*}
+x(t) &=-r\sin{\omega t}\nonumber\\
+y(t) &=r\cos{\omega t}
+\end{align*}
+The constraint equations are:
+\begin{align*}
+z&=0\nonumber\\
+x+y\tan{\omega t}&=0
+\end{align*}
+There is an additional non-holonomic constraint, since the rod has a stop at the end. This does not reduce the number of degrees of freedom:
+\begin{align*}
+x^2+y^2-L^2\leq 0
+\end{align*}
+The generalized velocity transformations are:
+\begin{align*}
+\dot{x} &=-\dot{r}\sin{\omega t}-r\omega\cos{\omega t}\\
+\dot{y} &=\dot{r}\cos{\omega t}-r\omega\sin{\omega t}
+\end{align*}
+\end{example}
+
+
+\subsection{Configuration space}
+The $n$ generalized coordinates corresponding to the $n$ degrees of freedom of a system can be thought of in terms of an n-dimensional Euclidean space called ``configuration space''. As the system evolves through time, one can relate this to a path in configuration space. The equations of motion dictate that path. Note that the initial conditions of a system will dictate which path it takes in coordinate space based on the equations of motion. For example, a cannon ball has the same equations of motion regardless of the inclination of the cannon its initial velocity as it exits the cannon. However, depending on the initial conditions of its position and velocity, the cannon ball will trace different trajectories (paths in configuration space). 
+
+
+
+

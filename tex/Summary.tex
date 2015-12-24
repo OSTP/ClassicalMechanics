@@ -1,0 +1,212 @@
+\documentclass[10pt]{report}
+\usepackage{paralist}
+\usepackage{calc}
+\usepackage{subfig}
+\usepackage{setspace}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage[font={small,it}]{caption}
+\usepackage[pdftex]{graphicx} 
+\usepackage{fancyhdr,lastpage}
+\usepackage{url}
+\usepackage{longtable}
+\usepackage{comment}
+\usepackage{ifthen}
+\usepackage{color}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{titlesec}
+
+%%%spacing around titles
+\titlespacing*{\chapter}
+{0pt}{0ex}{0ex}
+\titlespacing*{\section}
+{0pt}{0ex}{0ex}
+\titlespacing*{\subsection}
+{0pt}{0ex}{0ex}
+\titlespacing*{\subsubsection}
+{0pt}{0ex}{0ex}
+
+
+\newcommand{\die}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\lagd}{\mathcal{L}}
+
+\setlength{\parindent}{0pt}
+\parskip = \baselineskip
+
+\newenvironment{capfig}[3]{\begin{figure}[h!]\center\includegraphics[width=#1]{#2}\caption{#3}\end{figure}}{}
+
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=.0in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+
+
+\begin{document}
+\title{Essentials of Classical Mechanics: A high level summary}
+\author{Ryan D. Martin}
+\maketitle
+
+\begin{itemize}
+
+\item We began by motivating the use of generalized coordinates, $\{q_i(t)\}$, to describe a system with $n$ degrees of freedom.
+\item We saw that in most systems with holonomic constraints (where one coordinate can be expressed in terms of the others), this was a straightforward approach. We saw that in one dimension, rolling without slipping could be made into a holonomic constraint, but this was not the case in two dimensions. We also saw that holonomic constraints are often related to internal forces of constraint that do no virtual work (e.g. the normal force).
+\item We showed that the evolution of a system can be described by its evolution through an $n$-dimensional ``configuration space'', once the initial values of the generalized coordinates and the corresponding generalized velocities were specified.
+\item We introduced the formalism of the calculus of variations and showed that the independent functions $q_i(t)$ that make an integral, $S$, stationary are given by the Euler-Lagrange (differential) equation:
+\begin{align*}
+S&\equiv\int_a^b L(q_1,q_2,\dots,\dot{q_1}, \dot{q_2},\dots,t)dt\\
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right)-\frac{\partial L}{\partial q_i}&=0 \text{              (i=1\dots n)}
+\end{align*}
+where $L(q_i,\dot q_i,t)$ is a function of the $q_i$, their time derivatives $\dot q_i$, and time, $t$, and time is an independent variable.
+\item Through the use of Lagrange multipliers, we saw that we could handle the case where the function $q_i$ are not independent (in particular, when they are related by holonomic constraints).
+\item After introducing the concept of generalized forces,  and modifying Newton's Second Law, we arrived at D'Alembert's principle which related the kinetic energy of a system to the generalized forces on the system:
+\begin{align*}
+\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_j} \right) - \frac{\partial T}{\partial q_j}=Q_j
+\end{align*}
+\item By restricting ourselves to the case where the forces are conservative (or monogenic), we found that we could introduce the Lagrangian, $L$, and re-write D'Alembert's Principle in terms of the Lagrangian, which was guaranteed to be equivalent to Newton's Second Law, yet completely eliminated the use of vectors:
+\begin{align*}
+L&\equiv T - V \\
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right)-\frac{\partial L}{\partial q_i}&=0 
+\end{align*}
+where $T$, and $V$, are kinetic and potential energies, respectively, expressed in terms of the generalized coordinates and their velocities. This led to $n$ second order ordinary differential equations for the $n$ generalized coordinates $q_i(t)$.
+\item By comparing the equation of motion from the Lagrangian and our work on the calculus of variations, we recognized Hamilton's principle, which states that the equations of motion for a system are given by the requirement that the action, $S$, be stationary:
+\begin{align*}
+S&\equiv \int_a^b L(q_i,\dot q_i, t)dt\\
+\end{align*}
+and we made that the fundamental principle on which to base our description of mechanics (since we know it is equivalent to Newton's Second Law when the Lagrangian $L$ is $T-V$).
+\item We saw that we could use the Lagrangian formalism to recover forces of constraint, using Lagrange multipliers, if needed.
+\item We saw that conservation of energy was automatically built into this formalism and was a consequence of the Lagrangian not depending explicitly on time. In particular, if $\die{L}{t}=0$, we found that the Jacobi integral, $h$, was a constant of the motion:
+\begin{align*}
+h(q_i, \dot{q}_i, t)&\equiv \left(\sum_{i=1}^n \dot{q}_i\frac{\partial L}{\partial \dot{q}_i}\right) -L
+\end{align*}
+We also saw that when the potential energy, $V$, does not depend on the velocities, and the kinetic energy, $T$, was quadratic in the velocities, then the Jacobi integral was equal to the total energy of the system, $T+V$.
+\item We saw that conservation of momentum was also built into the formalism by observing that cyclic coordinates $q_i$ (those for which $\die{L}{q_i}=0$) led to their conjugate momenta, $p_i$, being constants of motion:
+\begin{align*}
+p_i&\equiv \die{L}{\dot q_i} \\
+\end{align*}
+\item We used Noether's theorem to generalize the idea of conserved quantities and saw that every continuous transformation that leaves the action unchanged leads to a conserved quantity, $Q$:
+\begin{align*}
+Q&=\sum_{i=1}^n p_if_i +g\left(\sum_{i=1}^n p_i\dot{q}_i-L\right)
+\end{align*}
+where the $f_i$ correspond to transformations of the space coordinates and $g$ corresponds to transformations of time:
+\begin{align*}
+q_i'&=q_i+\delta q_i=q_i+f_i(q_1,\dots ,q_n,\dot{q}_1,\dots ,\dot{q}_n, t)\delta\epsilon\\
+t'&=t+\delta t=t+g(q_1,\dots ,q_n,\dot{q}_1,\dots ,\dot{q}_n, t)\delta\epsilon\\
+\end{align*}
+We also saw that when time is not involved in the transformation ($g=0$), then it was sufficient to consider whether the transformation would leave the Lagrangian (rather than the action) unchanged. We saw that invariance with respect to space translations led to conservation of linear momentum, invariance with respect to rotation led to conservation of angular momentum, and invariance with respect to time translation led to conservation of energy.
+\item We introduced the Hamiltonian, $H(q_i,p_i, t)$, as the Legendre transformation of the Lagrangian, $L(q_i,\dot q_i, t)$:
+\begin{align*}
+H(q_i,p_i,t)\equiv \sum_ip_i\dot q_i-L(q_i,\dot q_i, t)
+\end{align*}
+and we showed that $H$ does not depend on $\dot q_i$, and must be written using the $p_i$ instead of the $\dot q_i$. We promoted $p_i$ to the same status as the independent generalized coordinates, $q_i$, and showed that the equations of motion are given by Hamilton's Canonical Equations:
+\begin{align*}
+\dot q_i&=\die{H}{p_i} \nonumber\\
+\dot p_i &= -\die{H}{q_i}
+\end{align*}
+This led to $2n$ first order ordinary differential equations for the canonical variables, $q_i(t)$ and $p_i(t)$.
+\item We saw that we can describe the motion of the system in a $2n$-dimensional ``phase space''. In  particular, we saw that the shape of the path is completely specified by the functional form of the Hamiltonian, and the specific path taken by the system through phase space depended on the initial values of the canonical variables. We saw that it is impossible for two paths to cross in phase space, and we noted that the trajectories in phase space behaved very much like the velocity lines of an in-compressible fluid.
+\item Given two functions of the canonical variables, $U(q_i,p_i,t)$, and $V(q_i, p_i, t)$, we introduced the ``Poisson Bracket'' between the functions:
+\begin{align*}
+\{U,V\}\equiv\sum_i^n\left(\die{U}{q_i}\die{V}{p_i}-\die{U}{p_i}\die{V}{q_i}\right)
+\end{align*}
+\item We saw a few interesting properties of the Poisson Brackets:
+\begin{itemize}
+\item The Poisson Brackets of a function of the canonical variables, $F(q_i,p_i,t)$, with the Hamiltonian tells us how that function changes with time:
+\begin{align*}
+\frac{dF}{dt}=\{F,H\}+\die{F}{t}
+\end{align*}
+In particular, if the function does not depend explicitly on time and the Poisson Bracket with the Hamiltonian is zero, then that function (or quantity) is conserved. This is often the easiest way to show whether something is conserved. 
+\item The Poisson Brackets can be used to re-write Hamilton's Canonical Equations in a nice symmetric form:
+\begin{align*}
+\dot q_i&=\{q_i,H\}\\
+\dot p_i&=\{p_i,H\}
+\end{align*} 
+\item We also saw how the Poisson Bracket between a coordinate, $q_i$, and a conserved quantity, $Q$,  led to the coefficient of the continuous transformation $f_i$ for $q_i$ under which the invariance of the action led to $Q$ being conserved:
+\begin{align*}
+f_i = \{q_i,Q\}
+\end{align*}
+\end{itemize}
+\item We introduced ``Canonical Transformations'' of the ``old'' canonical variables $q_i$ and $p_i$ to a ``new'' set of canonical coordinates, $Q_i$ and $P_i$ and corresponding transformed Hamiltonian, $K(Q_i,P_i,t)$. The transformation was said to be canonical if Hamilton's Canonical Equations were preserved:
+\begin{align*}
+H(q_i,p_i,t)&\to K(Q_i,P_i,t)\nonumber\\
+\dot Q_i&=\die{K}{P_i}\nonumber\\
+\dot P_i&=-\die{K}{Q_i}
+\end{align*}
+\item We saw that we can construct a canonical transformation by using a generating function, $F$, that depends on a mix of new and old coordinates, and imposing transformation equations obtained from the generating function. For example, in the case of a ``type 1'' generating function, we had the following transformation equations:
+\begin{align*}
+p_i&=\die{}{q_i}F(q_i,Q_i,t)\nonumber\\
+P_i&=-\die{}{Q_i}F(q_i,Q_i,t)\nonumber\\
+K(Q_i,P_i,t)&=H(p_i,q_i,t)+\die{F}{t}
+\end{align*}
+\item We saw that canonical transformations allowed us to accommodate rather general definitions of $Q$ and $P$ that had little to do with position and momentum.
+\item We showed that Poisson Brackets between quantities are conserved through a canonical transformation; that is, they are ``canonical invariants'', since we can calculate them in any of the coordinate systems.
+\item We saw that we can easily test if a transformation is canonical by using Poisson Brackets (in either coordinate system) by verifying that:
+\begin{align*}
+\{Q_i,P_j\}&=\delta_{ij}\\
+\{Q_i,Q_j\}&=\{P_i,P_j\}=0
+\end{align*}
+\item We saw that by using an arbitrary generating function, G, we could use Poisson Brackets to define an infinitesimal canonical transformation:
+\begin{align*}
+Q_i&=q_i+\delta q_i\\
+P_i&=p_i+\delta p_i\\
+\delta q_i&=\epsilon\die{G}{p_i}=\epsilon\{q_i,G\}\nonumber\\
+\delta p_i&=-\epsilon\die{G}{q_i}=\epsilon\{p_i,G\}
+\end{align*}
+In particular, we observed that when $G$ is the Hamiltonian, the canonical transformation is one that takes the system through an infinitesimal step in time.
+\item We then searched for a canonical transformation that would make all variables cyclic. We found this by using a type 2 transformation with generating function $F_2(q_i, P_i, t)$ and imposing that the transformed Hamiltonian, $K$ be equal to zero:
+\begin{align*}
+K(Q_i,P_i,t)&=H(p_i,q_i,t)+\die{F_2}{t}=0
+\end{align*}
+which is a differential equation for $F_2$. The zero value of the transformed Hamiltonian led to $2n$ constants of motion $\alpha_i$ and $\beta_i$, corresponding to the $2n$ canonical variables $Q_i$ and $P_i$:
+\begin{align*}
+\dot Q_i&=0 \rightarrow \beta_i\equiv Q_i\\
+\dot P_i&=0 \rightarrow \alpha_i\equiv P_i
+\end{align*}
+\item Since $F_2$ is the generating function for a type 2 transformation, we have the following transformation:
+\begin{align*}
+p_i&=\die{F_2}{q_i}\nonumber\\
+Q_i&=\die{F_2}{P_i}\nonumber\\
+\end{align*}
+By convention, we re-label $F_2(q_i, P_i, t)$ as $S(q_i, \alpha_i,t)$ (highlighting that $P_i$ are constants) and call that function ``Hamilton's Principal Function''. Writing the second transformation equation to highlight the constants, we have:
+\begin{align*}
+p_i=\die{S}{q_i}\\
+\beta_i=\die{S}{\alpha_i}\\
+\end{align*}
+With these conventions, we can write the Hamilton-Jacobi equation in its traditional form:
+\begin{align*}
+H(q_i,\die{}{q_i}S(q_i,\alpha_i,t),t)+\die{}{t}S(q_i,\alpha_i,t)&=0
+\end{align*}
+where the Hamiltonian needs to be expressed using $\die{S}{q_i}$ instead of the $p_i$, which leads this to being a partial differential equation for $S$.
+\item We then found, quite surprisingly, that Hamilton's Principal Function, $S$, was equal to the action for the system (within some additive constant), indicating that the action is quite a fundamental quantity (since it is the generating function for a very special canonical transformation).
+\item We finished by looking at the Lagrangian formalism for a continuous medium. We found that instead of describing the system in terms of generalized coordinates, we should describe the system by a set of fields that can depend on position and time. For example, we modeled the longitudinal vibrations in a string by a field $\eta(x,t)$ indicating the displacement of an infinitesimal mass element of the string, rather than modeling the string as a finite number of little masses.
+\item We found that for a continuous system, one should use the Lagrangian density, $\mathcal{L}(\eta,\frac{d\eta}{dt},t,\frac{d\eta}{dx},x)$ instead of the Lagrangian, and that the Lagrangian is just the volume integral of the Lagrangian density. In one spatial dimension, this gives:
+\begin{equation}
+L= \int_{x_1}^{x_2}\mathcal{L}\,dx
+\end{equation}
+\item We then applied Hamilton's Principle to obtain the Euler-Lagrange equation for a field in one dimension as:
+\begin{align*}
+\frac{d}{dt}\die{\lagd}{\dot\eta}+\frac{d}{dx}\die{\lagd}{\eta'}-\die{\lagd}{\eta}=0
+\end{align*}
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
